@@ -2,15 +2,15 @@
 
 def grade_mult(x, y):
     result = []
-    for i in str(x):
-        for j in str(y):
+    for i in str(y):
+        for j in str(x):
             h = int(i) * int(j)
             result.insert(0, h)
     return result
 
 
-y = 152
 x = 151
+y = 152
 print(grade_mult(x, y))
 
 
