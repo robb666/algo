@@ -19,7 +19,7 @@ def grade_mult(x, y):
     print(to_move)
     return result
 
-
+"""python adding matrix diagonally"""
 x = 151
 y = 152
 print(grade_mult(x, y))
