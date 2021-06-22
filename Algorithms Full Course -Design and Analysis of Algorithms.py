@@ -2,16 +2,27 @@
 
 def grade_mult(x, y):
     result = []
-    for i in str(y):
-        for j in str(x):
+    to_move = []
+    for i in reversed(str(y)):
+        for j in reversed(str(x)):
             h = int(i) * int(j)
+            if h > 9:
+                move, h = int(str(h)[:-1]), int(str(h)[-1])
+                #     result.insert(0, h)
+                to_move.insert(0, move)
+            # if to_move:
+            #     h = int(h) + to_move.pop()
             result.insert(0, h)
+    print(to_move)
     return result
 
 
 x = 151
 y = 152
 print(grade_mult(x, y))
+
+
+
 
 
 
