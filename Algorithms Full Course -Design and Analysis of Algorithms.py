@@ -1,18 +1,21 @@
 
 
 def grade_mult(x, y):
-    result = []
+    result = [[] for column in range(len(str(y)))]
     to_move = []
-    for i in reversed(str(y)):
-        for j in reversed(str(x)):
+    for c_ind, i in enumerate(reversed(str(y))):
+        for r_ind, j in enumerate(reversed(str(x))):
             h = int(i) * int(j)
             if h > 9:
                 move, h = int(str(h)[:-1]), int(str(h)[-1])
-                #     result.insert(0, h)
+                result[c_ind].insert(0, h)
                 to_move.insert(0, move)
-            # if to_move:
-            #     h = int(h) + to_move.pop()
-            result.insert(0, h)
+                continue
+            if to_move:
+                h = h + to_move.pop()
+                result[c_ind].insert(0, h)
+            else:
+                result[c_ind].insert(0, h)
     print(to_move)
     return result
 
