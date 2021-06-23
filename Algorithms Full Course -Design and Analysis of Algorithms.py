@@ -22,9 +22,16 @@ def grade_mult(x, y):
     sum2 = sum([result[0][1], result[1][2]])
     sum3 = sum([result[0][0], result[1][1], result[2][2]])
     sum4 = sum([result[1][0], result[2][1]])
-    sum5 = sum([result[2][0], 0])
+    sum5 = sum([result[2][0]])
 
-    return result, sum5, sum4, sum3, sum2, sum1
+    for i, j in enumerate(range(2, -3, -1)):
+        if j >= 0:
+            i = 0
+        if i > 0:
+            j = i
+        print([i], [j])
+
+    return result  #, sum5, sum4, sum3, sum2, sum1
 
 
 
@@ -35,6 +42,9 @@ print(grade_mult(x, y))
 
 n = 3
 print([(n - i - 1, i) for i in range(n)])
+
+
+
 
 
 
