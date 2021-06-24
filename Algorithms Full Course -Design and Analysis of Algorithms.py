@@ -50,9 +50,24 @@ n = 3
 print([(n - i - 1, i) for i in range(n)])
 
 
+""""""
+matrix = [[3, 0, 2],
+          [7, 5, 5],
+          [1, 5, 1]]
+# print(len(matrix))
+arr = []
+for row in range(len(matrix)):
+    for column in range(len(matrix) - 1, - 1, - 1):
+        arr.append(matrix[row][column])
+        try:
+            arr.append(matrix[row + 1][column + 1])
+            arr.append(matrix[row + 2][column + 2])
+        except:
+            pass
 
-
-
+    print(arr)
+print(arr)
+""""""
 
 
 
