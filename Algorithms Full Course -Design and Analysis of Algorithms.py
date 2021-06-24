@@ -62,11 +62,18 @@ for row in range(len(matrix)):
         try:
             arr.append(matrix[row + 1][column + 1])
             arr.append(matrix[row + 2][column + 2])
+            if column == 0:
+                # for column in range(len(matrix) - 1, - 1, - 1):
+                    arr.append(matrix[1][0])
+                    arr.append(matrix[2][1])
+                    arr.append(matrix[2][0])
+                    break
         except:
             pass
 
-    print(arr)
+    # print(arr)
 print(arr)
+
 """"""
 
 
