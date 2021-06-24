@@ -24,12 +24,20 @@ def grade_mult(x, y):
     sum4 = sum([result[1][0], result[2][1]])
     sum5 = sum([result[2][0]])
 
-    for i, j in enumerate(range(2, -3, -1)):
+    arr = []
+    i = 0
+    for j in range(2, -3, -1):
         if j >= 0:
             i = 0
-        if i > 0:
-            j = i
-        print([i], [j])
+        else:
+            i += 1
+            j = 0
+        arr.append((i, j))
+        if len(arr) > 1:
+            arr.pop(0)
+            arr.append((i + 1, j + 1))
+            if len(arr) > 2:
+                arr.pop(0)
 
     return result  #, sum5, sum4, sum3, sum2, sum1
 
