@@ -25,19 +25,17 @@ def grade_mult(x, y):
     sum5 = sum([result[2][0]])
 
     arr = []
-    i = 0
-    for j in range(2, -3, -1):
-        if j >= 0:
-            i = 0
-        else:
-            i += 1
-            j = 0
-        arr.append((i, j))
-        if len(arr) > 1:
-            arr.pop(0)
-            arr.append((i + 1, j + 1))
-            if len(arr) > 2:
-                arr.pop(0)
+    for row in range(len(result)):
+        for column in range(len(result) - 1, - 1, - 1):
+            arr.append(result[row][column])
+            try:
+                arr.append(result[row + 1][column + 1])
+                arr.append(result[row + 2][column + 2])
+            except:
+                pass
+
+        print(arr)
+    print(arr)
 
     return result  #, sum5, sum4, sum3, sum2, sum1
 
