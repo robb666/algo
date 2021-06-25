@@ -31,21 +31,24 @@ def grade_mult(x, y):
 
     arr = []
 
-    for k in range(len(matrix) - 1, -1, -1):
+    for k in range(col_len - 1, 0, -1):
         i = 0
         j = k
         while j <= col_len - 1:
-            arr.append(matrix[i][j])
+            sum1 = matrix[i][j]
+            arr.insert(0, sum1)
             i += 1
             j += 1
 
-    for k in range(1, len(matrix)):
+    for k in range(len(matrix)):
         i = k
         j = 0
         while i <= row_len - 1:
-            arr.append(matrix[i][j])
+            arr.insert(0, matrix[i][j])
             i += 1
             j += 1
+
+    print(arr)
 
     return result  #, sum5, sum4, sum3, sum2, sum1
 
