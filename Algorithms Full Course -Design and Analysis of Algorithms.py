@@ -18,12 +18,6 @@ def grade_mult(x, y):
                 result[c_ind].insert(0, h)
     print(len(result))
 
-    sum1 = sum([result[0][2]])
-    sum2 = sum([result[0][1], result[1][2]])
-    sum3 = sum([result[0][0], result[1][1], result[2][2]])
-    sum4 = sum([result[1][0], result[2][1]])
-    sum5 = sum([result[2][0]])
-
     matrix = result
 
     row_len = len(matrix)
@@ -50,7 +44,27 @@ def grade_mult(x, y):
 
     print(arr)
 
+    final_result = []
+    final_to_move = []
+    for i in arr:
+        if i > 9:
+            move, h = int(str(i)[:-1]), int(str(i)[-1])
+            final_result.insert(0, h)
+            final_to_move.insert(0, move)
+            continue
+
+
+            ;;;
+        if to_move:
+            h = h + to_move.pop()
+            result[c_ind].insert(0, h)
+        else:
+            result[c_ind].insert(0, h)
+
+
     return result  #, sum5, sum4, sum3, sum2, sum1
+
+
 
 
 
