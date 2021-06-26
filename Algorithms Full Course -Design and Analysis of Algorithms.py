@@ -1,107 +1,85 @@
 
 
 def grade_mult(x, y):
-    result = [[] for column in range(len(str(y)))]
-    to_move = []
+    result = [[] for _ in range(len(str(y)))]
+    memory_1 = []
     for c_ind, i in enumerate(reversed(str(y))):
-        for r_ind, j in enumerate(reversed(str(x))):
-            h = int(i) * int(j)
-            if h > 9:
-                move, h = int(str(h)[:-1]), int(str(h)[-1])
-                result[c_ind].insert(0, h)
-                to_move.insert(0, move)
+        for j in reversed(str(x)):
+            k = int(i) * int(j)
+            if k > 9:
+                move, k = int(str(k)[:-1]), int(str(k)[-1])
+                result[c_ind].insert(0, k)
+                memory_1.append(move)
+                print(memory_1)
                 continue
-            if to_move:
-                h = h + to_move.pop()
-                result[c_ind].insert(0, h)
+            if memory_1:
+                k = k + memory_1.pop()
+                result[c_ind].insert(0, k)
             else:
-                result[c_ind].insert(0, h)
-    print(len(result))
+                result[c_ind].insert(0, k)
+    try:
+        k = memory_1.pop()
+        result[0].insert(0, k)
+    except:
+        pass
 
     matrix = result
-
+    print(matrix)
     row_len = len(matrix)
     col_len = len(matrix[0])
 
     arr = []
-
     for k in range(col_len - 1, 0, -1):
         i = 0
         j = k
+        sum1 = 0
         while j <= col_len - 1:
-            sum1 = matrix[i][j]
-            arr.insert(0, sum1)
+            sum1 += matrix[i][j]
             i += 1
             j += 1
+        arr.insert(0, sum1)
 
     for k in range(len(matrix)):
         i = k
         j = 0
+        sum2 = 0
         while i <= row_len - 1:
-            arr.insert(0, matrix[i][j])
+            sum2 += matrix[i][j]
             i += 1
             j += 1
-
-    print(arr)
+        arr.insert(0, sum2)
 
     final_result = []
-    final_to_move = []
-    for i in arr:
+    memory_2 = []
+    for i in reversed(arr):
         if i > 9:
-            move, h = int(str(i)[:-1]), int(str(i)[-1])
-            final_result.insert(0, h)
-            final_to_move.insert(0, move)
+            move, i = int(str(i)[:-1]), int(str(i)[-1])
+            final_result.insert(0, i)
+            memory_2.append(move)
             continue
 
-
-            ;;;
-        if to_move:
-            h = h + to_move.pop()
-            result[c_ind].insert(0, h)
+        if memory_2:
+            i = i + memory_2.pop()
+            final_result.insert(0, i)
         else:
-            result[c_ind].insert(0, h)
+            final_result.insert(0, i)
+
+    try:
+        k = memory_2.pop()
+        final_result.insert(0, k)
+    except:
+        pass
+
+    return ''.join([str(i) for i in final_result])
 
 
-    return result  #, sum5, sum4, sum3, sum2, sum1
 
+x = 12345
+y = 5
 
-
-
-
-x = 151
-y = 152
 print(grade_mult(x, y))
 
 
-n = 3
-print([(n - i - 1, i) for i in range(n)])
-
-
-""""""
-matrix = [[3, 0, 2],
-          [7, 5, 5],
-          [1, 5, 1]]
-# print(len(matrix))
-arr = []
-for row in range(len(matrix)):
-    for column in range(len(matrix) - 1, - 1, - 1):
-        arr.append(matrix[row][column])
-        try:
-            arr.append(matrix[row + 1][column + 1])
-            arr.append(matrix[row + 2][column + 2])
-            if column == 0:
-                # for column in range(len(matrix) - 1, - 1, - 1):
-                    arr.append(matrix[1][0])
-                    arr.append(matrix[2][1])
-                    arr.append(matrix[2][0])
-                    break
-        except:
-            pass
-
-    # print(arr)
-print(arr)
-
-""""""
 
 
 
