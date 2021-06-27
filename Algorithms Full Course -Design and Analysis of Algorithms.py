@@ -2,80 +2,93 @@
 
 def grade_mult(x, y):
     result = [[] for _ in range(len(str(y)))]
-    memory_1 = []
-    for c_ind, i in enumerate(reversed(str(y))):
-        for j in reversed(str(x)):
+    memory_1 = [[] for _ in range(len(str(y)))]
+    fresult = [[] for _ in range(len(str(y)))]
+    trailing_zeros = []
+    # for i in str(y):
+    #     if str(i).endswith('0'):
+    #         trailing_zeros.append([0])
+    for r_ind, i in enumerate(reversed(str(y))):
+        for c_ind, j in enumerate(reversed(str(x))):
             k = int(i) * int(j)
             if k > 9:
-                move, k = int(str(k)[:-1]), int(str(k)[-1])
-                result[c_ind].insert(0, k)
-                memory_1.append(move)
-                print(memory_1)
-                continue
-            if memory_1:
-                k = k + memory_1.pop()
-                result[c_ind].insert(0, k)
-            else:
-                result[c_ind].insert(0, k)
-    try:
-        k = memory_1.pop()
-        result[0].insert(0, k)
-    except:
-        pass
+                memo, k = int(str(k)[:-1]), int(str(k)[-1])
+                result[r_ind].insert(0, k)
+                memory_1[r_ind].insert(0, memo)
+                if c_ind == len(str(x)) - 1:
+                    result[r_ind].insert(0, memo - memo)
+                    memory_1[r_ind].append(0)
 
-    matrix = result
+                # print(memory_1)
+                # print(result)
+
+            else:
+                result[r_ind].insert(0, k)
+                if len(result[r_ind]) > len(memory_1[r_ind]):
+                    memory_1[r_ind].append(0)
+
+    # print(memory_1)
+    # print(result)
+    for i in range(len(result)):
+        for j in range(len(result[0])):
+            s = result[i][j] + memory_1[i][j]
+            fresult[i].append(s)
+
+
+
+    matrix = fresult
     print(matrix)
     row_len = len(matrix)
+    print(row_len)
     col_len = len(matrix[0])
-
+    print(col_len)
     arr = []
-    for k in range(col_len - 1, 0, -1):
-        i = 0
-        j = k
-        sum1 = 0
-        while j <= col_len - 1:
-            sum1 += matrix[i][j]
-            i += 1
-            j += 1
-        arr.insert(0, sum1)
+    if row_len > 1:
+        for k in range(col_len - 1, 0, -1):
+            i = 0
+            j = k
+            sum1 = 0
+            while j <= col_len - 1:
+                sum1 += matrix[i][j]
+                i += 1
+                j += 1
+            arr.insert(0, sum1)
 
-    for k in range(len(matrix)):
-        i = k
-        j = 0
-        sum2 = 0
-        while i <= row_len - 1:
-            sum2 += matrix[i][j]
-            i += 1
-            j += 1
-        arr.insert(0, sum2)
-
-    final_result = []
-    memory_2 = []
-    for i in reversed(arr):
-        if i > 9:
-            move, i = int(str(i)[:-1]), int(str(i)[-1])
-            final_result.insert(0, i)
-            memory_2.append(move)
-            continue
-
-        if memory_2:
-            i = i + memory_2.pop()
-            final_result.insert(0, i)
-        else:
-            final_result.insert(0, i)
-
-    try:
-        k = memory_2.pop()
-        final_result.insert(0, k)
-    except:
-        pass
-
-    return ''.join([str(i) for i in final_result])
+        for k in range(len(matrix)):
+            i = k
+            j = 0
+            sum2 = 0
+            while i <= row_len - 1:
+                sum2 += matrix[i][j]
+                i += 1
+                j += 1
+            arr.insert(0, sum2)
 
 
 
-x = 12345
-y = 5
+        print(matrix)
+        final_result = []
+        memory_2 = []
+        for k in reversed(arr):
+            if k > 9:
+                memo, k = int(str(k)[:-1]), int(str(k)[-1])
+                final_result.insert(0, k)
+                memory_2.append(memo)
+                print(memory_1)
+                print(result)
+
+            else:
+                final_result.insert(0, k)
+                if len(result) > len(memory_1):
+                    memory_2.insert(0, 0)
+
+        return ''.join([str(i) for i in final_result])
+
+    return ''.join([str(i) for i in fresult[0]])
+
+
+x = 54321
+y = 11  # 100
 
 print(grade_mult(x, y))
 
