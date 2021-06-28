@@ -1,34 +1,51 @@
 
 
 def grade_mult(x, y):
-    result = [[] for _ in range(len(str(y)))]
-    memory_1 = [[] for _ in range(len(str(y)))]
-    fresult = [[] for _ in range(len(str(y)))]
+    x = str(x)
+    y = str(y)
+
+    result = [[] for _ in range(len(y))]
+    memory_1 = [[] for _ in range(len(y))]
+    fresult = [[] for _ in range(len(y))]
     trailing_zeros = []
-    # for i in str(y):
-    #     if str(i).endswith('0'):
-    #         trailing_zeros.append([0])
-    for r_ind, i in enumerate(reversed(str(y))):
-        for c_ind, j in enumerate(reversed(str(x))):
+
+    for i in reversed(x):
+        if i.startswith('0'):
+            x = y.replace('0', '')
+            trailing_zeros.append(0)
+        else:
+            break
+
+    for i in reversed(y):
+        if i.startswith('0'):
+            y = y.replace('0', '')
+            trailing_zeros.append(0)
+        else:
+            break
+
+    # print(y)
+    print((x), (y))
+    for r_ind, i in enumerate(reversed(y)):
+        for c_ind, j in enumerate(reversed(x)):
             k = int(i) * int(j)
             if k > 9:
                 memo, k = int(str(k)[:-1]), int(str(k)[-1])
                 result[r_ind].insert(0, k)
                 memory_1[r_ind].insert(0, memo)
-                if c_ind == len(str(x)) - 1:
-                    result[r_ind].insert(0, memo - memo)
+                if c_ind == len(x) - 1:
+                    result[r_ind].insert(0, 0)
                     memory_1[r_ind].append(0)
 
-                # print(memory_1)
-                # print(result)
+                print(memory_1)
+                print(result)
 
             else:
                 result[r_ind].insert(0, k)
                 if len(result[r_ind]) > len(memory_1[r_ind]):
                     memory_1[r_ind].append(0)
 
-    # print(memory_1)
-    # print(result)
+    print(memory_1)
+    print(result)
     for i in range(len(result)):
         for j in range(len(result[0])):
             s = result[i][j] + memory_1[i][j]
@@ -65,7 +82,6 @@ def grade_mult(x, y):
             arr.insert(0, sum2)
 
 
-
         print(matrix)
         final_result = []
         memory_2 = []
@@ -88,7 +104,7 @@ def grade_mult(x, y):
 
 
 x = 54321
-y = 11  # 100
+y = 10
 
 print(grade_mult(x, y))
 
