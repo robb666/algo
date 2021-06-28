@@ -7,21 +7,21 @@ def grade_mult(x, y):
     result = [[] for _ in range(len(y))]
     memory_1 = [[] for _ in range(len(y))]
     fresult = [[] for _ in range(len(y))]
-    trailing_zeros = []
-
-    for i in reversed(x):
-        if i.startswith('0'):
-            x = y.replace('0', '')
-            trailing_zeros.append(0)
-        else:
-            break
-
-    for i in reversed(y):
-        if i.startswith('0'):
-            y = y.replace('0', '')
-            trailing_zeros.append(0)
-        else:
-            break
+    # trailing_zeros = []
+    #
+    # for i in reversed(x):
+    #     if i.startswith('0'):
+    #         x = y.replace('0', '')
+    #         trailing_zeros.append(0)
+    #     else:
+    #         break
+    #
+    # for i in reversed(y):
+    #     if i.startswith('0'):
+    #         y = y.replace('0', '')
+    #         trailing_zeros.append(0)
+    #     else:
+    #         break
 
     # print(y)
     print((x), (y))
