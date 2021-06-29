@@ -66,7 +66,7 @@ def grade_mult(x, y):
             i = 0
             j = k
             sum1 = 0
-            while j <= row_len - 1:
+            while j <= 3 - 1:
                 sum1 += matrix[i][j]
                 i += 1
                 j += 1
@@ -105,7 +105,7 @@ def grade_mult(x, y):
 
 
 x = 12345
-y = 10000
+y = 10
 
 print(grade_mult(x, y))
 
