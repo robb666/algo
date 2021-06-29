@@ -8,7 +8,7 @@ def grade_mult(x, y):
     memory_1 = [[] for _ in range(len(y))]
     fresult = [[] for _ in range(len(y))]
     # trailing_zeros = []
-
+    #
     # for i in reversed(x):
     #     if i.startswith('0'):
     #         x = y.replace('0', '')
@@ -24,7 +24,7 @@ def grade_mult(x, y):
     #         break
     #
     # print(trailing_zeros)
-    # print(x, y)
+    print(x, y)
     for r_ind, i in enumerate(reversed(y)):
         for c_ind, j in enumerate(reversed(x)):
             k = int(i) * int(j)
@@ -66,7 +66,7 @@ def grade_mult(x, y):
             i = 0
             j = k
             sum1 = 0
-            while row_len < j <= col_len - 1:
+            while j <= row_len - 1:
                 sum1 += matrix[i][j]
                 i += 1
                 j += 1
@@ -105,7 +105,7 @@ def grade_mult(x, y):
 
 
 x = 12345
-y = 10
+y = 10000
 
 print(grade_mult(x, y))
 
