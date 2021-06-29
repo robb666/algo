@@ -7,24 +7,24 @@ def grade_mult(x, y):
     result = [[] for _ in range(len(y))]
     memory_1 = [[] for _ in range(len(y))]
     fresult = [[] for _ in range(len(y))]
-    trailing_zeros = []
+    # trailing_zeros = []
 
-    for i in reversed(x):
-        if i.startswith('0'):
-            x = y.replace('0', '')
-            trailing_zeros.append(0)
-        else:
-            break
-
-    for i in reversed(y):
-        if i.startswith('0'):
-            y = y.replace('0', '')
-            trailing_zeros.append(0)
-        else:
-            break
-
-    print(trailing_zeros)
-    print(x, y)
+    # for i in reversed(x):
+    #     if i.startswith('0'):
+    #         x = y.replace('0', '')
+    #         trailing_zeros.append(0)
+    #     else:
+    #         break
+    #
+    # for i in reversed(y):
+    #     if i.startswith('0'):
+    #         y = y.replace('0', '')
+    #         trailing_zeros.append(0)
+    #     else:
+    #         break
+    #
+    # print(trailing_zeros)
+    # print(x, y)
     for r_ind, i in enumerate(reversed(y)):
         for c_ind, j in enumerate(reversed(x)):
             k = int(i) * int(j)
@@ -44,8 +44,9 @@ def grade_mult(x, y):
                 if len(result[r_ind]) > len(memory_1[r_ind]):
                     memory_1[r_ind].append(0)
 
-    print(memory_1)
+    # print(memory_1)
     print(result)
+
     for i in range(len(result)):
         for j in range(len(result[0])):
             s = result[i][j] + memory_1[i][j]
@@ -54,7 +55,7 @@ def grade_mult(x, y):
 
 
     matrix = fresult
-    print(matrix)
+    # print(matrix)
     row_len = len(matrix)
     print(row_len)
     col_len = len(matrix[0])
@@ -65,7 +66,7 @@ def grade_mult(x, y):
             i = 0
             j = k
             sum1 = 0
-            while j <= col_len - 1:
+            while row_len < j <= col_len - 1:
                 sum1 += matrix[i][j]
                 i += 1
                 j += 1
