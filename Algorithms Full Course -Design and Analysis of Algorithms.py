@@ -1,5 +1,15 @@
 
 
+def memory_add(result, memory):
+    for i in range(len(result)):
+        for j in range(len(result[0])):
+            result[i][j] = result[i][j] + memory[i][j]
+
+    return result
+
+
+
+
 def grade_mult(x, y):
     x = str(x)
     y = str(y)
