@@ -41,7 +41,6 @@ def grade_mult(x, y):
                 memo, k = int(str(k)[:-1]), int(str(k)[-1])
                 result[r_ind].insert(0, k)
                 memory_1[r_ind].insert(0, memo)
-
     #
     #             print(memory_1)
     #             print(result)
@@ -51,24 +50,28 @@ def grade_mult(x, y):
                 memory_1[r_ind].insert(0, 0)
                 if len(x) - 1 == c_ind and len(result[r_ind]) < len(memory_1[r_ind]):
                     result[r_ind].insert(0, 0)
-    #
-    # print(memory_1)
-    # print(result)
 
-    for i in range(len(result)):
-        for j in range(len(result[0])):
-            s = result[i][j] + memory_1[i][j]
-            fresult[i].append(s)
+
+    if memory_1[0][0] > 0:
+        result[0].insert(0, memory_1[0][0])
+
+    print(memory_1)
+    print(result)
+
+    # for i in range(len(result)):
+    #     for j in range(len(result[0])):
+    #         s = result[i][j] + memory_1[i][j]
+    #         fresult[i].append(s)
     #
     #
     #
-    matrix = fresult
-    print(matrix)
+    # matrix = fresult
+    # print(matrix)
     # row_len = len(matrix)
     # print(row_len)
     # col_len = len(matrix[0])
     # print(col_len)
-    arr = []
+    # arr = []
     # if row_len > 1:
     #     for k in range(col_len - 1, 0, -1):
     #         i = 0
@@ -113,7 +116,7 @@ def grade_mult(x, y):
 
 
 x = 12345
-y = 13
+y = 12
 
 print(grade_mult(x, y))
 
