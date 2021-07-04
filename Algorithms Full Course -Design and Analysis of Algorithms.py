@@ -1,5 +1,5 @@
 
-
+"""Mnożenie pod kreską"""
 def memory_add(result, memory):
     memo = 0
     for i in range(len(result) - 1, -1, -1):
@@ -71,14 +71,9 @@ def grade_mult(x, y):
             result[r_ind].insert(0, 0)
 
     result = memory_add(result, memory_1)
-
     result = final_add(result)
 
     return int(''.join([str(i) for i in result]))
-
-
-
-
 
 
 x = 54321
