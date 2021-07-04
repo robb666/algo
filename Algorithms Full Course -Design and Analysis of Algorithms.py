@@ -8,6 +8,7 @@ def memory_add(result, memory):
             if result[i][j] > 9:
                 memo, result[i][j] = int(str(result[i][j])[0]), int(str(result[i][j])[1])
                 memory[i][j - 1] = memo + memory[i][j - 1]
+
     if memory[0][0] + result[0][0] > 9:
         result[0].insert(0, memo)
 
@@ -15,9 +16,11 @@ def memory_add(result, memory):
 
 
 def final_add(result):
+    len_assertion(result)
     f_result = []
     k = len(result[0]) - 1
     s = 0
+    print(result)
     for i in range(len(result[0]) - 1, -1, -1):
         for j in range(len(result)):
             s += result[j][k]
@@ -33,6 +36,16 @@ def final_add(result):
     return f_result
 
 
+def len_assertion(result):
+    longest = max([len(i) for i in result])
+
+    for i in range(len(result)):
+        while len(result[i]) < longest:
+            result[i].insert(0, 0)
+
+    return result
+
+
 def grade_mult(x, y):
     x = str(x)
     y = str(y)
@@ -41,8 +54,8 @@ def grade_mult(x, y):
     memory_1 = [[0] for _ in range(len(y))]
 
     for r_ind, i in enumerate(reversed(y)):
-        [result[r_ind].append(0) for _ in range(r_ind) if r_ind > 0]
         [memory_1[r_ind].append(0) for _ in range(r_ind) if r_ind > 0]
+        [result[r_ind].append(0) for _ in range(r_ind) if r_ind > 0]
         for c_ind, j in enumerate(reversed(x)):
             k = int(i) * int(j)
             k = k + memory_1[r_ind][c_ind]
@@ -58,15 +71,19 @@ def grade_mult(x, y):
             result[r_ind].insert(0, 0)
 
     result = memory_add(result, memory_1)
+
     result = final_add(result)
 
     return int(''.join([str(i) for i in result]))
 
 
 x = 12345
-y = 12
+y = 133
 
 print(grade_mult(x, y))
+
+
+
 
 
 
