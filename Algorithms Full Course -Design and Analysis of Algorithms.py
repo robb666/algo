@@ -76,8 +76,8 @@ def grade_mult(x, y):
     return int(''.join([str(i) for i in result]))
 
 
-x = 54321
-y = 13
+x = 150
+y = 3
 
 print(grade_mult(x, y))
 
