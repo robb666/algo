@@ -14,7 +14,23 @@ def memory_add(result, memory):
     return result
 
 
-def final_add(): pass
+def final_add(result):
+    f_result = []
+    k = len(result[0]) - 1
+    s = 0
+    for i in range(len(result[0]) - 1, -1, -1):
+        for j in range(len(result)):
+            s += result[j][k]
+        f_result.insert(0, s)
+        k -= 1
+        s = 0
+
+    for i in range(len(f_result) - 1, -1, -1):
+        if f_result[i] > 9:
+            memo, f_result[i] = int(str(f_result[i])[0]), int(str(f_result[i])[1])
+            f_result[i - 1] = memo + f_result[i - 1]
+
+    return f_result
 
 
 def grade_mult(x, y):
@@ -23,25 +39,17 @@ def grade_mult(x, y):
 
     result = [[] for _ in range(len(y))]
     memory_1 = [[0] for _ in range(len(y))]
-    fresult = [[] for _ in range(len(y))]
 
-    print(x, y)
-    k = 0
-    memo = 0
     for r_ind, i in enumerate(reversed(y)):
         [result[r_ind].append(0) for _ in range(r_ind) if r_ind > 0]
+        [memory_1[r_ind].append(0) for _ in range(r_ind) if r_ind > 0]
         for c_ind, j in enumerate(reversed(x)):
-            print(memory_1)
-            print(result)
-            print(i, j)
             k = int(i) * int(j)
             k = k + memory_1[r_ind][c_ind]
-            print(k)
             if k > 9:
                 memo, k = int(str(k)[:-1]), int(str(k)[-1])
                 result[r_ind].insert(0, k)
                 memory_1[r_ind].insert(0, memo)
-
             else:
                 result[r_ind].insert(0, k)
                 memory_1[r_ind].insert(0, 0)
@@ -49,30 +57,14 @@ def grade_mult(x, y):
         if len(result[r_ind]) < len(memory_1[r_ind]):
             result[r_ind].insert(0, 0)
 
-    """dodać jedno jak w result zero do pomieci z tyłu"""
+    result = memory_add(result, memory_1)
+    result = final_add(result)
 
-    # memory_add(result, memory_1)
-
-
-        # if len(x) - 1 == c_ind and len(result[r_ind]) > len(memory_1[r_ind]):
-        #     result[r_ind].insert(0, 0)
-
-    # for i in range(len(result)):
-    #     if memo + memory_1[0][0] + result[0][0] > 9:
-    #         result[i].insert(0, memory_1[0][0])
-    #
-    #     if len(result[i]) < len(memory_1[i]):
-    #         result[i].insert(0, 0)
+    return int(''.join([str(i) for i in result]))
 
 
-
-
-    print(memory_1)
-    print(result)
-
-
-x = 99
-y = 99
+x = 12345
+y = 12
 
 print(grade_mult(x, y))
 
