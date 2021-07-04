@@ -20,7 +20,7 @@ def final_add(result):
     f_result = []
     k = len(result[0]) - 1
     s = 0
-    print(result)
+
     for i in range(len(result[0]) - 1, -1, -1):
         for j in range(len(result)):
             s += result[j][k]
@@ -77,10 +77,16 @@ def grade_mult(x, y):
     return int(''.join([str(i) for i in result]))
 
 
-x = 12345
-y = 133
+
+
+
+
+x = 54321
+y = 13
 
 print(grade_mult(x, y))
+
+
 
 
 
