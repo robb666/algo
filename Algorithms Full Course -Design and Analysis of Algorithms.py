@@ -2,16 +2,25 @@
 
 
 """Merge sort"""
-def merge_sort2(arr):
+
+def sort2(a, b):
+    for k in range(len(arr)):
+        if a[k] < b[k]:
+            return a[k]
+        else:
+            return b[k]
+
+
+def merge2(arr):
     c = []
     if len(arr) > 1:
-    # a, b = arr[:(len(arr) // 2).__round__()], arr[(len(arr) // 2).__round__():]
+
         mid = len(arr) // 2
         print(mid)
         a, b = arr[:mid], arr[mid:]
         # print(a, b)
-        merge_sort2(a)
-        merge_sort2(b)
+        sort2(a, b)
+        # sort2(b)
 
         i, j = 0, 0
 
@@ -23,11 +32,12 @@ def merge_sort2(arr):
             else:
                 arr[k] = b[j]
                 j += 1
-
+        print(arr)
         return arr
 
+
 arr = [8, 6, 4, 5, 7, 2, 3, 1]
-print(merge_sort2(arr))
+print(merge2(arr))
 
 
 
