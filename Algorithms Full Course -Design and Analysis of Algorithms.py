@@ -1,4 +1,115 @@
 
+
+
+"""Merge sort"""
+def merge_sort2(arr):
+    c = []
+    if len(arr) > 1:
+    # a, b = arr[:(len(arr) // 2).__round__()], arr[(len(arr) // 2).__round__():]
+        mid = len(arr) // 2
+        print(mid)
+        a, b = arr[:mid], arr[mid:]
+        # print(a, b)
+        merge_sort2(a)
+        merge_sort2(b)
+
+        i, j = 0, 0
+
+        for k in range(len(a)):
+            # print(c)
+            if a[i] < b[j]:
+                arr[k] = a[i]
+                i += 1
+            else:
+                arr[k] = b[j]
+                j += 1
+
+        return arr
+
+arr = [8, 6, 4, 5, 7, 2, 3, 1]
+print(merge_sort2(arr))
+
+
+
+
+"""Merge sort"""
+def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        print(mid)
+        a, b = arr[:mid], arr[mid:]
+        merge_sort(a)
+        merge_sort(b)
+
+        i = j = k = 0
+
+        while i < len(a) and j < len(b):
+            if a[i] < b[j]:
+                arr[k] = a[i]
+                i += 1
+            else:
+                arr[k] = b[j]
+                j += 1
+            k += 1
+
+        while i < len(a):
+            arr[k] = a[i]
+            i += 1
+            k += 1
+
+        while j < len(b):
+            arr[k] = b[j]
+            j += 1
+            k += 1
+
+        return arr
+
+
+# arr = [8, 6, 4, 5, 7, 2, 3, 1]
+# print(merge_sort(arr))
+
+
+
+
+"""Karatsuba multiplication"""
+def Karatsuba(x, y):
+    a = int(str(x)[:2])
+    b = int(str(x)[2:])
+    c = int(str(y)[:2])
+    d = int(str(y)[2:])
+
+    step_1 = a * c
+    step_2 = b * d
+    step_3 = (a + b) * (c + d)
+    step_4 = step_3 - step_2 - step_1
+    # step_5 =
+
+    print(step_1)
+    print(step_2)
+    print(step_3)
+    print(step_4)
+
+    # return step_4
+
+
+
+
+# x = 5678
+# y = 1234
+# print(Karatsuba(x, y))
+
+# print("1.50" == str(1.50))
+
+
+
+
+
+
+
+
+
+
+
 """Mnożenie pod kreską"""
 
 
@@ -74,47 +185,10 @@ def grade_mult(x, y):
     return int(''.join([str(i) for i in result]))
 
 
-x = 99999
-y = 9999
+x = 56784578945789457894578
+y = 123455555999991
 
-print(grade_mult(x, y))
-
-
-
+# print(grade_mult(x, y))
+# print(56784578945789457894578 * 123455555999991)
 
 
-
-
-
-
-
-
-
-"""Karatsuba multiplication"""
-def Karatsuba(x, y):
-    a = int(str(x)[:2])
-    b = int(str(x)[2:])
-    c = int(str(y)[:2])
-    d = int(str(y)[2:])
-
-    step_1 = a * c
-    step_2 = b * d
-    step_3 = (a + b) * (c + d)
-    step_4 = step_3 - step_2 - step_1
-    # step_5 =
-
-    print(step_1)
-    print(step_2)
-    print(step_3)
-    print(step_4)
-
-    # return step_4
-
-
-
-
-# x = 5678
-# y = 1234
-# print(Karatsuba(x, y))
-
-# print("1.50" == str(1.50))
