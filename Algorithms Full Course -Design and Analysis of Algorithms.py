@@ -3,12 +3,9 @@
 
 """Merge sort"""
 
-def sort2(a, b):
-    for k in range(len(arr)):
-        if a[k] < b[k]:
-            return a[k]
-        else:
-            return b[k]
+
+# def sort2(a, b):
+
 
 
 def merge2(arr):
@@ -16,22 +13,24 @@ def merge2(arr):
     if len(arr) > 1:
 
         mid = len(arr) // 2
-        print(mid)
+        # print(mid)
         a, b = arr[:mid], arr[mid:]
         # print(a, b)
-        sort2(a, b)
-        # sort2(b)
+        merge2(a)
+        merge2(b)
 
         i, j = 0, 0
 
         for k in range(len(a)):
             # print(c)
             if a[i] < b[j]:
+
                 arr[k] = a[i]
                 i += 1
             else:
                 arr[k] = b[j]
                 j += 1
+
         print(arr)
         return arr
 
