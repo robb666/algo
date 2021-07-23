@@ -1,6 +1,4 @@
 
-
-
 """Merge sort"""
 
 
@@ -9,29 +7,46 @@
 
 
 def merge2(arr):
-    c = []
+    output = []
     if len(arr) > 1:
-
         mid = len(arr) // 2
-        # print(mid)
         a, b = arr[:mid], arr[mid:]
-        # print(a, b)
+        # a, b = [4, 5, 6, 5], [1, 2, 3, 1]
         merge2(a)
         merge2(b)
+        # arr = [0, 0, 0, 0, 0, 0, 0, 0]
 
-        i, j = 0, 0
+        # i = 0
+        # j = 0
+        # k = 0
 
-        for k in range(len(a)):
-            # print(c)
+        i = j = k = 0
+        print(arr)
+        # for k in range(len(a)):
+        while i < len(a) and j < len(b):
             if a[i] < b[j]:
-
                 arr[k] = a[i]
+                print(arr, a[i], 'a')
                 i += 1
+
             else:
                 arr[k] = b[j]
+                print(arr, b[j], 'b')
                 j += 1
+            k += 1
 
-        print(arr)
+        while i < len(a):
+            arr[k] = a[i]
+            i += 1
+            k += 1
+
+        while j < len(b):
+            arr[k] = b[j]
+            j += 1
+            k += 1
+
+
+
         return arr
 
 
