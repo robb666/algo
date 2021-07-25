@@ -1,97 +1,127 @@
 
-"""Merge sort"""
 
 
-# def sort2(a, b):
+"""Merge sort 3"""
+import operator
 
 
-
-def merge2(arr):
-    output = []
-    if len(arr) > 1:
-        mid = len(arr) // 2
-        a, b = arr[:mid], arr[mid:]
-        # a, b = [4, 5, 6, 5], [1, 2, 3, 1]
-        merge2(a)
-        merge2(b)
-        # arr = [0, 0, 0, 0, 0, 0, 0, 0]
-
-        # i = 0
-        # j = 0
-        # k = 0
-
-        i = j = k = 0
-        print(arr)
-        # for k in range(len(a)):
-        while i < len(a) and j < len(b):
-            if a[i] < b[j]:
-                arr[k] = a[i]
-                print(arr, a[i], 'a')
-                i += 1
-
-            else:
-                arr[k] = b[j]
-                print(arr, b[j], 'b')
-                j += 1
-            k += 1
-
-        while i < len(a):
-            arr[k] = a[i]
+def merge(left, right, compare):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if compare(left[i], right[j]):
+            result.append(left[i])
             i += 1
-            k += 1
-
-        while j < len(b):
-            arr[k] = b[j]
+        else:
+            result.append(right[j])
             j += 1
-            k += 1
+    result += left[i:]
+    result += right[j:]
+    return result
+
+
+def merge_sort(L, compare=operator.lt):
+    if len(L) < 2:
+        return L[:]
+    else:
+        mid = int(len(L) / 2)
+        left = merge_sort(L[:mid], compare)
+        right = merge_sort(L[mid:], compare)
+        return merge(left, right, compare)
+
+
+arr = [15, 5, 55, 6, 19, 8, 4, 3, 17, 6, 2]
+print(merge_sort(arr))
 
 
 
-        return arr
 
 
-arr = [8, 6, 4, 5, 7, 2, 3, 1]
-print(merge2(arr))
+"""Merge sort 2"""
+
+# def mergesort(arr):
+#     if len(arr) < 2:
+#         return arr
+#     result = []
+#     mid = len(arr) // 2
+#     a = arr[:mid]
+#     b = arr[mid:]
+#
+#     I_half = mergesort(a)
+#     II_half = mergesort(b)
+#
+#     i = j = k = 0
+#
+#     while i < len(I_half) and j < len(II_half):
+#         if I_half[i] < II_half[j]:
+#             result.append(I_half[i])
+#             i += 1
+#         else:
+#             result.append(II_half[j])
+#             j += 1
+#         k += 1
+#
+#     result += I_half[i:]
+#     result += I_half[j:]
+#
+#     return result
+#
+#
+#
+# arr = [15, 5, 55 ,6 ,19 ,8 ,4 ,3 ,17, 6, 2]
+# print(mergesort(arr))
 
 
 
 
-"""Merge sort"""
-def merge_sort(arr):
-    if len(arr) > 1:
-        mid = len(arr) // 2
-        print(mid)
-        a, b = arr[:mid], arr[mid:]
-        merge_sort(a)
-        merge_sort(b)
 
-        i = j = k = 0
+"""Merge sort 1"""
 
-        while i < len(a) and j < len(b):
-            if a[i] < b[j]:
-                arr[k] = a[i]
-                i += 1
-            else:
-                arr[k] = b[j]
-                j += 1
-            k += 1
-
-        while i < len(a):
-            arr[k] = a[i]
-            i += 1
-            k += 1
-
-        while j < len(b):
-            arr[k] = b[j]
-            j += 1
-            k += 1
-
-        return arr
-
-
+# def sort(arr):
+#     if len(arr) > 1:
+#         mid = len(arr) // 2
+#         a, b = arr[:mid], arr[mid:]
+#         sort(a)
+#         sort(b)
+#         i = j = k = 0
+#         while i < len(a) and j < len(b):
+#             if a[i] < b[j]:
+#                 arr[k] = a[i]
+#                 i += 1
+#             else:
+#                 arr[k] = b[j]
+#                 j += 1
+#             k += 1
+#
+#         while i < len(a):
+#             arr[k] = a[i]
+#             i += 1
+#             k += 1
+#
+#         while j < len(b):
+#             arr[k] = b[j]
+#             j += 1
+#             k += 1
+#
+#         return a, b
+#
+#
+# def merge(arr):
+#     a, b = sort(arr)
+#     i, j = 0, 0
+#     for k in range(len(a)):
+#         if a[i] < b[j]:
+#             arr[k] = a[i]
+#             i += 1
+#         else:
+#             arr[k] = b[j]
+#             j += 1
+#
+#     return arr
+#
+#
 # arr = [8, 6, 4, 5, 7, 2, 3, 1]
-# print(merge_sort(arr))
-
+# print(merge(arr))
 
 
 
