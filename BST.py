@@ -1,4 +1,5 @@
 
+
 class node:
     def __init__(self, value=None):
         self.value = value
@@ -48,7 +49,8 @@ def fill_tree(tree, num_elems=100, max_int=1000):
         tree.insert(cur_elem)
     return tree
 
+
 tree = binary_search_tree()
 tree = fill_tree(tree)
 
-tree.print_tree()
+print(tree.print_tree())
