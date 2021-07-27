@@ -27,7 +27,6 @@ class BinarySearchTreeNode:
 
         # visit left tree
         if self.left:
-            print(self.left)
             elements = elements + [self.left.in_order_traversal()]
 
         # visit base node
@@ -36,6 +35,8 @@ class BinarySearchTreeNode:
         # visit right tree
         if self.right:
             elements += [self.right.in_order_traversal()]
+            
+        print(elements)
 
 
 def build_tree(elements):
