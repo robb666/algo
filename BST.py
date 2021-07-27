@@ -12,12 +12,16 @@ class binary_search_tree:
         self.root = None
 
     def insert(self, value):
+        print(value)
         if self.root is None:
             self.root = node(value)
+            # print(self.root.value)
         else:
             self._insert(value, self.root)
 
     def _insert(self, value, cur_node):
+        if cur_node is None:
+            return
         if value < cur_node.value:
             if cur_node.left_child is None:
                 cur_node.left_child = node(value)
@@ -38,19 +42,19 @@ class binary_search_tree:
     def _print_tree(self, cur_node):
         if cur_node is not None:
             self._print_tree(cur_node.left_child)
-            print(str(cur_node.value))
+            print(cur_node.value)
             self._print_tree(cur_node.right_child)
 
 
-def fill_tree(tree, num_elems=100, max_int=1000):
+def fill_tree(tree, num_elems=20, max_int=1000):
     from random import randint
-    for _ in range(num_elems):
-        cur_elem = randint(0, max_int)
-        tree.insert(cur_elem)
+    for num in [2, 0, 1, 5, 9, 11, 12]:
+        # cur_elem = randint(0, max_int)
+        tree.insert(num)
     return tree
 
 
 tree = binary_search_tree()
 tree = fill_tree(tree)
 
-print(tree.print_tree())
+tree.print_tree()
