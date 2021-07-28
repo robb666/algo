@@ -90,14 +90,14 @@ class BinarySearchTreeNode:
                 return False
 
     def find_min(self):
-        # elements = []
+        elements = []
         print(min(self.data))
 
         # elements.append(self.data)
         # minimum = min(elements)
 
         # print(minimum)
-        # return minimum
+        return elements
 
 
 def build_tree(elements):
