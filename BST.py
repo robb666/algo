@@ -1,4 +1,5 @@
 
+
 """BST 2"""
 
 
@@ -28,10 +29,8 @@ class BinarySearchTreeNode:
         # print(self.data)
 
     def preorder_traversal(self):
-        elements = []
-
-        elements.append(self.data)
-
+        elements = [self.data]
+        # elements.append(self.data)
         # visit left tree
         if self.left:
             elements += self.left.preorder_traversal()
@@ -64,7 +63,6 @@ class BinarySearchTreeNode:
         # visit left tree
         if self.left:
             elements += self.left.postorder_traversal()
-
         # visit right tree
         if self.right:
             elements += self.right.postorder_traversal()
@@ -90,14 +88,43 @@ class BinarySearchTreeNode:
                 return False
 
     def find_min(self):
-        elements = []
-        print(min(self.data))
+        if self.left is None:
+            return self.data
+        return self.left.find_min()
 
-        # elements.append(self.data)
-        # minimum = min(elements)
+        # elements = []
+        # if self.left:
+        #     elements += self.left.in_order_traversal()
+        #
+        # if self.right:
+        #     elements += self.right.in_order_traversal()
+        # return min(elements)
 
-        # print(minimum)
-        return elements
+    def find_max(self):
+        if self.right is None:
+            return self.data
+        return self.right.find_max()
+
+        # elements = []
+        # if self.left:
+        #     elements += self.left.in_order_traversal()
+        # if self.right:
+        #     elements += self.right.in_order_traversal()
+        # return max(elements)
+
+    def calculate_sum(self):
+        left_sum = self.left.calculate_sum() if self.left else 0
+        right_sum = self.right.calculate_sum() if self.right else 0
+        return self.data + left_sum + right_sum
+
+        # elements = []
+        # if self.left:
+        #     elements += self.left.in_order_traversal()
+        #
+        # if self.right:
+        #     elements += self.right.in_order_traversal()
+        #
+        # return sum(elements)
 
 
 def build_tree(elements):
@@ -110,13 +137,27 @@ def build_tree(elements):
 
 
 if __name__ == '__main__':
-    # numbers = [0, 17, 4, 1, 20, 9, 23, 18, 34]
+    # numbers = [0, -1, -5, 17, 4, 1, 20, 9, 23, 18, 34]
     # root = build_tree(numbers)
-    # print(root.search(20))
+    # print(root.calculate_sum())
 
-    countries = ["India", "Pakistan", "Germany", "USA", "China", "India", "UK", "USA"]
-    country_tree = build_tree(countries)
-    print(country_tree.find_min())
+    # numbers = [17, 4, 1, 20, 9, 23, 18, 34]
+
+    numbers = [15, 12, 7, 14, 27, 20, 23, 88]
+
+    numbers_tree = build_tree(numbers)
+    print("Input numbers:",numbers)
+    print("Min:",numbers_tree.find_min())
+    print("Max:",numbers_tree.find_max())
+    print("Sum:", numbers_tree.calculate_sum())
+    print("In order traversal:", numbers_tree.in_order_traversal())
+    print("Pre order traversal:", numbers_tree.preorder_traversal())
+    print("Post order traversal:", numbers_tree.postorder_traversal())
+
+
+    # countries = ["India", "Pakistan", "Germany", "USA", "China", "India", "UK", "USA"]
+    # country_tree = build_tree(countries)
+    # print(country_tree.find_min())
 
     # print("UK is in the list? ", country_tree.search("UK"))
     # print("Sweden is in the list? ", country_tree.search("Sweden"))
@@ -127,8 +168,8 @@ if __name__ == '__main__':
 
 
 
-#
-# """BST ???"""
+
+"""BST ???"""
 # class node:
 #     def __init__(self, value=None):
 #         self.value = value
