@@ -27,6 +27,21 @@ class BinarySearchTreeNode:
 
         # print(self.data)
 
+    def preorder_traversal(self):
+        elements = []
+
+        elements.append(self.data)
+
+        # visit left tree
+        if self.left:
+            elements += self.left.preorder_traversal()
+
+        # visit right tree
+        if self.right:
+            elements += self.right.preorder_traversal()
+
+        return elements
+
     def in_order_traversal(self):
         elements = []
 
@@ -41,6 +56,21 @@ class BinarySearchTreeNode:
         if self.right:
             elements += self.right.in_order_traversal()
             
+        return elements
+
+    def postorder_traversal(self):
+        elements = []
+
+        # visit left tree
+        if self.left:
+            elements += self.left.postorder_traversal()
+
+        # visit right tree
+        if self.right:
+            elements += self.right.postorder_traversal()
+
+        elements.append(self.data)
+
         return elements
 
     def search(self, val):
@@ -59,6 +89,16 @@ class BinarySearchTreeNode:
             else:
                 return False
 
+    def find_min(self):
+        # elements = []
+        print(min(self.data))
+
+        # elements.append(self.data)
+        # minimum = min(elements)
+
+        # print(minimum)
+        # return minimum
+
 
 def build_tree(elements):
     root = BinarySearchTreeNode(elements[0])
@@ -76,8 +116,12 @@ if __name__ == '__main__':
 
     countries = ["India", "Pakistan", "Germany", "USA", "China", "India", "UK", "USA"]
     country_tree = build_tree(countries)
-    print("UK is in the list? ", country_tree.search("UK"))
-    print("Sweden is in the list? ", country_tree.search("Sweden"))
+    print(country_tree.find_min())
+
+    # print("UK is in the list? ", country_tree.search("UK"))
+    # print("Sweden is in the list? ", country_tree.search("Sweden"))
+
+
 
 
 
