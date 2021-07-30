@@ -180,23 +180,24 @@ class binary_search_tree:
         # print(value)
         if self.root is None:
             self.root = node(value)
-            # print(self.root.value)
         else:
             self._insert(value, self.root)
 
     def _insert(self, value, cur_node):
-        if cur_node is None:
-            return
-        if cur_node is not None and value < cur_node.value:
-            if cur_node.left_child is None:
+        # try:
+        #     print(cur_node.left_child.value)
+        # except: pass
+
+        if value < cur_node.value:
+            if cur_node.left_child == None:
                 cur_node.left_child = node(value)
-                cur_node.left_child = cur_node
             else:
                 self._insert(value, cur_node.left_child)
-        elif cur_node is not None and value > cur_node.value:
-            if cur_node.right_child is None:
+
+
+        elif value > cur_node.value:
+            if cur_node.right_child == None:
                 cur_node.right_child = node(value)
-                cur_node.right_child = cur_node
             else:
                 self._insert(value, cur_node.right_child)
         else:
@@ -272,7 +273,7 @@ tree.print_tree()
 
 print('tree height: ' + str(tree.height()))
 print(tree.search(10))
-print(tree.search(30))
+print(tree.search(2))
 # print(tree.search(9))
 
 
