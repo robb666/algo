@@ -184,19 +184,13 @@ class binary_search_tree:
             self._insert(value, self.root)
 
     def _insert(self, value, cur_node):
-        # try:
-        #     print(cur_node.left_child.value)
-        # except: pass
-
         if value < cur_node.value:
-            if cur_node.left_child == None:
+            if cur_node.left_child is None:
                 cur_node.left_child = node(value)
             else:
                 self._insert(value, cur_node.left_child)
-
-
         elif value > cur_node.value:
-            if cur_node.right_child == None:
+            if cur_node.right_child is None:
                 cur_node.right_child = node(value)
             else:
                 self._insert(value, cur_node.right_child)
@@ -246,14 +240,14 @@ def fill_tree(tree, num_elems=100, max_int=1000):
     from random import randint
     for num in range(0, num_elems):
         cur_elem = randint(0, max_int)
-        # print(cur_elem)
+
         tree.insert(cur_elem)
     return tree
 
 
 tree = binary_search_tree()
 
-# tree.insert(0)
+tree.insert(0)
 tree.insert(1)
 tree.insert(2)
 tree.insert(3)
@@ -264,7 +258,7 @@ tree.insert(7)
 tree.insert(8)
 tree.insert(9)
 tree.insert(10)
-tree.insert(20)
+
 
 # tree = fill_tree(tree)
 
@@ -274,6 +268,7 @@ tree.print_tree()
 print('tree height: ' + str(tree.height()))
 print(tree.search(10))
 print(tree.search(2))
-# print(tree.search(9))
+print(tree.search(9))
+print(tree.search(90))
 
 
