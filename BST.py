@@ -103,6 +103,19 @@ class BinarySearchTreeNode:
         right_sum = self.right.calculate_sum() if self.right else 0
         return self.data + left_sum + right_sum
 
+    def height(self):
+        if self.data is not None:
+            return self._height(self.data, 0)
+        else:
+            return 0
+
+    def _height(self, cur_node, cur_height):
+        if cur_node is None:
+            return cur_height
+        left_height = self._height(self.left, cur_height + 1)
+        right_height = self._height(self.right, cur_height + 1)
+        return max(left_height, right_height)
+
 
 def build_tree(elements):
     root = BinarySearchTreeNode(elements[-1])
@@ -116,7 +129,11 @@ def build_tree(elements):
 if __name__ == '__main__':
     numbers = [0, -1, -5, 17, 4, 1, 20, 9, 23, 18, 34]
 
-    # tre = BinarySearchTreeNode(5)
+    tre = BinarySearchTreeNode(5)
+    for i in range(len(numbers)):
+        tre.add_child(numbers[i])
+
+    tre.height()
 
     # tre.add_child(1)
     # tre.add_child(2)
@@ -163,13 +180,14 @@ if __name__ == '__main__':
 
 
 
-"""BST ???"""
+"""BST 1"""
+
 class node:
     def __init__(self, value=None):
         self.value = value
         self.left_child = None
         self.right_child = None
-        self.parent = None
+
 
 
 class binary_search_tree:
@@ -245,30 +263,30 @@ def fill_tree(tree, num_elems=100, max_int=1000):
     return tree
 
 
-tree = binary_search_tree()
-
-tree.insert(0)
-tree.insert(1)
-tree.insert(2)
-tree.insert(3)
-tree.insert(4)
-tree.insert(5)
-tree.insert(6)
-tree.insert(7)
-tree.insert(8)
-tree.insert(9)
-tree.insert(10)
-
-
-# tree = fill_tree(tree)
-
-tree.print_tree()
-
-
-print('tree height: ' + str(tree.height()))
-print(tree.search(10))
-print(tree.search(2))
-print(tree.search(9))
-print(tree.search(90))
+# tree = binary_search_tree()
+#
+# tree.insert(0)
+# tree.insert(1)
+# tree.insert(2)
+# tree.insert(3)
+# tree.insert(4)
+# tree.insert(5)
+# tree.insert(6)
+# tree.insert(7)
+# tree.insert(8)
+# tree.insert(9)
+# tree.insert(10)
+#
+#
+# # tree = fill_tree(tree)
+#
+# tree.print_tree()
+#
+#
+# print('tree height: ' + str(tree.height()))
+# print(tree.search(10))
+# print(tree.search(2))
+# print(tree.search(9))
+# print(tree.search(90))
 
 
