@@ -12,11 +12,11 @@ def binary_search(numbers_list, number_to_find):
 
     mid_index = 1 + (left_index + right_index) // 2
     while mid_index > 0:
-        if number_to_find == numbers_list[mid_index] or number_to_find == numbers_list[mid_index - 1]:
+        if number_to_find == numbers_list[mid_index - 1] or number_to_find == numbers_list[mid_index]:
             return True
-        if number_to_find < numbers_list[mid_index] and number_to_find < numbers_list[mid_index - 1]:
+        if number_to_find < numbers_list[mid_index - 1] and number_to_find < numbers_list[mid_index]:
             numbers_list = numbers_list[:mid_index]
-        elif number_to_find > numbers_list[mid_index] and number_to_find > numbers_list[mid_index - 1]:
+        elif number_to_find > numbers_list[mid_index - 1] and number_to_find > numbers_list[mid_index]:
             numbers_list = numbers_list[mid_index:]
         mid_index = mid_index // 2
 
@@ -25,7 +25,7 @@ def binary_search(numbers_list, number_to_find):
 
 if __name__ == '__main__':
     numbers_list = [12, 15, 17, 19, 21, 24, 45, 67, 88]
-    number_to_find = 88
+    number_to_find = 13
 
     isin = binary_search(numbers_list, number_to_find)
     print(isin)
