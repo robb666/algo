@@ -17,7 +17,6 @@ class BinarySearchTreeNode:
         if data < self.data:
             # add data in left subtree
             if self.left:
-                print(self.left.in_order_traversal())
                 self.left.add_child(data)
             else:
                 self.left = BinarySearchTreeNode(data)
@@ -26,8 +25,6 @@ class BinarySearchTreeNode:
                 self.right.add_child(data)
             else:
                 self.right = BinarySearchTreeNode(data)
-
-        # print(self.data)
 
     def preorder_traversal(self):
         elements = [self.data]
@@ -105,15 +102,17 @@ class BinarySearchTreeNode:
 
     def height(self):
         if self.data is not None:
-            return self._height(self.data, 0)
+            self.root = self.data
+            return self._height(BinarySearchTreeNode(self.data), 0)
         else:
             return 0
 
     def _height(self, cur_node, cur_height):
         if cur_node is None:
             return cur_height
-        left_height = self._height(self.left, cur_height + 1)
-        right_height = self._height(self.right, cur_height + 1)
+        print(cur_node.left, cur_height, BinarySearchTreeNode(cur_node).right)
+        left_height = self._height(cur_node.left, cur_height + 1)
+        right_height = self._height(cur_node.right, cur_height + 1)
         return max(left_height, right_height)
 
 
@@ -130,17 +129,15 @@ if __name__ == '__main__':
     numbers = [0, -1, -5, 17, 4, 1, 20, 9, 23, 18, 34]
 
     tre = BinarySearchTreeNode(5)
-    for i in range(len(numbers)):
-        tre.add_child(numbers[i])
+    # for i in range(len(numbers)):
+    #     tre.add_child(numbers[i])
 
-    tre.height()
 
-    # tre.add_child(1)
-    # tre.add_child(2)
-    # tre.add_child(1)
-    # tre.add_child(1)
-    # tre.add_child(5)
-    # tre.add_child(61)
+
+    tre.add_child(1)
+    tre.add_child(4)
+    tre.add_child(2)
+    tre.add_child(61)
     # tre.add_child(7)
     # tre.add_child(82)
     # tre.add_child(15)
@@ -149,6 +146,7 @@ if __name__ == '__main__':
 
     # print(tre.search(12))
 
+    print(tre.height())
 
     # root = build_tree(numbers)
     # print(root.calculate_sum())
@@ -187,7 +185,6 @@ class node:
         self.value = value
         self.left_child = None
         self.right_child = None
-
 
 
 class binary_search_tree:
@@ -234,6 +231,7 @@ class binary_search_tree:
     def _height(self, cur_node, cur_height):
         if cur_node is None:
             return cur_height
+        print(cur_node, cur_height)
         left_height = self._height(cur_node.left_child, cur_height + 1)
         right_height = self._height(cur_node.right_child, cur_height + 1)
         return max(left_height, right_height)
@@ -263,12 +261,12 @@ def fill_tree(tree, num_elems=100, max_int=1000):
     return tree
 
 
-# tree = binary_search_tree()
-#
-# tree.insert(0)
-# tree.insert(1)
-# tree.insert(2)
-# tree.insert(3)
+tree = binary_search_tree()
+
+tree.insert(1)
+tree.insert(5)
+tree.insert(2)
+tree.insert(61)
 # tree.insert(4)
 # tree.insert(5)
 # tree.insert(6)
@@ -283,7 +281,10 @@ def fill_tree(tree, num_elems=100, max_int=1000):
 # tree.print_tree()
 #
 #
-# print('tree height: ' + str(tree.height()))
+print()
+print()
+print()
+print('tree height: ' + str(tree.height()))
 # print(tree.search(10))
 # print(tree.search(2))
 # print(tree.search(9))
