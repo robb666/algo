@@ -29,6 +29,7 @@ def binary_search(numbers_list, number_to_find):
 def find_all_occurences(numbers, number_to_find):
     index = binary_search(numbers, number_to_find)
     indices = [index]
+    
     # find indices on left hand site
     i = index - 1
     while i >= 0:
