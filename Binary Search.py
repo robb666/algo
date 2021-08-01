@@ -66,6 +66,43 @@ if __name__ == '__main__':
 
 
 
+
+
+
+
+
+
+
+"""Binary Search 3"""
+def find_all_occurences(numbers_list, number_to_find, left_index, right_index):
+    omo = []
+    if right_index < left_index:
+        return 'not found'
+
+    mid_index = (left_index + right_index) // 2
+    mid_number = numbers_list[mid_index]
+    if mid_number == number_to_find:
+        i = 1
+        omo.append(mid_index)
+        while mid_index + i <= len(numbers_list) - 1 \
+                and (numbers_list[mid_index - i] == number_to_find or numbers_list[mid_index + i] == number_to_find):
+            if numbers_list[mid_index - i] == number_to_find:
+                omo.append(mid_index - i)
+            if numbers_list[mid_index + i] == number_to_find:
+                omo.append(mid_index + i)
+            i += 1
+        return sorted(omo)
+    if mid_number < number_to_find:
+        left_index = mid_index + 1
+    else:
+        right_index = mid_index - 1
+
+    return find_all_occurences(numbers_list, number_to_find, left_index, right_index)
+
+
+
+
+
 """Binary Search 2"""
 def binary_search(numbers_list, number_to_find):
     left_index = 0
