@@ -69,7 +69,7 @@ class LinkedList:
 
     def insert_at(self, index, data):
         if index < 0 or index > self.get_lenght():
-            raise Exception ('Invalid index')
+            raise Exception('Invalid index')
 
         if index == 0:
             self.insert_at_beginning(data)
@@ -78,19 +78,26 @@ class LinkedList:
         count = 0
         itr = self.head
         while itr:
+            print(itr.data, count, index - 1)
             if count == index - 1:
+                itr = Node(data, itr)
+                self.head = itr.data
 
-                itr = itr.data
+                break
 
             itr = itr.next
             count += 1
 
+            # else:
+            #     insert_at_end(self, data)
 
 if __name__ == '__main__':
     ll = LinkedList()
     ll.insert_values(['banana', 'mango', 'grapes', 'orange'])
+    ll.insert_at(2, 'apple')
     ll.print()
-    ll.rem0ve_at(2)
+    # ll.rem0ve_at(2)
+
 
 
     print(ll.get_lenght())
