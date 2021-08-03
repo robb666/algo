@@ -99,7 +99,9 @@ class LinkedList:
         while itr:
             print(itr.data, data)
             if itr.data == data:
-                itr.data = ''
+                # itr.data = ''
+
+                itr.next = itr.next.next
 
                 break
 
