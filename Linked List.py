@@ -77,14 +77,23 @@ class LinkedList:
 
         count = 0
         itr = self.head
+        # print(itr.data, count, index)
         while itr:
-            print(itr.data, count, index - 1)
-            if count == index - 1:
-                itr = Node(data, itr)
-                self.head = itr.data
+            print(itr.data, count, index)
 
+            if count == index - 1:
+
+
+                # print(itr.data, count, index - 1)
+                last_itr = itr
+                itr = itr.next
+                new = Node(data, itr)
+                last_itr.next = new
+                # last_itr = itr
                 break
 
+            #     break
+            #
             itr = itr.next
             count += 1
 
@@ -100,7 +109,7 @@ if __name__ == '__main__':
 
 
 
-    print(ll.get_lenght())
+    # print(ll.get_lenght())
 
 
 
