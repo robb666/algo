@@ -79,9 +79,8 @@ class LinkedList:
         itr = self.head
         while itr:
             if count == index - 1:
-                last_itr = itr
                 new = Node(data, itr.next)
-                last_itr.next = new
+                itr.next = new
                 break
             itr = itr.next
             count += 1
@@ -90,8 +89,10 @@ class LinkedList:
 if __name__ == '__main__':
     ll = LinkedList()
     ll.insert_values(['banana', 'mango', 'grapes', 'orange'])
-    ll.insert_at(2, 'apple')
+    ll.insert_at(0, 'figs')
     ll.print()
+    # ll.insert_at(2, 'jackfruit')
+    # ll.print()
     # ll.rem0ve_at(2)
 
 
