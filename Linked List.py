@@ -1,9 +1,9 @@
 
 class Node:
-    def __init__(self, data=None, next=None):
+    def __init__(self, data=None, next=None, prev=None):
         self.data = data
         self.next = next
-
+        self.prev = prev
 
 class LinkedList:
     def __init__(self):
@@ -85,18 +85,46 @@ class LinkedList:
             itr = itr.next
             count += 1
 
+    def insert_after_value(self, have_data, nev_data):
+        itr = self.head
+        while itr:
+            if itr.data == have_data:
+                new = Node(nev_data, itr.next)
+                itr.next = new
+                break
+            itr = itr.next
+
+    def remove_by_value(self, data):
+        itr = self.head
+        while itr:
+            print(itr.data, data)
+            if itr.data == data:
+                itr.data = ''
+
+                break
+
+            itr = itr.next
+
 
 if __name__ == '__main__':
     ll = LinkedList()
     ll.insert_values(['banana', 'mango', 'grapes', 'orange'])
-    ll.insert_at(0, 'figs')
+    # ll.print()
+    ll.insert_after_value('mango', 'apple')
     ll.print()
+    ll.remove_by_value('apple')
+    ll.print()
+    # ll.remove_by_value(0, 'figs')
+    # ll.print()
+    # ll.remove_by_value("banana")
+    # ll.remove_by_value("mango")
+    # ll.remove_by_value("apple")
+    # ll.remove_by_value("grapes")
+    # ll.print()
+
     # ll.insert_at(2, 'jackfruit')
     # ll.print()
     # ll.rem0ve_at(2)
-
-
-
     # print(ll.get_lenght())
 
 
