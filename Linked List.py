@@ -11,19 +11,25 @@ class LinkedList:
         self.head = None
 
     def insert_at_beginning(self, data):
-        node = Node(data, self.head)
-        self.head = node
+        if self.head == None:
+            node = Node(data, self.head, None)
+            self.head = node
+        else:
+            node = Node(data, self.head, None)
+            self.head.prev = node
+            self.head = node
 
     def insert_at_end(self, data):
         if self.head is None:
-            self.head = Node(data, None)
+            self.head = Node(data, None, None)
             return
 
         itr = self.head
         while itr.next:
             itr = itr.next
 
-        itr.next = Node(data, None)
+        itr.next = Node(data, None, itr)  # !!!
+
 
     def insert_values(self, data_list):
         self.head = None
@@ -122,26 +128,39 @@ class LinkedList:
             itr = itr.next
         print(llstr)
 
+
     def print_backward(self):
-        pass
+        if self.head is None:
+            print("Linked list is empty")
+            return
 
+        last_node = self.get_last_node()
+        itr = last_node
+        llstr = ''
+        while itr:
+            llstr += itr.data + '-->'
+            itr = itr.prev
+        print("Link list in reverse: ", llstr)
 
+    def get_last_node(self):
+        itr = self.head
+        while itr.next:
+            itr = itr.next
+        return itr
 
 
 if __name__ == '__main__':
     ll = LinkedList()
     ll.insert_values(["banana","mango","grapes","orange"])
-    ll.print()
-    ll.insert_after_value("mango", "apple") # insert apple after mango
-    ll.print()
-    ll.remove_by_value("orange") # remove orange from linked list
-    ll.print()
-    # ll.remove_by_value("figs")
     ll.print_forward()
-    # ll.remove_by_value("banana")
-    # ll.remove_by_value("mango")
-    # ll.remove_by_value("apple")
-    # ll.remove_by_value("grapes")
-    # ll.print()
+    ll.print_backward()
+    ll.insert_at_end("figs")
+    ll.print_forward()
+    ll.insert_at(0,"jackfruit")
+    ll.print_forward()
+    ll.insert_at(6,"dates")
+    ll.print_forward()
+    ll.insert_at(2,"kiwi")
+    ll.print_forward()
 
 
