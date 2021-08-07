@@ -5,7 +5,36 @@
 #             return index
 #     return False
 
+"""Binary Search 5"""
+def binary_search(arr: list, num: int):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        guess = arr[mid]
+        if guess == num:
+            return mid
+        elif guess > num:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return False
 
+
+# if __name__ == '__main__':
+#     numbers_list = [12, 15, 17, 19, 21, 24, 45, 67]
+#     print(binary_search(numbers_list, 24))
+
+
+
+
+
+
+
+
+
+
+"""Binary Search 4 """
 def binary_search(numbers_list, number_to_find):
     left_index = 0
     right_index = len(numbers_list) - 1
@@ -51,14 +80,14 @@ def find_all_occurences(numbers, number_to_find):
     return sorted(indices)
 
 
-if __name__ == '__main__':
-    # numbers_list = [12, 15, 17, 19, 21, 24, 45, 67]
-    numbers_list = [1,4,6,9,11,15,15,15,17,21,34,34,56,56]
-    number_to_find = 15
-
-    index = find_all_occurences(numbers_list, number_to_find)
-
-    print(f'Number found at index {index} using bi search.')
+# if __name__ == '__main__':
+#     # numbers_list = [12, 15, 17, 19, 21, 24, 45, 67]
+#     numbers_list = [1,4,6,9,11,15,15,15,17,21,34,34,56,56]
+#     number_to_find = 15
+#
+#     index = find_all_occurences(numbers_list, number_to_find)
+#
+#     print(f'Number found at index {index} using bi search.')
 
 
 

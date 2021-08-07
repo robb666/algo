@@ -151,7 +151,7 @@ class LinkedList:
 
 if __name__ == '__main__':
     ll = LinkedList()
-    ll.insert_values(["banana","mango","grapes","orange"])
+    ll.insert_values(["banana", "mango", "grapes", "orange"])
     ll.print_forward()
     ll.print_backward()
     ll.insert_at_end("figs")

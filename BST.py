@@ -231,9 +231,9 @@ class binary_search_tree:
     def _height(self, cur_node, cur_height):
         if cur_node is None:
             return cur_height
-        print(cur_node, cur_height)
         left_height = self._height(cur_node.left_child, cur_height + 1)
         right_height = self._height(cur_node.right_child, cur_height + 1)
+        print(cur_node, cur_height)
         return max(left_height, right_height)
 
     def search(self, value):
