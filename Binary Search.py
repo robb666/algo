@@ -1,12 +1,84 @@
+import timeit
+import random
 
-# def linear_search(numbers_list, number_to_find):
-#     for index, element in enumerate(numbers_list):
-#         if element == number_to_find:
-#             return index
-#     return False
+
+def linear_search(numbers_list, number_to_find):
+    for index, element in enumerate(numbers_list):
+        if element == number_to_find:
+            return index
+    return False
+
+
+def binary_search(arr, num):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        guess = arr[mid]
+        if guess == num:
+            return mid
+        elif guess > num:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return False
+
+
+def linear_performance():
+    """Performace measurment with Monte Carlo simulation"""
+    run_setup = """
+import random
+from __main__ import linear_search
+"""
+
+    run_code = """
+test_list = list(range(1,random.randint(2,14000)))
+test_number = random.randint(2, 14000)
+linear_search(test_list,test_number)
+"""
+
+    performance = timeit.repeat(setup=run_setup,
+                                    stmt=run_code,
+                                    repeat=3,
+                                    number=10_000)
+    print(f'linear search performance = {round(min(performance), 2)}')
+
+
+
+
+def binary_search_performance():
+    """Performace measurment with Monte Carlo simulation"""
+    run_setup = """
+import random
+from __main__ import binary_search
+"""
+
+    run_code = """
+test_list = list(range(1,random.randint(2,14000)))
+test_number = random.randint(2, 14000)
+binary_search(test_list,test_number)
+"""
+
+    performance = timeit.repeat(setup=run_setup,
+                                    stmt=run_code,
+                                    repeat=3,
+                                    number=10_000)
+    print(f'binary search performance = {round(min(performance), 2)}')
+
+
+linear_performance()
+binary_search_performance()
+
+
+
+
+
+
+
+
 
 """Binary Search 5"""
-def binary_search(arr: list, num: int):
+def binary_search(arr, num):
     low = 0
     high = len(arr) - 1
     while low <= high:
@@ -24,8 +96,10 @@ def binary_search(arr: list, num: int):
 # if __name__ == '__main__':
 #     numbers_list = [12, 15, 17, 19, 21, 24, 45, 67]
 #     print(binary_search(numbers_list, 24))
-
-
+#
+#     numbers_list = list(range(400002))
+#     # print(numbers_list)
+#     print(binary_search(numbers_list, 400001))
 
 
 
