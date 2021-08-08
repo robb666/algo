@@ -32,15 +32,15 @@ from __main__ import linear_search
 """
 
     run_code = """
-test_list = list(range(1,random.randint(2,14000)))
-test_number = random.randint(2, 14000)
+test_list = list(range(1,random.randint(2,100)))
+test_number = random.randint(2, 100)
 linear_search(test_list,test_number)
 """
 
     performance = timeit.repeat(setup=run_setup,
                                     stmt=run_code,
                                     repeat=3,
-                                    number=10_000)
+                                    number=100_000)
     print(f'linear search performance = {round(min(performance), 2)}')
 
 
@@ -54,15 +54,15 @@ from __main__ import binary_search
 """
 
     run_code = """
-test_list = list(range(1,random.randint(2,14000)))
-test_number = random.randint(2, 14000)
+test_list = list(range(1,random.randint(2,100)))
+test_number = random.randint(2, 100)
 binary_search(test_list,test_number)
 """
 
     performance = timeit.repeat(setup=run_setup,
                                     stmt=run_code,
                                     repeat=3,
-                                    number=10_000)
+                                    number=100_000)
     print(f'binary search performance = {round(min(performance), 2)}')
 
 
