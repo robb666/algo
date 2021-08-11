@@ -1,9 +1,16 @@
 
-def arr_max(arr):
-    pass
+def arr_max(arr, max_):
+    if not arr:
+        return max_
+    next_ = arr.pop()
+    if next_ > max_:
+        max_ = next_
+    return arr_max(arr, max_)
 
-arr = [1, 2, 3, 44, 6]
-print(arr_max(arr))
+
+arr = [-3, 7, 52, 3, 44, 6, -3]
+max_from_arr = arr[0]
+print(arr_max(arr, max_from_arr))
 
 
 def arr_len(arr):
