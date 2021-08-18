@@ -1,4 +1,23 @@
 
+def rec_bs(arr, i):
+    low = 0
+    high = len(arr) - 1
+    mid = (low + high) // 2
+
+    guess = arr[mid]
+    if arr and guess == i:
+        return arr[0]
+    if i < guess:
+        return rec_bs(arr[:mid - 1], i)
+    if i > guess:
+        return rec_bs(arr[mid + 1:], i)
+    return False
+
+
+arr = [1, 2, 3, 4, 5]
+print(rec_bs(arr, 5))
+
+
 def arr_max(arr, max_):
     if not arr:
         return max_
@@ -8,9 +27,9 @@ def arr_max(arr, max_):
     return arr_max(arr, max_)
 
 
-arr = [-3, 7, 52, 3, 44, 6, -3]
-max_from_arr = arr[0]
-print(arr_max(arr, max_from_arr))
+# arr = [-3, 7, 52, 3, 44, 6, -3]
+# max_from_arr = arr[0]
+# print(arr_max(arr, max_from_arr))
 
 
 def arr_len(arr):
