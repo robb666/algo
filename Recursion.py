@@ -1,21 +1,26 @@
 
 def rec_bs(arr, i):
     low = 0
-    high = len(arr) - 1
+    high = len(arr)
     mid = (low + high) // 2
-
+    print(arr)
+    print(mid)
     guess = arr[mid]
     if arr and guess == i:
-        return arr[0]
+        return arr.index(i)
     if i < guess:
-        return rec_bs(arr[:mid - 1], i)
+        left = arr[:mid]
+        return rec_bs(left, i)
     if i > guess:
-        return rec_bs(arr[mid + 1:], i)
+        right = arr[mid:]
+        return rec_bs(right, i)
     return False
 
 
-arr = [1, 2, 3, 4, 5]
-print(rec_bs(arr, 5))
+arr = [0, 2, 5, 8, 9]
+print(rec_bs(arr, 8))
+
+
 
 
 def arr_max(arr, max_):
@@ -63,7 +68,3 @@ def fact(x):
 
 
 # print(fact(3))
-
-
-
-
