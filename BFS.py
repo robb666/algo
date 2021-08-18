@@ -18,7 +18,7 @@ def search(name):
 
 
 def person_is_seller(name):
-    return name[-1] == 'm'
+    return name[-1] == 'o'
 
 
 graph = {}
@@ -29,7 +29,7 @@ graph['claire'] = ['thom', 'jonny']
 graph['anuj'] = []
 graph['peggy'] = []
 graph['thom'] = []
-graph['jonny'] = []
+graph['jonny'] = ['robo']
 
 search('you')
 
