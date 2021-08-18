@@ -8,6 +8,6 @@ def quicksort(arr):
     return quicksort(left) + [pivot] + quicksort(right)
 
 
-arr = [3, 15, 4, 22, 1, 0]
+arr = [3, 15, 4, 22, 1, 0, 2, 9]
 
 print(quicksort(arr))
