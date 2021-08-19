@@ -11,7 +11,7 @@ def linear_search(numbers_list, number_to_find):
 
 def binary_search(arr, num):
     low = 0
-    high = len(arr) - 1
+    high = len(arr[1:])
     while low <= high:
         mid = (low + high) // 2
         guess = arr[mid]
@@ -22,6 +22,11 @@ def binary_search(arr, num):
         else:
             low = mid + 1
     return False
+
+
+arr = [0, 2, 5, 8, 9]
+print(binary_search(arr, 2))
+
 
 
 def linear_performance():
@@ -66,8 +71,8 @@ binary_search(test_list,test_number)
     print(f'binary search performance = {round(min(performance), 2)}')
 
 
-linear_performance()
-binary_search_performance()
+# linear_performance()
+# binary_search_performance()
 
 
 

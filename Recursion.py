@@ -1,25 +1,24 @@
 
-def rec_bs(arr, i):
-    low = 0
-    high = len(arr)
-    mid = (low + high) // 2
-    print(arr)
-    print(mid)
+
+def recursive_binarysearch(arr, lo, hi, i):
+    mid = (lo + hi) // 2
     guess = arr[mid]
-    if arr and guess == i:
-        return arr.index(i)
-    if i < guess:
-        left = arr[:mid]
-        return rec_bs(left, i)
-    if i > guess:
-        right = arr[mid:]
-        return rec_bs(right, i)
-    return False
+    if lo > hi:
+        return False
+    elif guess == i:
+        return mid
+    elif i < guess:
+        hi = mid - 1
+        return recursive_binarysearch(arr, lo, hi, i)
+    else:
+        lo = mid + 1
+        return recursive_binarysearch(arr, lo, hi, i)
 
 
 arr = [0, 2, 5, 8, 9]
-print(rec_bs(arr, 8))
-
+lo = 0
+hi = len(arr[1:])
+print(recursive_binarysearch(arr, lo, hi, 12))
 
 
 
