@@ -23,8 +23,8 @@ while states_needed:
             best_station = station
             states_covered = covered
 
-states_needed -= states_covered
-final_stations.add(best_station)
+    states_needed -= states_covered
+    final_stations.add(best_station)
 
 print(final_stations)
 
