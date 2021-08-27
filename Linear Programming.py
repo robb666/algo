@@ -1,9 +1,5 @@
 
 from pulp import *
-import numpy as np
-import pandas as pd
-import re
-import matplotlib.pyplot as plt
 
 # A factory produces four different products, and that the daily produced amount of the first product is x₁,
 # the amount produced of the second product is x₂, and so on. The goal is to determine the profit-maximizing daily
@@ -25,7 +21,7 @@ import matplotlib.pyplot as plt
 
 model = LpProblem(name='resource-allocation', sense=LpMaximize)
 
-# Definition od decision variables
+# Definition of decision variables
 x = {i: LpVariable(name=f'x{i}', lowBound=0) for i in range(1, 5)}
 y = {i: LpVariable(name=f'y{i}', cat='Binary') for i in (1, 3)}
 
@@ -52,18 +48,6 @@ for var in model.variables():
 
 for name, constraint in model.constraints.items():
     print(f"{name}: {constraint.value()}")
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
