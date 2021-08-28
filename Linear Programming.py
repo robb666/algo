@@ -1,28 +1,7 @@
 
 from pulp import *
 
-<<<<<<< Updated upstream
-# A factory produces four different products, and that the daily produced amount of the first product is x₁,
-# the amount produced of the second product is x₂, and so on. The goal is to determine the profit-maximizing daily
-# production amount for each product, bearing in mind the following conditions:
-#
-#     The profit per unit of product is $20, $12, $40, and $25 for the first, second, third, and fourth product,
-#     respectively.
-#
-#     Due to manpower constraints, the total number of units produced per day can’t exceed fifty.
-#
-#     For each unit of the first product, three units of the raw material A are consumed. Each unit of the second
-#     product requires two units of the raw material A and one unit of the raw material B. Each unit of the third
-#     product needs one unit of A and two units of B. Finally, each unit of the fourth product requires three
-#     units of B.
-#
-#     Due to the transportation and storage constraints, the factory can consume up to one hundred units of the raw
-#     material A and ninety units of B per day.
 
-
-model = LpProblem(name='resource-allocation', sense=LpMaximize)
-
-=======
 # Case Studies
 # https://coin-or.github.io/pulp/CaseStudies/a_blending_problem.html
 
