@@ -126,23 +126,14 @@ prob += 0.002 * x1 + 0.005 * x2 + 0.007 * x3 + 0.002 * x4 + 0.008 * x5 + 0.000 *
 
 
 
-
-
-
 # The problem data is written to an .lp file
 prob.writeLP("WhiskasModel.lp")
 
 # The problem is solved using PuLP's choice of Solver
 prob.solve()
 
-<<<<<<< HEAD
 print('Status: ', LpStatus[prob.status])
-=======
->>>>>>> Stashed changes
-# Definition of decision variables
-x = {i: LpVariable(name=f'x{i}', lowBound=0) for i in range(1, 5)}
-y = {i: LpVariable(name=f'y{i}', cat='Binary') for i in (1, 3)}
->>>>>>> e6e4963485f89af699b3b167bbda6d1e7d21b1c9
+
 
 for v in prob.variables():
     print(v.name, '=', v.varValue)
