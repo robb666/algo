@@ -15,12 +15,12 @@ Ingredients = ['CHICKEN', 'BEEF', 'MUTTON', 'RICE', 'WHEAT', 'GEL']
 
 # A dictionary of the costs of each of the Ingredients is created
 costs = {
-    'Chicken': 0.013,
-    'Beef': 0.008,
-    'Mutton': 0.010,
-    'Rice': 0.002,
-    'Wheat': 0.005,
-    'Gel': 0.001,
+    'CHICKEN': 0.013,
+    'BEEF': 0.008,
+    'MUTTON': 0.010,
+    'RICE': 0.002,
+    'WHEAT': 0.005,
+    'GEL': 0.001,
 }
 
 # A dictionary of the protein percent in each of the Ingredients is created
@@ -67,43 +67,19 @@ saltPercent = {
 prob = LpProblem('The_Whiskas_Problem', LpMinimize)
 
 # A dictionary called 'ingredient_vars' is created to contain the referenced Variables
-ingredient_vars = LpVariable.dicts('Ingr', Ingredients, 0)
+ingredient_vars = LpVariable.dicts('Ingri', Ingredients, 0)
 
 
+print(ingredient_vars)
 
-
-# The 2 variables Beef and Chicken are created with a lower limit of zero
-x1 = LpVariable('ChickenPercent', 0, None, LpInteger)
-x2 = LpVariable('BeefPercent', 0)
-x3 = LpVariable('MuttonPercent', 0)
-x4 = LpVariable('RicePercent', 0)
-x5 = LpVariable('WheatPercent', 0)
-x6 = LpVariable('GelPercent', 0)
-
-print(x1)
-# The objective function is added to 'prob' first
 prob += lpSum([costs[i] * ingredient_vars[i] for i in Ingredients]), 'Total Cost of Ingredients per can'
+print(prob)
 
-# The objective function is added to 'prob' first
-# prob += 0.013 * x1 + 0.008 * x2 + 0.010 * x3 + 0.002 * x4 + 0.005 * x5 + 0.001 * x6, 'Total Cost of Ingredients per can'
 prob += lpSum([ingredient_vars[i] for i in Ingredients]) == 100, 'PercentagesSum'
 prob += lpSum([proteinPercent[i] * ingredient_vars[i] for i in Ingredients]) >= 8.0, 'ProteinRequirement'
 prob += lpSum([fatPercent[i] * ingredient_vars[i] for i in Ingredients]) >= 6.0, 'FatRequirement'
 prob += lpSum([fibrePercent[i] * ingredient_vars[i] for i in Ingredients]) <= 2.0, 'FibreRequirement'
 prob += lpSum([saltPercent[i] * ingredient_vars[i] for i in Ingredients]) <= 0.4, 'SaltRequirement'
-
-
-# The five constraints are entered
-prob += x1 + x2 + x3 + x4 + x5 + x6 == 100, "PercentagesSum"
-prob += 0.100 * x1 + 0.200 * x2 + 0.150 * x3 + 0.000 * x4 + 0.040 * x5 + 0.000 * x6 >= 8.0, "ProteinRequirement"
-prob += 0.080 * x1 + 0.100 * x2 + 0.110 * x3 + 0.010 * x4 + 0.010 * x5 + 0.000 * x6 >= 6.0, "FatRequirement"
-prob += 0.001 * x1 + 0.005 * x2 + 0.003 * x3 + 0.100 * x4 + 0.150 * x5 + 0.000 * x6 <= 2.0, "FibreRequirement"
-prob += 0.002 * x1 + 0.005 * x2 + 0.007 * x3 + 0.002 * x4 + 0.008 * x5 + 0.000 * x6 <= 0.4, "SaltRequirement"
-
-# prob += {i: f'x{i}' * i.value() for i in proteinPercent.va}
-
-
-
 
 # The problem data is written to an .lp file
 prob.writeLP("WhiskasModel.lp")
