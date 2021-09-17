@@ -10,7 +10,7 @@ class BinarySearchTreeNode:
         self.right = None
 
     def add_child(self, data):
-        print(self.data)
+        # print(self.data)
         if data == self.data:
             print(f'node {self.data} already exist ')
             return  # node already exist
@@ -123,53 +123,53 @@ def build_tree(elements):
     return root
 
 
-if __name__ == '__main__':
-    numbers = [0, -1, -5, 17, 4, 1, 20, 9, 23, 34, 18]
-
-    # tre = BinarySearchTreeNode(5)
-
-    tre = build_tree(numbers)
-    # for i in range(len(numbers)):
-    #     tre.add_child(numbers[i])
-
-
-
-    tre.add_child(1)
-    tre.add_child(4)
-    tre.add_child(2)
-    tre.add_child(61)
-    # tre.add_child(7)
-    # tre.add_child(82)
-    # tre.add_child(15)
-    # tre.add_child(10)
-    # tre.add_child(11)
-
-    # print(tre.search(12))
-
-    print(tre.height())
-
-    # root = build_tree(numbers)
-    # print(root.calculate_sum())
-
-    # numbers = [17, 4, 1, 20, 9, 23, 18, 34]
-
-    # numbers = [15, 12, 7, 14, 27, 20, 23, 88]
-    # numbers_tree = build_tree(numbers)
-
-    # print("Input numbers:", numbers)
-    # print("Min:", numbers_tree.find_min())
-    # print("Max:", numbers_tree.find_max())
-    # print("Sum:", numbers_tree.calculate_sum())
-    # print("In order traversal:", numbers_tree.in_order_traversal())
-    # print("Pre order traversal:", numbers_tree.preorder_traversal())
-    # print("Post order traversal:", numbers_tree.postorder_traversal())
-
-    # countries = ["India", "Pakistan", "Germany", "USA", "China", "India", "UK", "USA"]
-    # country_tree = build_tree(countries)
-    # print(country_tree.find_min())
-
-    # print("UK is in the list? ", country_tree.search("UK"))
-    # print("Sweden is in the list? ", country_tree.search("Sweden"))
+# if __name__ == '__main__':
+#     numbers = [0, -1, -5, 17, 4, 1, 20, 9, 23, 34, 18]
+#
+#     # tre = BinarySearchTreeNode(5)
+#
+#     tre = build_tree(numbers)
+#     # for i in range(len(numbers)):
+#     #     tre.add_child(numbers[i])
+#
+#
+#
+#     tre.add_child(1)
+#     tre.add_child(4)
+#     tre.add_child(2)
+#     tre.add_child(61)
+#     # tre.add_child(7)
+#     # tre.add_child(82)
+#     # tre.add_child(15)
+#     # tre.add_child(10)
+#     # tre.add_child(11)
+#
+#     # print(tre.search(12))
+#
+#     # print(tre.height())
+#
+#     # root = build_tree(numbers)
+#     # print(root.calculate_sum())
+#
+#     # numbers = [17, 4, 1, 20, 9, 23, 18, 34]
+#
+#     # numbers = [15, 12, 7, 14, 27, 20, 23, 88]
+#     # numbers_tree = build_tree(numbers)
+#
+#     # print("Input numbers:", numbers)
+#     # print("Min:", numbers_tree.find_min())
+#     # print("Max:", numbers_tree.find_max())
+#     # print("Sum:", numbers_tree.calculate_sum())
+#     # print("In order traversal:", numbers_tree.in_order_traversal())
+#     # print("Pre order traversal:", numbers_tree.preorder_traversal())
+#     # print("Post order traversal:", numbers_tree.postorder_traversal())
+#
+#     # countries = ["India", "Pakistan", "Germany", "USA", "China", "India", "UK", "USA"]
+#     # country_tree = build_tree(countries)
+#     # print(country_tree.find_min())
+#
+#     # print("UK is in the list? ", country_tree.search("UK"))
+#     # print("Sweden is in the list? ", country_tree.search("Sweden"))
 
 
 
@@ -233,7 +233,7 @@ class binary_search_tree:
             return cur_height
         left_height = self._height(cur_node.left_child, cur_height + 1)
         right_height = self._height(cur_node.right_child, cur_height + 1)
-        print(cur_node, cur_height)
+        # print(cur_node, cur_height)
         return max(left_height, right_height)
 
     def search(self, value):
@@ -251,14 +251,33 @@ class binary_search_tree:
             return self._search(value, cur_node.right_child)
         return False
 
+    def in_order_traversal(self):
+        elements = []
+        if self.root:
+            pass
 
-def fill_tree(tree, num_elems=100, max_int=1000):
-    from random import randint
-    for num in range(0, num_elems):
-        cur_elem = randint(0, max_int)
+        return elements
+
+
+def fill_tree(tree, num_arr):
+
+    for num in range(len(num_arr)):
+        cur_elem = num_arr[num]
 
         tree.insert(cur_elem)
     return tree
+
+
+numbers2 = [0, -1, -5, 17, 4, 1, 20, 9, 23, 34, 18]
+
+tree = binary_search_tree()
+fill_tree(tree, numbers2)
+
+
+
+print(tree.height())
+print(tree.print_tree())
+print(tree.in_order_traversal())
 
 
 # tree = binary_search_tree()
@@ -289,5 +308,3 @@ def fill_tree(tree, num_elems=100, max_int=1000):
 # print(tree.search(2))
 # print(tree.search(9))
 # print(tree.search(90))
-
-
