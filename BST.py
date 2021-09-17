@@ -10,6 +10,7 @@ class BinarySearchTreeNode:
         self.right = None
 
     def add_child(self, data):
+        print(self.data)
         if data == self.data:
             print(f'node {self.data} already exist ')
             return  # node already exist
@@ -25,49 +26,6 @@ class BinarySearchTreeNode:
                 self.right.add_child(data)
             else:
                 self.right = BinarySearchTreeNode(data)
-
-    def preorder_traversal(self):
-        elements = [self.data]
-        # elements.append(self.data)
-        # visit left tree
-        if self.left:
-            elements += self.left.preorder_traversal()
-
-        # visit right tree
-        if self.right:
-            elements += self.right.preorder_traversal()
-
-        return elements
-
-    def in_order_traversal(self):
-        elements = []
-
-        # visit left tree
-        if self.left:
-            elements += self.left.in_order_traversal()
-
-        # visit base node
-        elements.append(self.data)
-
-        # visit right tree
-        if self.right:
-            elements += self.right.in_order_traversal()
-
-        return elements
-
-    def postorder_traversal(self):
-        elements = []
-
-        # visit left tree
-        if self.left:
-            elements += self.left.postorder_traversal()
-        # visit right tree
-        if self.right:
-            elements += self.right.postorder_traversal()
-
-        elements.append(self.data)
-
-        return elements
 
     def search(self, val):
         if self.data == val:
@@ -85,15 +43,56 @@ class BinarySearchTreeNode:
             else:
                 return False
 
-    def find_min(self):
-        if self.left is None:
-            return self.data
-        return self.left.find_min()
+    def in_order_traversal(self):
+        elements = []
+        # visit left tree
+        if self.left:
+            elements += self.left.in_order_traversal()
+
+        # visit base node
+        elements.append(self.data)
+
+        # visit right tree
+        if self.right:
+            elements += self.right.in_order_traversal()
+
+        return elements
+
+    def postorder_traversal(self):
+        elements = []
+        # visit left tree
+        if self.left:
+            elements += self.left.postorder_traversal()
+        # visit right tree
+        if self.right:
+            elements += self.right.postorder_traversal()
+
+        elements.append(self.data)
+
+        return elements
+
+    def preorder_traversal(self):
+        elements = [self.data]
+        # elements.append(self.data)
+        # visit left tree
+        if self.left:
+            elements += self.left.preorder_traversal()
+
+        # visit right tree
+        if self.right:
+            elements += self.right.preorder_traversal()
+
+        return elements
 
     def find_max(self):
         if self.right is None:
             return self.data
         return self.right.find_max()
+
+    def find_min(self):
+        if self.left is None:
+            return self.data
+        return self.left.find_min()
 
     def calculate_sum(self):
         left_sum = self.left.calculate_sum() if self.left else 0
@@ -110,7 +109,6 @@ class BinarySearchTreeNode:
     def _height(self, cur_node, cur_height):
         if cur_node is None:
             return cur_height
-        print(cur_node.left, cur_height, BinarySearchTreeNode(cur_node).right)
         left_height = self._height(cur_node.left, cur_height + 1)
         right_height = self._height(cur_node.right, cur_height + 1)
         return max(left_height, right_height)
@@ -126,9 +124,11 @@ def build_tree(elements):
 
 
 if __name__ == '__main__':
-    numbers = [0, -1, -5, 17, 4, 1, 20, 9, 23, 18, 34]
+    numbers = [0, -1, -5, 17, 4, 1, 20, 9, 23, 34, 18]
 
-    tre = BinarySearchTreeNode(5)
+    # tre = BinarySearchTreeNode(5)
+
+    tre = build_tree(numbers)
     # for i in range(len(numbers)):
     #     tre.add_child(numbers[i])
 
@@ -261,12 +261,12 @@ def fill_tree(tree, num_elems=100, max_int=1000):
     return tree
 
 
-tree = binary_search_tree()
-
-tree.insert(1)
-tree.insert(5)
-tree.insert(2)
-tree.insert(61)
+# tree = binary_search_tree()
+#
+# tree.insert(1)
+# tree.insert(5)
+# tree.insert(2)
+# tree.insert(61)
 # tree.insert(4)
 # tree.insert(5)
 # tree.insert(6)
@@ -281,10 +281,10 @@ tree.insert(61)
 # tree.print_tree()
 #
 #
-print()
-print()
-print()
-print('tree height: ' + str(tree.height()))
+# print()
+# print()
+# print()
+# print('tree height: ' + str(tree.height()))
 # print(tree.search(10))
 # print(tree.search(2))
 # print(tree.search(9))
