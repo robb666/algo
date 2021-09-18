@@ -73,7 +73,6 @@ class BinarySearchTreeNode:
 
     def preorder_traversal(self):
         elements = [self.data]
-        # elements.append(self.data)
         # visit left tree
         if self.left:
             elements += self.left.preorder_traversal()
@@ -254,16 +253,43 @@ class binary_search_tree:
     def in_order_traversal(self):
         elements = []
         if self.root:
-            pass
-
+            self._in_order_traversal(elements, self.root)
         return elements
+
+    def _in_order_traversal(self, elements, cur_node):
+        if cur_node:
+            self._in_order_traversal(elements, cur_node.left_child)
+            elements.append(cur_node.value)
+            self._in_order_traversal(elements, cur_node.right_child)
+
+    def pre_order_traversal(self):
+        elements = []
+        if self.root:
+            self._pre_order_traversal(elements, self.root)
+        return elements
+
+    def _pre_order_traversal(self, elements, cur_node):
+        if cur_node:
+            elements.append(cur_node.value)
+            self._in_order_traversal(elements, cur_node.left_child)
+            self._in_order_traversal(elements, cur_node.right_child)
+
+    def post_order_traversal(self):
+        elements = []
+        if self.root:
+            self._pre_order_traversal(elements, self.root)
+        return elements
+
+    def _post_order_traversal(self, elements, cur_node):
+        if cur_node:
+            self._in_order_traversal(elements, cur_node.left_child)
+            self._in_order_traversal(elements, cur_node.right_child)
+            elements.append(cur_node.value)
 
 
 def fill_tree(tree, num_arr):
-
     for num in range(len(num_arr)):
         cur_elem = num_arr[num]
-
         tree.insert(cur_elem)
     return tree
 
@@ -274,11 +300,11 @@ tree = binary_search_tree()
 fill_tree(tree, numbers2)
 
 
-
 print(tree.height())
-print(tree.print_tree())
-print(tree.in_order_traversal())
+# print(tree.print_tree())
+# print(tree.in_order_traversal())
 
+# print(node().__str__())
 
 # tree = binary_search_tree()
 #
