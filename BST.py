@@ -100,8 +100,7 @@ class BinarySearchTreeNode:
 
     def height(self):
         if self.data is not None:
-            self.root = self.data
-            return self._height(BinarySearchTreeNode(self.data), 0)
+            return self._height(self, 0)
         else:
             return 0
 
@@ -114,7 +113,7 @@ class BinarySearchTreeNode:
 
 
 def build_tree(elements):
-    root = BinarySearchTreeNode(elements[-1])
+    root = BinarySearchTreeNode(elements[0])
 
     for i in range(1, len(elements)):
         root.add_child(elements[i])
@@ -122,12 +121,14 @@ def build_tree(elements):
     return root
 
 
-# if __name__ == '__main__':
-#     numbers = [0, -1, -5, 17, 4, 1, 20, 9, 23, 34, 18]
-#
-#     # tre = BinarySearchTreeNode(5)
-#
-#     tre = build_tree(numbers)
+if __name__ == '__main__':
+    numbers = [0, -1, -5, 17, 4, 1, 20, 9, 23, 34, 18]
+
+    # tre = BinarySearchTreeNode(5)
+
+    tre = build_tree(numbers)
+    print(tre.in_order_traversal())
+    print(tre.height())
 #     # for i in range(len(numbers)):
 #     #     tre.add_child(numbers[i])
 #
@@ -145,7 +146,6 @@ def build_tree(elements):
 #
 #     # print(tre.search(12))
 #
-#     # print(tre.height())
 #
 #     # root = build_tree(numbers)
 #     # print(root.calculate_sum())
@@ -235,7 +235,6 @@ class binary_search_tree:
             return cur_height
         left_height = self._height(cur_node.left_child, cur_height + 1)
         right_height = self._height(cur_node.right_child, cur_height + 1)
-        # print(cur_node, cur_height)
         return max(left_height, right_height)
 
     def find(self, value):
@@ -317,8 +316,6 @@ class binary_search_tree:
             # delete the inorder successor now that it's value was
             # copied into the other node
             self.delete_node(successor)
-        print(self.root.value)
-
 
     def search(self, value):
         if self.root is not None:
@@ -379,29 +376,25 @@ def fill_tree(tree, num_arr):
     return tree
 
 
-numbers2 = [0, -1, -5, 17, 4, 1, 20, 9, 23, 34, 18]
-
-tree = binary_search_tree()
-fill_tree(tree, numbers2)
-
-
-# print(tree.height())
-# print(tree.print_tree())
-tree.delete_value(0)
-print(tree.in_order_traversal())
-
-# print(node().__str__())
-
-# tree = binary_search_tree()
+# numbers2 = [0, -1, -5, 17, 4, 1, 20, 9, 23, 34, 18]
 #
-# tree.insert(1)
-# tree.insert(5)
-# tree.insert(2)
-# tree.insert(61)
-# tree.insert(4)
-# tree.insert(5)
-# tree.insert(6)
-# tree.insert(7)
-# tree.insert(8)
-# tree.insert(9)
-# tree.insert(10)
+# tree = binary_search_tree()
+# fill_tree(tree, numbers2)
+#
+#
+# # print(tree.height())
+# # print(tree.print_tree())
+# tree.delete_value(0)
+# print(tree.in_order_traversal())
+#
+# # tree.insert(1)
+# # tree.insert(5)
+# # tree.insert(2)
+# # tree.insert(61)
+# # tree.insert(4)
+# # tree.insert(5)
+# # tree.insert(6)
+# # tree.insert(7)
+# # tree.insert(8)
+# # tree.insert(9)
+# # tree.insert(10)
