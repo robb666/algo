@@ -317,6 +317,8 @@ class binary_search_tree:
             # delete the inorder successor now that it's value was
             # copied into the other node
             self.delete_node(successor)
+        print(self.root.value)
+
 
     def search(self, value):
         if self.root is not None:
@@ -368,21 +370,6 @@ class binary_search_tree:
             self._in_order_traversal(elements, cur_node.left_child)
             self._in_order_traversal(elements, cur_node.right_child)
             elements.append(cur_node.value)
-
-    def delete(self, value):
-        if self.root:
-            self._delete(self.root, value)
-        else:
-            print('Value not in tree.')
-
-    def _delete(self, cur_node, value):
-
-        if cur_node == value:
-            cur_node.value = None
-        elif cur_node.value < value:
-            self._delete(cur_node.left_child, value)
-        elif cur_node.value < value:
-            self._delete(cur_node.right_child, value)
 
 
 def fill_tree(tree, num_arr):
