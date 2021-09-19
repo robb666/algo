@@ -184,6 +184,7 @@ class node:
         self.value = value
         self.left_child = None
         self.right_child = None
+        self.parent = None
 
 
 class binary_search_tree:
@@ -201,11 +202,13 @@ class binary_search_tree:
         if value < cur_node.value:
             if cur_node.left_child is None:
                 cur_node.left_child = node(value)
+                cur_node.left_child.parent = cur_node
             else:
                 self._insert(value, cur_node.left_child)
         elif value > cur_node.value:
             if cur_node.right_child is None:
                 cur_node.right_child = node(value)
+                cur_node.right_child.parent = cur_node
             else:
                 self._insert(value, cur_node.right_child)
         else:
@@ -234,6 +237,86 @@ class binary_search_tree:
         right_height = self._height(cur_node.right_child, cur_height + 1)
         # print(cur_node, cur_height)
         return max(left_height, right_height)
+
+    def find(self, value):
+        if self.root is not None:
+            return self._find(value, self.root)
+        else:
+            return None
+
+    def _find(self, value, cur_node):
+        if value == cur_node.value:
+            return cur_node
+        elif value < cur_node.value and cur_node.left_child is not None:
+            return self._find(value, cur_node.left_child)
+        elif value > cur_node.value and cur_node.right_child is not None:
+            return self._find(value, cur_node.right_child)
+
+    def delete_value(self, value):
+        return self.delete_node(self.find(value))
+
+    def delete_node(self, node):
+        def min_value_node(n):
+            current = n
+            while current.left_child is not None:
+                current = current.left_child
+            return current
+
+        def num_children(n):
+            num_children = 0
+            if n.left_child is not None:
+                num_children += 1
+            if n.right_child is not None:
+                num_children += 1
+            return num_children
+
+        # get the parent node to be deleted
+        node_parent = node.parent
+
+        # get the number of children of the node to be deleted
+        node_children = num_children(node)
+
+        # break operation into different cases based on the
+        # structure of tree @ node to be deleted
+
+        # CASE 1 (node has no children)
+        if node_children == 0:
+
+            # remove reference to the node from the parent
+            if node_parent.left_child == node:
+                node_parent.left_child = None
+            else:
+                node_parent.right_child = None
+
+        # CASE 2 (node has a single child)
+        if node_children == 1:
+            if node.left_child is not None:
+                child = node.left_child
+            else:
+                child = node.right_child
+
+            # replace the node to be deleted with its child
+            if node_parent.left_child == node:
+                node_parent.left_child = child
+            else:
+                node_parent.right_child = child
+
+            # correct the parent pointer in node
+            child.parent = node_parent
+
+        # CASE 3 (node has two children)
+        if node_children == 2:
+
+            # get the inorder successor of the deleted node
+            successor = min_value_node(node.right_child)
+
+            # copy the inorder successor's value to the node formerly
+            # holding the value we wished to delete
+            node.value = successor.value
+
+            # delete the inorder successor now that it's value was
+            # copied into the other node
+            self.delete_node(successor)
 
     def search(self, value):
         if self.root is not None:
@@ -286,6 +369,21 @@ class binary_search_tree:
             self._in_order_traversal(elements, cur_node.right_child)
             elements.append(cur_node.value)
 
+    def delete(self, value):
+        if self.root:
+            self._delete(self.root, value)
+        else:
+            print('Value not in tree.')
+
+    def _delete(self, cur_node, value):
+
+        if cur_node == value:
+            cur_node.value = None
+        elif cur_node.value < value:
+            self._delete(cur_node.left_child, value)
+        elif cur_node.value < value:
+            self._delete(cur_node.right_child, value)
+
 
 def fill_tree(tree, num_arr):
     for num in range(len(num_arr)):
@@ -300,9 +398,10 @@ tree = binary_search_tree()
 fill_tree(tree, numbers2)
 
 
-print(tree.height())
+# print(tree.height())
 # print(tree.print_tree())
-# print(tree.in_order_traversal())
+tree.delete_value(0)
+print(tree.in_order_traversal())
 
 # print(node().__str__())
 
@@ -319,18 +418,3 @@ print(tree.height())
 # tree.insert(8)
 # tree.insert(9)
 # tree.insert(10)
-#
-#
-# # tree = fill_tree(tree)
-#
-# tree.print_tree()
-#
-#
-# print()
-# print()
-# print()
-# print('tree height: ' + str(tree.height()))
-# print(tree.search(10))
-# print(tree.search(2))
-# print(tree.search(9))
-# print(tree.search(90))
