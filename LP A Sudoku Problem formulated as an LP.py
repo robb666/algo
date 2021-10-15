@@ -78,7 +78,6 @@ print("Status:", LpStatus[prob.status])
 
 sudokuout = open('sudoku.txt', 'w')
 
-
 for r in ROWS:
     if r in [1, 4, 7]:
         sudokuout.write("+-------+-------+-------+\n")
@@ -136,17 +135,4 @@ sudokuout.close()
 #
 # # The location of the solutions is give to the user
 # print("Solutions Written to sudokuout.txt")
-
-
-
-
-
-
-
-
-
-
-
-
-
 
