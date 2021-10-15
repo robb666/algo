@@ -26,5 +26,7 @@ print(str_to_just.rjust(40, '*'))
 print(str_to_just.ljust(40, '*'))
 
 print('BMW 535d, 2993 cm3'.rstrip(' cm3'))
+print('BMW 535d, 2993 cm3'.removesuffix(' cm3'))
+print('BMW 535d, 2993 cm3'[:-4])
 
 # return a str, return a copy
