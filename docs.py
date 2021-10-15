@@ -29,5 +29,79 @@ print('BMW 535d, 2993 cm3'.rstrip(' cm3'))
 print('BMW 535d, 2993 cm3'.removesuffix(' cm3'))
 print('BMW 535d, 2993 cm3'[:-4])
 
+
+def stripper(obj):
+    return obj.removesuffix(',/?><\;][cm3')
+
+
+arr = ['2993 cm3', 'def][', 'ijk>', 'ooop.,/?><\;][cm3']
+
+strriped = map(stripper, arr)
+strr_list = list(strriped)
+print(strr_list)
+
+
+def capital(obj):
+    return obj.upper()
+
+arr1 = ['gosia', 'zosia', 'basia', 'kasia']
+mpp = list(map(capital, arr1))
+print(mpp)
+
+for i in arr1:
+    print(capital(i))
+
+print('+002'.zfill(6))
+
+dict = {"a": "123", "b": "456", "c": "789"}
+string = ""
+print(string.maketrans(dict))
+
+str1 = 'XXXxxxpol'.partition('x')
+print(str1)
+str1rep = 'XXXxxxpol'.rpartition('x')
+print(str1rep)
+
+
+str2 = 'XXXxxxpol'
+print(str2.rfind('x'))
+
+import re
+def titlecase(s):
+    return re.sub(r"[A-Za-z]+('[A-Za-z]+)?",
+                  lambda mo: mo.group(0).capitalize(),
+                  s)
+
+s = titlecase("they're bill's friends.")
+print(s)
+
 # return a str, return a copy
 # maketrans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
