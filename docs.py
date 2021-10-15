@@ -30,3 +30,4 @@ print('BMW 535d, 2993 cm3'.removesuffix(' cm3'))
 print('BMW 535d, 2993 cm3'[:-4])
 
 # return a str, return a copy
+# maketrans
