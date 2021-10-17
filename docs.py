@@ -69,11 +69,15 @@ print(str2.rfind('x'))
 import re
 def titlecase(s):
     return re.sub(r"[A-Za-z]+('[A-Za-z]+)?",
-                  lambda mo: mo.group(0).capitalize(),
-                  s)
+                  lambda mo: mo.group(0).capitalize(), s)
 
 s = titlecase("they're bill's friends.")
 print(s)
+
+result = re.sub(r'(Bill)\'s Friends', r'\1', s)
+print(result)
+
+
 
 # return a str, return a copy
 # maketrans
