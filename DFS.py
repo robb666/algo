@@ -3,12 +3,13 @@
 
 
 def dfs(G, v):
-    # visit(v)
+    visited = set()
     marked[v] = True
-    for w in G.keys():
+    for w in G:
         if not marked[int(w)]:
             dfs(G, int(w))
-    return marked
+        visited.add(w)
+    return visited
 
 
 if __name__ == '__main__':
