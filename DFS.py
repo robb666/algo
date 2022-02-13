@@ -14,7 +14,7 @@ def dfs_it(G, v):
 
     visited = []
 
-    for v in range(len(G)):
+    for v in G:
         if v:
             value = G[v].pop(0)
             print(G[value])
