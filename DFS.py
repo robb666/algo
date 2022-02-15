@@ -13,24 +13,18 @@ import logging
 def dfs_it(G, v):
 
     visited = []
+    visited.append(v)
 
+    # for v in G[v]:
     for v in G:
-        value = G[v].pop(0)
-        visited.append(G[value])
-
-        print(visited)
+        if G[v]:
+            current = G[v].pop(0)
+            visited.append(current)
 
     return visited
 
 
 if __name__ == '__main__':
-
-    # graph = {'0': {'1', '2'},
-    #          '1': {'0', '3', '4', '2'},
-    #          '2': {'0'},
-    #          '3': {'1'},
-    #          '4': {'2', '3'},
-    #          '5': {'4'}}
 
     graph = {'a': ['b', 'c'],
              'b': ['d'],
@@ -42,3 +36,21 @@ if __name__ == '__main__':
     # print(dfs_rec(graph, 'a', []))
     print(dfs_it(graph, 'a'))
 
+
+
+# def dfs_it(G, v):
+#
+#     visited = []
+#     visited.append(v)
+#
+#     for k in G[v]:
+#         for v in k:
+#             visited.append(v)
+#             if G[v]:
+#                 for n in G[v]:
+#                     visited.append(n)
+#                     if G[n]:
+#                         current = G[n].pop(0)
+#                         visited.append(current)  # f
+#
+#     return visited
