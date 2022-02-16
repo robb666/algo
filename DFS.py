@@ -15,11 +15,14 @@ def dfs_it(G, v):
     visited = []
     visited.append(v)
 
-    # for v in G[v]:
-    for v in G:
-        if G[v]:
-            current = G[v].pop(0)
+    for node in G:
+        neighbours = G[node]
+        if neighbours:
+            next = neighbours.pop(0)
+            current = G[next]
             visited.append(current)
+
+
 
     return visited
 
