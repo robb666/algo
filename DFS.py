@@ -1,21 +1,23 @@
 
-# def dfs_rec(G, v, visited):
-#
-#     visited.append(v)
-#     for v in G[v]:
-#         dfs_rec(G, v, visited)
-#
-#     return visited
+def dfs_rec(G, v, visited):
+
+    visited.append(v)
+    for v in G[v]:
+        dfs_rec(G, v, visited)
+
+    return visited
 
 
-def dfs_it(G, v):
+def dfs_iter(G, v):
 
     stack = [v]
     visited = []
 
     while len(stack) > 0:
         current = stack.pop()
-        visited.append(current)
+        # job...
+        if current not in visited:
+            visited.append(current)
         for neighbour in G[current][::-1]:
             stack.append(neighbour)
 
@@ -29,7 +31,8 @@ if __name__ == '__main__':
              'd': ['f', 'g'],
              'e': [],
              'f': [],
-             'g': []
+             'g': ['o'],
+             'o': []
              }
 
-    print(dfs_it(graph, 'a'))
+    # print(dfs_rec(graph, 'a', []))
