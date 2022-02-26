@@ -17,3 +17,5 @@ class Queue(Generic[T]):
     @property
     def empty(self): -> bool:
         return not self._container  # not is true for empty container
+
+
