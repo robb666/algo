@@ -35,4 +35,4 @@ if __name__ == '__main__':
              'o': []
              }
 
-    # print(dfs_rec(graph, 'a', []))
+    print(dfs_rec(graph, 'a', []))
