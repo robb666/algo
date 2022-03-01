@@ -65,7 +65,7 @@ class Maze:
 
     def mark(self, path: List[MazeLocation]):
         for maze_location in path:
-            self._grid[maze_location.row][maze_location.column] = Cell.EMPTY
+            self._grid[maze_location.row][maze_location.column] = Cell.PATH
         self._grid[self.start.row][self.start.column] = Cell.START
         self._grid[self.goal.row][self.goal.column] = Cell.GOAL
 
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     #     m.mark(path2)
     #     print(m)
     #     m.clear(path2)
-
+    #
     # # Test A*
     # distance: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
     # solution2: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test, m.successors, distance)

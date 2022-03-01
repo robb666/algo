@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import TypeVar, Iterable, Sequence, Generic, List, Callable, Set, Deque, Dict, Any, Optional
-from typing_extensions import Protocol
+# from typing_extensions import Protocol
 from heapq import heappush, heappop
 
 T = TypeVar('T')
@@ -18,7 +18,7 @@ class Stack(Generic[T]):
         self._container.append(item)
 
     def pop(self) -> T:
-        self._container.pop()  # LIFO
+        return self._container.pop()  # LIFO
 
     def __repr__(self) -> str:
         return repr(self._container)
