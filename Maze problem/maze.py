@@ -2,7 +2,8 @@ from enum import Enum
 from typing import List, NamedTuple, Callable, Optional
 import random
 from math import sqrt
-from generic_search import dfs, bfs, node_to_path, astar, Node
+# from generic_search import dfs, bfs, node_to_path, astar, Node
+from generic_search import dfs, node_to_path, Node
 
 
 class Cell(str, Enum):
@@ -19,8 +20,8 @@ class MazeLocation(NamedTuple):
 
 
 class Maze:
-    def __init__(self, rows: int=10, columns: int=10, sparsness: float=0.2,
-                 start: MazeLocation=(0, 0), goal: MazeLocation=MazeLocation(9, 9)) -> None:
+    def __init__(self, rows: int = 10, columns: int = 10, sparsness: float = 0.2,
+                 start: MazeLocation = MazeLocation(0, 0), goal: MazeLocation = MazeLocation(9, 9)) -> None:
         # initialize basic instance variables
         self._rows: int = rows
         self._columns: int = columns
@@ -80,6 +81,7 @@ def euclidean_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
         xdist: int = ml.column - goal.column
         ydist: int = ml.row - goal.row
         return sqrt((xdist * xdist) + (ydist * ydist))
+
     return distance
 
 
@@ -88,6 +90,7 @@ def manhattan_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
         xdist: int = abs(ml.column - goal.column)
         ydist: int = abs(ml.row - goal.row)
         return (xdist + ydist)
+
     return distance
 
 
@@ -102,14 +105,23 @@ if __name__ == '__main__':
         path1: List[MazeLocation] = node_to_path(solution1)
         m.mark(path1)
         print(m)
-        m.clear()
+        m.clear(path1)
 
-
-
-
-
-
-
-
-
-
+    # # Test BFS
+    # solution2: Optional[Node[Maze]] = bfs(m.start, m.goal_test, m.successors)
+    # if solution2 is None:
+    #     print('No solution found using breadth-first search!')
+    # else:
+    #     path2: List[MazeLocation] = node_to_path(solution2)
+    #     m.mark(path2)
+    #     print(m)
+    #     m.clear(path2)
+    # # Test A*
+    # distance: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
+    # solution2: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test, m.successors, distance)
+    # if solution2 is None:
+    #     print('No solution found using A*!')
+    # else:
+    #     path3: List[MazeLocation] = node_to_path(solution3)
+    #     m.mark(path3)
+    #     print(m)

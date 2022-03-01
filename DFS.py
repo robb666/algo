@@ -13,7 +13,7 @@ def dfs_iter(G, v):
     stack = [v]
     visited = []
 
-    while len(stack) > 0:
+    while stack:
         current = stack.pop()
         # job...
         if current not in visited:
@@ -35,4 +35,4 @@ if __name__ == '__main__':
              'o': []
              }
 
-    print(dfs_rec(graph, 'a', []))
+    print(dfs_iter(graph, 'a'))
