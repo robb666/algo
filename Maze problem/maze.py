@@ -26,7 +26,7 @@ class Maze:
         self._rows: int = rows
         self._columns: int = columns
         self.start: MazeLocation = start
-        self._goal: MazeLocation = goal
+        self.goal: MazeLocation = goal
         # fill the grid with empty cells
         self._grid: List[List[Cell]] = [[Cell.EMPTY for c in range(columns)] for r in range(rows)]
         # populate the grid with blocked cells
@@ -35,10 +35,10 @@ class Maze:
         self._grid[start.row][start.column] = Cell.START
         self._grid[goal.row][goal.column] = Cell.GOAL
 
-    def _randomly_fill(self, rows: int, columns: int, sparsness: float):
+    def _randomly_fill(self, rows: int, columns: int, sparseness: float):
         for row in range(rows):
             for column in range(columns):
-                if random.uniform(0, 1.0) < sparsness:
+                if random.uniform(0, 1.0) < sparseness:
                     self._grid[row][column] = Cell.BLOCKED
 
     # return a nicely formatted version of the maze for printing
@@ -49,7 +49,7 @@ class Maze:
         return output
 
     def goal_test(self, ml: MazeLocation) -> bool:
-        return ml == self._goal
+        return ml == self.goal
 
     def successors(self, ml: MazeLocation) -> List[MazeLocation]:
         locations: List[MazeLocation] = []
@@ -116,6 +116,7 @@ if __name__ == '__main__':
     #     m.mark(path2)
     #     print(m)
     #     m.clear(path2)
+
     # # Test A*
     # distance: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
     # solution2: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test, m.successors, distance)
