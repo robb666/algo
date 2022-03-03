@@ -19,8 +19,8 @@ class MazeLocation(NamedTuple):
 
 
 class Maze:
-    def __init__(self, rows: int = 10, columns: int = 10, sparsness: float = 0.2,
-                 start: MazeLocation = MazeLocation(0, 0), goal: MazeLocation = MazeLocation(9, 9)) -> None:
+    def __init__(self, rows: int = 20, columns: int = 20, sparsness: float = 0.2,
+                 start: MazeLocation = MazeLocation(0, 0), goal: MazeLocation = MazeLocation(19, 19)) -> None:
         # initialize basic instance variables
         self._rows: int = rows
         self._columns: int = columns
@@ -88,12 +88,13 @@ def manhattan_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
     def distance(ml: MazeLocation) -> float:
         xdist: int = abs(ml.column - goal.column)
         ydist: int = abs(ml.row - goal.row)
-        return (xdist + ydist)
+        return xdist + ydist
 
     return distance
 
 
 if __name__ == '__main__':
+    
     # test DFS
     m: Maze = Maze()
     print(m)
