@@ -19,8 +19,8 @@ class MazeLocation(NamedTuple):
 
 
 class Maze:
-    def __init__(self, rows: int = 20, columns: int = 20, sparsness: float = 0.2,
-                 start: MazeLocation = MazeLocation(0, 0), goal: MazeLocation = MazeLocation(19, 19)) -> None:
+    def __init__(self, rows: int = 4, columns: int = 5, sparsness: float = 0.2,
+                 start: MazeLocation = MazeLocation(0, 0), goal: MazeLocation = MazeLocation(3, 4)) -> None:
         # initialize basic instance variables
         self._rows: int = rows
         self._columns: int = columns
@@ -52,14 +52,16 @@ class Maze:
 
     def successors(self, ml: MazeLocation) -> List[MazeLocation]:
         locations: List[MazeLocation] = []
-        if ml.row + 1 < self._rows and self._grid[ml.row + 1][ml.column] != Cell.BLOCKED:
+        if ml.row + 1 < self._rows and self._grid[ml.row + 1][ml.column] != Cell.BLOCKED:  # down
             locations.append(MazeLocation(ml.row + 1, ml.column))
-        if ml.row - 1 >= 0 and self._grid[ml.row - 1][ml.column] != Cell.BLOCKED:
+        if ml.row - 1 >= 0 and self._grid[ml.row - 1][ml.column] != Cell.BLOCKED:  # up
             locations.append(MazeLocation(ml.row - 1, ml.column))
-        if ml.column + 1 < self._columns and self._grid[ml.row][ml.column + 1] != Cell.BLOCKED:
+        if ml.column + 1 < self._columns and self._grid[ml.row][ml.column + 1] != Cell.BLOCKED:  # right
             locations.append(MazeLocation(ml.row, ml.column + 1))
-        if ml.column - 1 >= 0 and self._grid[ml.row][ml.column - 1] != Cell.BLOCKED:
+        if ml.column - 1 >= 0 and self._grid[ml.row][ml.column - 1] != Cell.BLOCKED:  # left
             locations.append(MazeLocation(ml.row, ml.column - 1))
+        print('locations')
+        print(locations)
         return locations
 
     def mark(self, path: List[MazeLocation]):
@@ -120,7 +122,7 @@ if __name__ == '__main__':
     # Test A*
     distance: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
     solution3: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test, m.successors, distance)
-    if solution2 is None:
+    if solution3 is None:
         print('No solution found using A*!')
     else:
         path3: List[MazeLocation] = node_to_path(solution3)
