@@ -74,7 +74,7 @@ class Node(Generic[T]):
         return (self.cost + self.heuristic) < (other.cost + other.heuristic)
 
     def __repr__(self):
-        return repr(self.state)
+        return repr(self.state) + ' heuristic: ' + repr(self.heuristic)
 
 
 def dfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], List[T]]) -> Optional[Node[T]]:
