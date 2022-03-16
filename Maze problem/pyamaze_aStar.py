@@ -11,10 +11,14 @@ def h(cell1, cell2):
 
 def aStar(m):
     start = (m.rows, m.cols)
+    print(m.cols)
     g_score = {cell: float('inf') for cell in m.grid}
     g_score[start] = 0
+    print(g_score)
+    print('h', h(start, (1, 1)))
     f_score = {cell: float('inf') for cell in m.grid}
     f_score[start] = h(start, (1, 1))
+    print(f_score)
 
     open = PriorityQueue()
     open.put((h(start, (1, 1)), h(start, (1, 1)), start))
@@ -26,8 +30,10 @@ def aStar(m):
             break
         for d in 'ESNW':
             if m.maze_map[currCell][d]:
+                print(m.maze_map[currCell][d])
                 if d == 'E':
                     childCell = (currCell[0], currCell[1] + 1)
+                    print(childCell)
                 if d == 'W':
                     childCell = (currCell[0], currCell[1] - 1)
                 if d == 'N':
