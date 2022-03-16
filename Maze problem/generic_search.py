@@ -24,8 +24,6 @@ class Stack(Generic[T]):
         return str(self._container)
 
 
-
-
 class Queue(Generic[T]):
     def __init__(self) -> None:
         self._container: Deque[T] = Deque()
