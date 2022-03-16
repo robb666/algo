@@ -45,5 +45,7 @@ html = driver.page_source
 #     print(a)
 
 soup = BeautifulSoup(html, 'lxml')
-for tag in soup.find_all():
-    print(tag.extract())
+
+for attr in attr_li:
+    tag = soup.find_all(attr)
+    print(tag)
