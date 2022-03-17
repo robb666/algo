@@ -31,13 +31,13 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 url1 = 'https://accounts.lambdatest.com/login'
 
 attr_tag = ['input', 'button']
-attr_li = ['TAG', 'ID', 'TYPE', 'CLASS', 'NAME', 'ARIA_AUTOCOMPLETE', 'TITLE', 'HREF', 'TEXT', 'VALUE', 'ARIA_LABEL']
+attr_li = ['ELEMENT', 'TAG', 'ID', 'TYPE', 'CLASS', 'NAME', 'ARIA_AUTOCOMPLETE', 'TITLE', 'HREF', 'TEXT', 'VALUE', 'ARIA_LABEL']
 elements_arr = ['email', 'password', 'LOGIN', 'checkbox']
 
-d = dict(attr_li=np.array(attr_li),
-         attr_tag=np.array(attr_tag),
-         elements_arr=np.array(elements_arr),
-         )
+# d = dict(attr_li=np.array(attr_li),
+#          attr_tag=np.array(attr_tag),
+#          elements_arr=np.array(elements_arr),
+#          )
 
 
 # driver.get(url1)
@@ -45,23 +45,23 @@ d = dict(attr_li=np.array(attr_li),
 #
 # soup = BeautifulSoup(html, 'lxml')
 
-df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in d.items()]))
+# df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in d.items()]))
 
 
 
-# df = pd.DataFrame.from_dict({'ELEMENT': elements_arr,
-#                            'TAG': attr_tag,
-#                            'ID': '',
-#                            'TYPE': '',
-#                            'CLASS': '',
-#                            'NAME': '',
-#                            'ARIA_AUTOCOMPLETE': '',
-#                            'TITLE': '',
-#                            'HREF': '',
-#                            'TEXT': '',
-#                            'VALUE': '',
-#                            'ARIA_LABEL': '',
-#                            })
+df = pd.DataFrame({'ELEMENT': np.array(elements_arr),
+                   'TAG': np.array(attr_tag),
+                   'ID': '',
+                   'TYPE': '',
+                   'CLASS': '',
+                   'NAME': '',
+                   'ARIA_AUTOCOMPLETE': '',
+                   'TITLE': '',
+                   'HREF': '',
+                   'TEXT': '',
+                   'VALUE': '',
+                   'ARIA_LABEL': '',
+                   })
 
 # df.transpose()
 # df.transpose()
