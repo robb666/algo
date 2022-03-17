@@ -29,25 +29,20 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 
 url1 = 'https://accounts.lambdatest.com/login'
 
-attr_li = ['tag', 'id', 'type', 'class', 'name']
+attr_li = ['tag', 'id', 'type', 'class', 'name', 'aria-autocomplete', 'title', 'href', 'text', 'value', 'aria-label']
 
 driver.get(url1)
 html = driver.page_source
 
-# data = driver.find_element(By.XPATH, "//body")
-
-
-# body_attr = driver.execute_script('var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;', body)
-# print(body_attr)
-#
-# for attr in attr_li:
-#     a = body.get_attribute(attr)
-#     print(a)
-
 soup = BeautifulSoup(html, 'lxml')
 
+for tag in soup.find_all('button'):
+    time.sleep(1)
+    print(tag.attrs)
+    print(tag.text)
+    print(tag.value)
+    print(tag.href)
+    print(tag)
 
-# divs = soup.find('button')
 
-print(soup.input.attrs)
 
