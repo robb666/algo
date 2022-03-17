@@ -29,20 +29,37 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 
 url1 = 'https://accounts.lambdatest.com/login'
 
-attr_li = ['tag', 'id', 'type', 'class', 'name', 'aria-autocomplete', 'title', 'href', 'text', 'value', 'aria-label']
+# attr_li = ['id', 'type', 'class', 'name', 'aria-autocomplete', 'title', 'href', 'text', 'value', 'aria-label']
+
+attr_tag = ['input', 'button']
+
 
 driver.get(url1)
 html = driver.page_source
+# html = driver.find_element_by_xpath('//*[@id="app"]/div[1]/div').get_attribute('innerHTML')
 
 soup = BeautifulSoup(html, 'lxml')
 
-for tag in soup.find_all('button'):
-    time.sleep(1)
-    print(tag.attrs)
-    print(tag.text)
-    print(tag.value)
-    print(tag.href)
-    print(tag)
-
+for tag in attr_tag:
+    # time.sleep(1)
+    for attr in soup.find_all(tag):
+        print(attr.attrs)
+        print(tag)
+        print(attr.attrs.get('id'))
+        print(attr.attrs.get('type'))
+        print(attr.attrs.get('class'))
+        print(attr.attrs.get('name'))
+        print(attr.attrs.get('aria-autocomplete'))
+        print(attr.attrs.get('title'))
+        print(attr.attrs.get('href'))
+        print('text:')
+        print(attr.text)
+        print(attr.attrs.get('value'))
+        print(attr.attrs.get('aria-label'))
+        print('\n\n')
+        # print(attr.text)
+        # print(attr.value)
+        # print(attr.href)
+        # print(attr.contents)
 
 
