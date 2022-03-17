@@ -1,10 +1,11 @@
 import time
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
+import pandas as pd
+import numpy as np
 
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 
 url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.generali.pl%2Flogin%2Fcas'
 
@@ -26,37 +27,75 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 
 
 """lambdatest"""
-
+# driver = webdriver.Chrome()
 url1 = 'https://accounts.lambdatest.com/login'
 
-# attr_li = ['id', 'type', 'class', 'name', 'aria-autocomplete', 'title', 'href', 'text', 'value', 'aria-label']
-
 attr_tag = ['input', 'button']
+attr_li = ['TAG', 'ID', 'TYPE', 'CLASS', 'NAME', 'ARIA_AUTOCOMPLETE', 'TITLE', 'HREF', 'TEXT', 'VALUE', 'ARIA_LABEL']
+elements_arr = ['email', 'password', 'LOGIN', 'checkbox']
+
+d = dict(attr_li=np.array(attr_li),
+         attr_tag=np.array(attr_tag),
+         elements_arr=np.array(elements_arr),
+         )
 
 
-driver.get(url1)
-html = driver.page_source
-# html = driver.find_element_by_xpath('//*[@id="app"]/div[1]/div').get_attribute('innerHTML')
+# driver.get(url1)
+# html = driver.page_source
+#
+# soup = BeautifulSoup(html, 'lxml')
 
-soup = BeautifulSoup(html, 'lxml')
+df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in d.items()]))
 
-for tag in attr_tag:
-    # time.sleep(1)
-    for attr in soup.find_all(tag):
-        print(attr.attrs)
-        print(tag)
-        print(attr.attrs.get('id'))
-        print(attr.attrs.get('type'))
-        print(attr.attrs.get('class'))
-        print(attr.attrs.get('name'))
-        print(attr.attrs.get('aria-autocomplete'))
-        print(attr.attrs.get('title'))
-        print(attr.attrs.get('href'))
-        print('text:')
-        print(attr.text)
-        print(attr.attrs.get('value'))
-        print(attr.attrs.get('aria-label'))
-        print('\n\n')
+
+
+# df = pd.DataFrame.from_dict({'ELEMENT': elements_arr,
+#                            'TAG': attr_tag,
+#                            'ID': '',
+#                            'TYPE': '',
+#                            'CLASS': '',
+#                            'NAME': '',
+#                            'ARIA_AUTOCOMPLETE': '',
+#                            'TITLE': '',
+#                            'HREF': '',
+#                            'TEXT': '',
+#                            'VALUE': '',
+#                            'ARIA_LABEL': '',
+#                            })
+
+# df.transpose()
+# df.transpose()
+
+print(df)
+
+# for tag in attr_tag:
+#     for dict in soup.find_all(tag):
+#         print(dict)
+#         print(dict.text)
+
+
+
+# for attr in attr_li:
+#     print(tag)
+#     print(dict.attrs.get(attr))
+#     print(dict.text)
+
+        # print(attr.attrs)
+        # print(tag)
+        # print(attr.attrs.get('id'))
+        # print(attr.id)
+        # print(attr.attrs.get('type'))
+        # print(attr.attrs.get('class'))
+        # print(attr.attrs.get('name'))
+        # print(attr.attrs.get('aria-autocomplete'))
+        # print(attr.attrs.get('title'))
+        # print(attr.attrs.get('href'))
+        # print('text:')
+        # print(attr.text)
+        # print(attr.value)
+        # print(attr.attrs.get('value'))
+        # print(attr.attrs.get('aria-label'))
+        # print('\n\n')
         # print(attr.text)
         # print(attr.value)
         # print(attr.href)
