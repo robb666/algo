@@ -29,7 +29,7 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 
 url1 = 'https://accounts.lambdatest.com/login'
 
-attr_li = ['class', 'div', 'id', 'input', 'name', 'type', 'value', 'span']
+attr_li = ['tag', 'id', 'type', 'class', 'name']
 
 driver.get(url1)
 html = driver.page_source
@@ -46,6 +46,8 @@ html = driver.page_source
 
 soup = BeautifulSoup(html, 'lxml')
 
-for attr in attr_li:
-    tag = soup.find_all(attr)
-    print(tag)
+
+# divs = soup.find('button')
+
+print(soup.input.attrs)
+
