@@ -46,76 +46,49 @@ html = driver.page_source
 soup = BeautifulSoup(html, 'lxml')
 
 # df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in d.items()]))
-
+print(soup.find_all('button'))
 
 # for tag in attr_tag:
-for attr in soup.find_all('input'):
+for attr in soup.find_all('button'):
     # print(dict)
-    print(attr.attrs)
-    # print(tag)
+    # print(attr.attrs)
+    # # print(tag)
     print(attr.attrs.get('id'))
-    print(attr.id)
-    print(attr.attrs.get('type'))
-    print(attr.attrs.get('class'))
-    print(attr.attrs.get('name'))
-    print(attr.attrs.get('aria-autocomplete'))
-    print(attr.attrs.get('title'))
-    print(attr.attrs.get('href'))
-    print('text:')
-    print(attr.text)
-    print(attr.value)
-    print(attr.attrs.get('value'))
-    print(attr.attrs.get('aria-label'))
-    print('\n\n')
-    print(attr.text)
-    print(attr.value)
-    print(attr.href)
-    print(attr.contents)
+    # print(attr.id)
+    # print(attr.attrs.get('type'))
+    # print(attr.attrs.get('class'))
+    # print(attr.attrs.get('name'))
+    # print(attr.attrs.get('aria-autocomplete'))
+    # print(attr.attrs.get('title'))
+    # print(attr.attrs.get('href'))
+    # print('text:')
+    # print(attr.text)
+    # print(attr.value)
+    # print(attr.attrs.get('value'))
+    # print(attr.attrs.get('aria-label'))
+    # print('\n\n')
+    # print(attr.text)
+    # print(attr.value)
+    # print(attr.href)
+    # print(attr.contents)
 
 
-    df = pd.DataFrame({columns=elements_arr},
-                        {'ELEMENT': elements_arr,
+    df = pd.DataFrame({'ELEMENT': elements_arr,
                        # 'TAG': tag,
                        'ID': attr.attrs.get('id'),
                        'TYPE': attr.attrs.get('type'),
-                       # 'CLASS': '',
+                       'CLASS': '2',
                        'NAME': attr.attrs.get('name'),
-                       # 'ARIA_AUTOCOMPLETE': '',
-                       # 'TITLE': '',
-                       # 'HREF': '',
-                       # 'TEXT': '',
-                       # 'VALUE': '',
+                       'ARIA_AUTOCOMPLETE': attr.attrs.get('aria-autocomplete'),
+                       'TITLE': attr.attrs.get('title'),
+                       'HREF': attr.attrs.get('href'),
+                       'TEXT': '',
+                       'VALUE': attr.attrs.get('value'),
                        # 'ARIA_LABEL': '',
+                       'PLACEHOLDER': attr.attrs.get('placeholder'),
                        })
 
 
     print(df)
-
-
-# for attr in attr_li:
-#     print(tag)
-#     print(dict.attrs.get(attr))
-#     print(dict.text)
-
-        # print(attr.attrs)
-        # print(tag)
-        # print(attr.attrs.get('id'))
-        # print(attr.id)
-        # print(attr.attrs.get('type'))
-        # print(attr.attrs.get('class'))
-        # print(attr.attrs.get('name'))
-        # print(attr.attrs.get('aria-autocomplete'))
-        # print(attr.attrs.get('title'))
-        # print(attr.attrs.get('href'))
-        # print('text:')
-        # print(attr.text)
-        # print(attr.value)
-        # print(attr.attrs.get('value'))
-        # print(attr.attrs.get('aria-label'))
-        # print('\n\n')
-        # print(attr.text)
-        # print(attr.value)
-        # print(attr.href)
-        # print(attr.contents)
 
 
