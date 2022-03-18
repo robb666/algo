@@ -46,14 +46,27 @@ html = driver.page_source
 soup = BeautifulSoup(html, 'lxml')
 
 # df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in d.items()]))
-print(soup.find_all('button'))
+tag = 'button'
+
+attr = soup.find_all(tag)
+
+atributes = attr[0].attrs
+
+print(atributes)
+
+
+
+
+
+# id_ = elements[0].attrs
+# print(id_)
 
 # for tag in attr_tag:
-for attr in soup.find_all('button'):
+# for attr in soup.find_all('button'):
     # print(dict)
     # print(attr.attrs)
     # # print(tag)
-    print(attr.attrs.get('id'))
+    # print(attr.attrs.get('id'))
     # print(attr.id)
     # print(attr.attrs.get('type'))
     # print(attr.attrs.get('class'))
@@ -73,22 +86,22 @@ for attr in soup.find_all('button'):
     # print(attr.contents)
 
 
-    df = pd.DataFrame({'ELEMENT': elements_arr,
-                       # 'TAG': tag,
-                       'ID': attr.attrs.get('id'),
-                       'TYPE': attr.attrs.get('type'),
-                       'CLASS': '2',
-                       'NAME': attr.attrs.get('name'),
-                       'ARIA_AUTOCOMPLETE': attr.attrs.get('aria-autocomplete'),
-                       'TITLE': attr.attrs.get('title'),
-                       'HREF': attr.attrs.get('href'),
-                       'TEXT': '',
-                       'VALUE': attr.attrs.get('value'),
-                       # 'ARIA_LABEL': '',
-                       'PLACEHOLDER': attr.attrs.get('placeholder'),
-                       })
-
-
-    print(df)
+# df = pd.DataFrame({'ELEMENT': elements_arr,
+#                    # 'TAG': tag,
+#                    'ID': attr.attrs.get('id'),
+#                    'TYPE': attr.attrs.get('type'),
+#                    'CLASS': '2',
+#                    'NAME': attr.attrs.get('name'),
+#                    'ARIA_AUTOCOMPLETE': attr.attrs.get('aria-autocomplete'),
+#                    'TITLE': attr.attrs.get('title'),
+#                    'HREF': attr.attrs.get('href'),
+#                    'TEXT': '',
+#                    'VALUE': attr.attrs.get('value'),
+#                    # 'ARIA_LABEL': '',
+#                    'PLACEHOLDER': attr.attrs.get('placeholder'),
+#                    })
+#
+#
+# print(df)
 
 
