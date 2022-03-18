@@ -27,7 +27,7 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 
 
 """lambdatest"""
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 url1 = 'https://accounts.lambdatest.com/login'
 
 attr_tag = ['input', 'button']
@@ -40,39 +40,56 @@ elements_arr = ['email', 'password', 'LOGIN', 'checkbox']
 #          )
 
 
-# driver.get(url1)
-# html = driver.page_source
-#
-# soup = BeautifulSoup(html, 'lxml')
+driver.get(url1)
+html = driver.page_source
+
+soup = BeautifulSoup(html, 'lxml')
 
 # df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in d.items()]))
 
 
-
-df = pd.DataFrame({'ELEMENT': np.array(elements_arr),
-                   'TAG': np.array(attr_tag),
-                   'ID': '',
-                   'TYPE': '',
-                   'CLASS': '',
-                   'NAME': '',
-                   'ARIA_AUTOCOMPLETE': '',
-                   'TITLE': '',
-                   'HREF': '',
-                   'TEXT': '',
-                   'VALUE': '',
-                   'ARIA_LABEL': '',
-                   })
-
-# df.transpose()
-# df.transpose()
-
-print(df)
-
 # for tag in attr_tag:
-#     for dict in soup.find_all(tag):
-#         print(dict)
-#         print(dict.text)
+for attr in soup.find_all('input'):
+    # print(dict)
+    print(attr.attrs)
+    # print(tag)
+    print(attr.attrs.get('id'))
+    print(attr.id)
+    print(attr.attrs.get('type'))
+    print(attr.attrs.get('class'))
+    print(attr.attrs.get('name'))
+    print(attr.attrs.get('aria-autocomplete'))
+    print(attr.attrs.get('title'))
+    print(attr.attrs.get('href'))
+    print('text:')
+    print(attr.text)
+    print(attr.value)
+    print(attr.attrs.get('value'))
+    print(attr.attrs.get('aria-label'))
+    print('\n\n')
+    print(attr.text)
+    print(attr.value)
+    print(attr.href)
+    print(attr.contents)
 
+
+    df = pd.DataFrame({columns=elements_arr},
+                        {'ELEMENT': elements_arr,
+                       # 'TAG': tag,
+                       'ID': attr.attrs.get('id'),
+                       'TYPE': attr.attrs.get('type'),
+                       # 'CLASS': '',
+                       'NAME': attr.attrs.get('name'),
+                       # 'ARIA_AUTOCOMPLETE': '',
+                       # 'TITLE': '',
+                       # 'HREF': '',
+                       # 'TEXT': '',
+                       # 'VALUE': '',
+                       # 'ARIA_LABEL': '',
+                       })
+
+
+    print(df)
 
 
 # for attr in attr_li:
