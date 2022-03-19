@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from queue import PriorityQueue
 
 
 # reading the required files into python using pandas
@@ -60,7 +61,18 @@ def predict_elements():
     return score, element_name, test
 
 
+def element(scores, queue):
+    for score in scores:
+        queue.put((score[1] * -1, score[0]))
+        # dict...element
+    return queue.get()
+
+
 # Calling the predict_elements method to return
 scores, element_name, test_df = predict_elements()
 print(scores)
 print(element_name)
+
+queue = PriorityQueue()
+element(scores, queue)
+

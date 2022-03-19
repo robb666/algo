@@ -4,15 +4,15 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np
+from rand_forests_sel import predict_elements
+
 
 # driver = webdriver.Chrome()
 
-url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.generali.pl%2Flogin%2Fcas'
+# url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.generali.pl%2Flogin%2Fcas'
 
 # driver.get(url)
 # driver.maximize_window()
-
-
 
 # body = driver.find_element(By.XPATH, "//body")
 
@@ -60,67 +60,55 @@ Test = df.loc[(df['element'] == 'Password')]
 Test.to_csv('Test.csv')
 
 
-driver.quit()
+
+def EnterUserName(driver):
+    try:
+        Element_email = driver.find_element_by_xpath("//input[@name='email']")
+        Element_email.send_keys('')
+    except Exception as e:pass
+
+        # if str(e) in 'no such element' or 'Unable to locate element':
+        #     Element_email = Model.InvokeSelfHealing(e, driver, locators.email)
+    # Element_email.send_keys(credentials.Email)
+    # Element_email.send_keys('ubezpieczenia.magro@gmail.com')
+    print("Enter username Executed")
+
+
+def EnterPasswors(driver):
+    try:
+        Element_passwors = driver.find_element_by_id("password")
+        Element_passwors.send_keys('')
+    except Exception as e:pass
+        # if str(e) in 'no such element' or 'Unable to locate element':
+        #     Element_email = Model.InvokeSelfHealing(e, driver, locators.email)
+
+    # Element_email.send_keys(credentials.Password)
+    # Element_passwors.send_keys('Q75dcJCvMbeaB7x')
+    print("Enter password Executed")
+
+
+def ClickOnSignIn(driver):
+    try:
+        Element_click = driver.find_element_by_xpath("//button[contains(text(), 'Login')]")
+        Element_click.click()
+    except Exception as e:
+        print(e)
+
+    #     if str(e) in 'no such element' or 'Unable to locate element':
+    #         Element_click = Model.InvokeSelfHealing(e, driver, locators.clickBtn)
+    # Element_click.click()
+    print("Enter clickon SignIn Executed")
 
 
 
 
+# GetElements(driver)
+driver.maximize_window()
+EnterUserName(driver)
+EnterPasswors(driver)
+ClickOnSignIn(driver)
+time.sleep(1)
+print("Test complete")
 
-
-
-
-        # df = pd.DataFrame({'ELEMENT': elements_arr,
-        #                    'TAG': tag,
-        #                    'ID': attr.get('id'),
-        #                    'TYPE': attr.get('type'),
-        #                    'CLASS': get_class,
-        #                    'NAME': attr.get('name'),
-        #                    'ARIA_AUTOCOMPLETE': attr.get('aria-autocomplete'),
-        #                    'TITLE': attr.get('title'),
-        #                    'HREF': attr.get('href'),
-        #                    'TEXT': attr.get('text'),
-        #                    'VALUE': attr.get('value'),
-        #                    'ARIA_LABEL': '',
-        #                    'PLACEHOLDER': attr.get('placeholder'),
-        #                    })
-
-
-
-
-
-
-
-
-
-
-
-
-    # print(df)
-
-        # id_ = elements[0].attrs
-        # print(id_)
-
-        # for tag in attr_tag:
-        # for attr in soup.find_all('button'):
-        # print(dict)
-        # print(attr.attrs)
-        # # print(tag)
-        # print(attr.attrs.get('id'))
-        # print(attr.id)
-        # print(attr.attrs.get('type'))
-        # print(attr.attrs.get('class'))
-        # print(attr.attrs.get('name'))
-        # print(attr.attrs.get('aria-autocomplete'))
-        # print(attr.attrs.get('title'))
-        # print(attr.attrs.get('href'))
-        # print('text:')
-        # print(attr.text)
-        # print(attr.value)
-        # print(attr.attrs.get('value'))
-        # print(attr.attrs.get('aria-label'))
-        # print('\n\n')
-        # print(attr.text)
-        # print(attr.value)
-        # print(attr.href)
-        # print(attr.contents)
+# driver.quit()
 
