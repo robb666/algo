@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np
-from rand_forests_sel import predict_elements
 
 
 # driver = webdriver.Chrome()
@@ -29,35 +28,95 @@ from rand_forests_sel import predict_elements
 """lambdatest"""
 driver = webdriver.Chrome()
 url1 = 'https://accounts.lambdatest.com/login'
-
-tags = ['input', 'button']
-attr_li = ['element', 'tag', 'id', 'type', 'class', 'name', 'aria_autocomplete', 'title', 'href', 'text', 'value', 'aria_label']
-ele_arr = ['Email', 'Password', 'LOGIN', 'Checkbox']
-
-
 driver.get(url1)
-html = driver.page_source
 
-soup = BeautifulSoup(html, 'lxml')
+# print(df)
 
-arr = []
-n = 0
-for tag in tags:
-    for attr in soup.find_all(tag):
 
-        get_class = attr.get('class')[0] if len(attr.get('class')) > 0 else None
-        arr.append((ele_arr[n], tag, attr.get('id'), attr.get('type'), get_class, attr.get('name'), attr.get('aria_autocomplete'),
-                    attr.get('title'), attr.get('href'), attr.text, attr.get('value'), attr.get('aria_label')))
-        n += 1
 
-df = pd.DataFrame(arr)
-df.columns = attr_li
+driver.maximize_window()
 
-print(df)
-df.to_csv('file.csv')
 
-Test = df.loc[(df['element'] == 'Password')]
-Test.to_csv('Test.csv')
+try:
+    Element_email = driver.find_element_by_xpath("//input[@name='email']")
+    Element_email.send_keys('')
+
+except Exception as e:
+    print(e)
+
+
+
+
+    tags = ['input', 'button']
+    attr_li = ['element', 'tag', 'id', 'type', 'class', 'name', 'aria_autocomplete', 'title', 'href', 'text', 'value',
+               'aria_label']
+    ele_arr = ['Email', 'Password', 'LOGIN', 'Checkbox']
+
+    html = driver.page_source
+
+    soup = BeautifulSoup(html, 'lxml')
+
+    arr = []
+    n = 0
+    for tag in tags:
+        for attr in soup.find_all(tag):
+            get_class = attr.get('class')[0] if len(attr.get('class')) > 0 else None
+            arr.append((ele_arr[n], tag, attr.get('id'), attr.get('type'), get_class, attr.get('name'),
+                        attr.get('aria_autocomplete'),
+                        attr.get('title'), attr.get('href'), attr.text, attr.get('value'), attr.get('aria_label')))
+            n += 1
+
+    df = pd.DataFrame(arr)
+    df.columns = attr_li
+
+    df.to_csv('file.csv')
+
+    Test = df.loc[(df['element'] == 'Email')]
+    Test.to_csv('Test.csv')
+
+
+    from rand_forests_sel import predict_elements, get_predicted_element
+    from queue import PriorityQueue
+
+    scores, element_name, test_df = predict_elements()
+    print(scores, element_name)
+
+    queue = PriorityQueue()
+
+    predicted_element = get_predicted_element(scores, queue)[1]
+
+    pred_dict = df.loc[(df['element'] == predicted_element)]
+
+    new_element = pred_dict['name'].values[0]
+    print(new_element)
+    # d = {header: np.array(df[pred_dict]) for header in df.columns}
+    # print(d)
+    new_locator = f"//input[@name='{new_element}']"
+    print(new_locator)
+    Element_email = driver.find_element_by_xpath(new_locator)
+    # Element_email.click()
+    Element_email.send_keys('ubezpieczenia.magro@gmail.com')
+    print('wpisane!!!')
+    time.sleep(20)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -102,12 +161,16 @@ def ClickOnSignIn(driver):
 
 
 
+
+
+
+
 # GetElements(driver)
-driver.maximize_window()
-EnterUserName(driver)
-EnterPasswors(driver)
-ClickOnSignIn(driver)
-time.sleep(1)
+# driver.maximize_window()
+# EnterUserName(driver)
+# EnterPasswors(driver)
+# ClickOnSignIn(driver)
+# time.sleep(1)
 print("Test complete")
 
 # driver.quit()

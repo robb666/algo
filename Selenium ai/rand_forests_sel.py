@@ -61,7 +61,7 @@ def predict_elements():
     return score, element_name, test
 
 
-def element(scores, queue):
+def get_predicted_element(scores, queue):
     for score in scores:
         queue.put((score[1] * -1, score[0]))
         # dict...element
@@ -69,10 +69,10 @@ def element(scores, queue):
 
 
 # Calling the predict_elements method to return
-scores, element_name, test_df = predict_elements()
-print(scores)
-print(element_name)
+# scores, element_name, test_df = predict_elements()
+# print(scores)
+# print(element_name)
 
-queue = PriorityQueue()
-element(scores, queue)
+# queue = PriorityQueue()
+# get_predicted_element(scores, queue)
 
