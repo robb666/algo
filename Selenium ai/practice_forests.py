@@ -4,7 +4,9 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np
-
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from creds import login, passw
 
 # driver = webdriver.Chrome()
 
@@ -36,16 +38,14 @@ driver.get(url1)
 
 driver.maximize_window()
 
+new_element = ''
 
 try:
-    Element_email = driver.find_element_by_xpath("//input[@name='email']")
-    Element_email.send_keys('')
+    Element_email = driver.find_element_by_xpath("//input[@name='emllail']")
+    Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
     print(e)
-
-
-
 
     tags = ['input', 'button']
     attr_li = ['element', 'tag', 'id', 'type', 'class', 'name', 'aria_autocomplete', 'title', 'href', 'text', 'value',
@@ -87,24 +87,17 @@ except Exception as e:
 
     pred_dict = df.loc[(df['element'] == predicted_element)]
 
-    new_element = pred_dict['name'].values[0]
+    new_element = pred_dict['id'].values[0]
     print(new_element)
-    # d = {header: np.array(df[pred_dict]) for header in df.columns}
-    # print(d)
-    new_locator = f"//input[@name='{new_element}']"
+
+    new_locator = f"//*[@name='{new_element}']"
     print(new_locator)
-    Element_email = driver.find_element_by_xpath(new_locator)
-    # Element_email.click()
-    Element_email.send_keys('ubezpieczenia.magro@gmail.com')
+
+    # driver.execute_script(f"document.getElementById('{new_element}').value='ubezpieczenia.magro@gmail.com'")
+    driver.find_element_by_xpath(new_locator).send_keys(login)
+
     print('wpisane!!!')
-    time.sleep(20)
-
-
-
-
-
-
-
+    time.sleep(5)
 
 
 
@@ -123,7 +116,7 @@ except Exception as e:
 def EnterUserName(driver):
     try:
         Element_email = driver.find_element_by_xpath("//input[@name='email']")
-        Element_email.send_keys('')
+        Element_email.send_keys(login)
     except Exception as e:pass
 
         # if str(e) in 'no such element' or 'Unable to locate element':
@@ -136,7 +129,7 @@ def EnterUserName(driver):
 def EnterPasswors(driver):
     try:
         Element_passwors = driver.find_element_by_id("password")
-        Element_passwors.send_keys('')
+        Element_passwors.send_keys(passw)
     except Exception as e:pass
         # if str(e) in 'no such element' or 'Unable to locate element':
         #     Element_email = Model.InvokeSelfHealing(e, driver, locators.email)
@@ -150,13 +143,14 @@ def ClickOnSignIn(driver):
     try:
         Element_click = driver.find_element_by_xpath("//button[contains(text(), 'Login')]")
         Element_click.click()
+        print("Enter clickon SignIn Executed")
     except Exception as e:
         print(e)
 
     #     if str(e) in 'no such element' or 'Unable to locate element':
     #         Element_click = Model.InvokeSelfHealing(e, driver, locators.clickBtn)
     # Element_click.click()
-    print("Enter clickon SignIn Executed")
+    # print("Enter clickon SignIn Executed")
 
 
 
@@ -168,10 +162,16 @@ def ClickOnSignIn(driver):
 # GetElements(driver)
 # driver.maximize_window()
 # EnterUserName(driver)
-# EnterPasswors(driver)
-# ClickOnSignIn(driver)
-# time.sleep(1)
-print("Test complete")
+EnterPasswors(driver)
 
+time.sleep(1)
+# new_locator = f"//input[@name='{new_element}']"
+# Element_email = driver.find_element_by_xpath(new_locator)
+# Element_email.send_keys('ubezpieczenia.magro@gmail.com')
+
+
+ClickOnSignIn(driver)
+print("Test complete")
+time.sleep(9999)
 # driver.quit()
 
