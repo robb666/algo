@@ -22,12 +22,6 @@ html = driver.page_source
 soup = BeautifulSoup(html, 'lxml')
 
 
-# d = {'A': [1, 2, 3], 'B': [4, 5, 6], 'C': [7, 8, 9]}
-# df = pd.DataFrame(d)
-# df.insert(0, 'tag', [1, 5, 9])
-# print(df)
-
-
 arr = []
 tag = 'input'
 # print(f'{tag=}'.split('=')[0])
@@ -42,16 +36,17 @@ for tag in soup.find_all(tag):
 print(arr)
 
 df = pd.DataFrame.from_records(arr)
-# c = f'{tag=}'.split('=')[0]
-# print(len(c))
-# df['tag'] = [tag] * len(arr)
 
-df.insert(0, f'{tag=}'.split('=')[0], 'input')
+
+df.insert(0, f'{tag=}'.split('=')[0], 'input')  # tag !!!???
 df.insert(0, 'element', df.name)
 df.element.fillna(df['value'], inplace=True)
 print(df)
 
+df.to_csv('file.csv')
 
+Test = df.loc[(df['element'] == 'password')]
+Test.to_csv('Test.csv')
 
 
 
