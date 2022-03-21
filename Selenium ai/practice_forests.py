@@ -46,8 +46,9 @@ df = pd.DataFrame.from_records(arr)
 # print(len(c))
 # df['tag'] = [tag] * len(arr)
 
+df.insert(0, f'{tag=}'.split('=')[0], 'input')
 df.insert(0, 'element', df.name)
-df.insert(1, f'{tag=}'.split('=')[0], 'input')
+df.element.fillna(df['value'], inplace=True)
 print(df)
 
 
