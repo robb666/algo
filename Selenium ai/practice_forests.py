@@ -45,8 +45,9 @@ df = pd.DataFrame.from_records(arr)
 # c = f'{tag=}'.split('=')[0]
 # print(len(c))
 # df['tag'] = [tag] * len(arr)
-list_dataframe = pd. DataFrame(tag)
-df.insert(0, f'{tag=}'.split('=')[0], list_dataframe)
+
+df.insert(0, 'element', df.name)
+df.insert(1, f'{tag=}'.split('=')[0], 'input')
 print(df)
 
 
