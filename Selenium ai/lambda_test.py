@@ -9,7 +9,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 from creds import login, passw
 
 
-
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
 
 """lambdatest"""
 driver = webdriver.Chrome()
@@ -20,12 +22,12 @@ driver.get(url1)
 
 
 
-# driver.maximize_window()
+driver.maximize_window()
 
 new_element = ''
 
 try:
-    Element_email = driver.find_element(By.XPATH, "//input[@name='emaillko']")
+    Element_email = driver.find_element(By.XPATH, "//input[@name='email']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
@@ -55,34 +57,36 @@ except Exception as e:
     df.columns = attr_li
 
     df.to_csv('file.csv')
+    print(df)
+    # Test = df.loc[(df['element'] == 'Email')]
+    Test = df.iloc[0]['name']
+    # Test.to_csv('Test.csv')
+    #
+    # from rand_forests_sel import predict_elements, get_predicted_element
+    # from queue import PriorityQueue
+    #
+    # scores, element_name, test_df = predict_elements()
+    # print(scores, element_name)
+    #
+    # queue = PriorityQueue()
+    #
+    # predicted_element = get_predicted_element(scores, queue)[1]
+    #
+    # pred_dict = df.loc[(df['element'] == predicted_element)]
+    #
+    # new_element = pred_dict['id'].values[0]
+    #
+    # print(new_element)
 
-    Test = df.loc[(df['element'] == 'Email')]
-    Test.to_csv('Test.csv')
-
-    from rand_forests_sel import predict_elements, get_predicted_element
-    from queue import PriorityQueue
-
-    scores, element_name, test_df = predict_elements()
-    print(scores, element_name)
-
-    queue = PriorityQueue()
-
-    predicted_element = get_predicted_element(scores, queue)[1]
-
-    pred_dict = df.loc[(df['element'] == predicted_element)]
-
-    new_element = pred_dict['id'].values[0]
-
-    print(new_element)
-
-    new_locator = f"//*[@name='{new_element}']"
+    # new_locator = f"//*[@name='{new_element}']"
+    new_locator = f"//*[@name='{Test}']"
     print(new_locator)
 
     # driver.execute_script(f"document.getElementById('{new_element}').value='ubezpieczenia.magro@gmail.com'")
     driver.find_element(By.XPATH, new_locator).send_keys(login)
 
     print('wpisane!!!')
-    # time.sleep(5)
+    # time.sleep(50)
 
 
 

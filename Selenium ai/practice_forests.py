@@ -18,12 +18,12 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 
 driver.get(url)
 
-# driver.maximize_window()
+driver.maximize_window()
 
 new_element = ''
 
 try:
-    Element_email = driver.find_element(By.XPATH, "//input[@name='usernameooo']")
+    Element_email = driver.find_element(By.XPATH, "//input[@name='username']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
@@ -51,7 +51,7 @@ except Exception as e:
     df.to_csv('file.csv')
 
     # Test = df.loc[(df['name'] == 'username')]  # ???
-    Test = df.iloc[0]['name'] #(df['name'] == 'username')]  # K! działa...
+    Test = df.iloc[0]['name']  # K! działa... Rząd nie po indeksie tylko po zatytułowaniu!
     print(Test)
     # Test.to_csv('Test.csv')
     #
