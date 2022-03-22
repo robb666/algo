@@ -31,12 +31,12 @@ except Exception as e:
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
-    tag = 'input'
+    tags = ['input']
 
     arr = []
-
-    for element in soup.find_all(tag):  # double for loop if tag list
-        arr.append({'tag': tag} | element.attrs)
+    for tag in tags:
+        for element in soup.find_all(tag):  # double for loop if tag list
+            arr.append({'tag': tag} | element.attrs)
 
     print(arr)
 
