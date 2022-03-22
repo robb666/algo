@@ -18,40 +18,30 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 
 driver.get(url)
 
-driver.maximize_window()
+# driver.maximize_window()
 
 new_element = ''
 
 try:
-    Element_email = driver.find_element(By.XPATH, "//input[@name='usernameeee']")
+    Element_email = driver.find_element(By.XPATH, "//input[@name='usernameooo']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
     print(e)
 
-
-
-
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
-
+    tag = 'input'
 
     arr = []
-    tag = 'input'
-    # print(f'{tag=}'.split('=')[0])
-    for tag in soup.find_all(tag):
-        # print(tag)
-        # for attr in tag.attrs:
-        #     # print(attr)
-        #     if isinstance(tag[attr], list):
-        #         arr.append((attr, tag[attr][0]))
-        arr.append(tag.attrs)
+
+    for element in soup.find_all(tag):  # double for loop if tag list
+        arr.append({'tag': tag} | element.attrs)
 
     print(arr)
 
     df = pd.DataFrame.from_records(arr)
 
-    df.insert(0, f'{tag=}'.split('=')[0], 'input')  # tag !!!???
     df.insert(0, 'element', df.name)
     df.element.fillna(df['value'], inplace=True)
     print(df)
