@@ -31,7 +31,7 @@ except Exception as e:
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
-    tags = ['input']
+    tags = ['input']  # to uzupełniać..?
 
     arr = []
     for tag in tags:
@@ -50,34 +50,36 @@ except Exception as e:
 
     df.to_csv('file.csv')
 
-    Test = df.loc[(df['id'] == 'username')]
+    # Test = df.loc[(df['name'] == 'username')]  # ???
+    Test = df.iloc[0]['name'] #(df['name'] == 'username')]  # K! działa...
     print(Test)
-    Test.to_csv('Test.csv')
-
-    from rand_forests_sel import predict_elements, get_predicted_element
-    from queue import PriorityQueue
-
-    scores, element_name, test_df = predict_elements()
-    print(scores, element_name)
-
-    queue = PriorityQueue()
-
-    predicted_element = get_predicted_element(scores, queue)[1]
-
-    # pred_dict = df.loc[(df['id'] == predicted_element)]
-    # print('predicted_element:', predicted_element)
-    # new_element = pred_dict['id']#.values[0]
-
-    print('NEW ELEMENT:', new_element)
-
-    new_locator = f"//*[@name='{predicted_element}']"
-    print(new_locator)
-
+    # Test.to_csv('Test.csv')
+    #
+    # from rand_forests_sel import predict_elements, get_predicted_element
+    # from queue import PriorityQueue
+    #
+    # scores, element_name, test_df = predict_elements()
+    # print(scores, element_name)
+    #
+    # queue = PriorityQueue()
+    #
+    # predicted_element = get_predicted_element(scores, queue)[1]
+    #
+    # # pred_dict = df.loc[(df['id'] == predicted_element)]
+    # # print('predicted_element:', predicted_element)
+    # # new_element = pred_dict['id']#.values[0]
+    #
+    # print('NEW ELEMENT:', new_element)
+    #
+    # new_locator = f"//*[@name='{predicted_element}']"
+    new_locator = f"//*[@name='{Test}']"
+    # print(new_locator)
+    #
     # driver.execute_script(f"document.getElementById('{new_element}').value='ubezpieczenia.magro@gmail.com'")
     driver.find_element(By.XPATH, new_locator).send_keys(login)
-
-    print('wpisane!!!')
-    time.sleep(50)
+    #
+    # print('wpisane!!!')
+    # time.sleep(50)
 
 
 
