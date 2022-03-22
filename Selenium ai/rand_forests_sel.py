@@ -7,6 +7,7 @@ from queue import PriorityQueue
 df = pd.read_csv('file.csv')
 test = pd.read_csv('Test.csv')
 
+print('read test CSV:', test)
 # Fill the NaN values with 'None'
 df = df.fillna('None')
 
@@ -49,7 +50,7 @@ def predict_elements():
         processed_test = pd.get_dummies(concatenated).iloc[-num_of_records:]
         probabilites = list(rf.predict_proba(processed_test))
 
-        score = []
+        # score = []
         for i in range(len(probabilites)):
             score.append(list(zip(df['element'].unique(), list(probabilites[i]))))
 
@@ -62,6 +63,7 @@ def predict_elements():
 
 
 def get_predicted_element(scores, queue):
+    """Order is changed due to minheap in python."""
     for score in scores:
         queue.put((score[1] * -1, score[0]))
         # dict...element

@@ -18,39 +18,74 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 
 driver.get(url)
 
-html = driver.page_source
-soup = BeautifulSoup(html, 'lxml')
+driver.maximize_window()
 
+new_element = ''
 
-arr = []
-tag = 'input'
-# print(f'{tag=}'.split('=')[0])
-for tag in soup.find_all(tag):
-    # print(tag)
-    # for attr in tag.attrs:
-    #     # print(attr)
-    #     if isinstance(tag[attr], list):
-    #         arr.append((attr, tag[attr][0]))
-    arr.append(tag.attrs)
+try:
+    Element_email = driver.find_element(By.XPATH, "//input[@name='usernameeee']")
+    Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
-print(arr)
-
-df = pd.DataFrame.from_records(arr)
-
-
-df.insert(0, f'{tag=}'.split('=')[0], 'input')  # tag !!!???
-df.insert(0, 'element', df.name)
-df.element.fillna(df['value'], inplace=True)
-print(df)
-
-df.to_csv('file.csv')
-
-Test = df.loc[(df['element'] == 'password')]
-Test.to_csv('Test.csv')
+except Exception as e:
+    print(e)
 
 
 
 
+    html = driver.page_source
+    soup = BeautifulSoup(html, 'lxml')
+
+
+    arr = []
+    tag = 'input'
+    # print(f'{tag=}'.split('=')[0])
+    for tag in soup.find_all(tag):
+        # print(tag)
+        # for attr in tag.attrs:
+        #     # print(attr)
+        #     if isinstance(tag[attr], list):
+        #         arr.append((attr, tag[attr][0]))
+        arr.append(tag.attrs)
+
+    print(arr)
+
+    df = pd.DataFrame.from_records(arr)
+
+    df.insert(0, f'{tag=}'.split('=')[0], 'input')  # tag !!!???
+    df.insert(0, 'element', df.name)
+    df.element.fillna(df['value'], inplace=True)
+    print(df)
+
+    df.to_csv('file.csv')
+
+    Test = df.loc[(df['id'] == 'username')]
+    print(Test)
+    Test.to_csv('Test.csv')
+
+    from rand_forests_sel import predict_elements, get_predicted_element
+    from queue import PriorityQueue
+
+    scores, element_name, test_df = predict_elements()
+    print(scores, element_name)
+
+    queue = PriorityQueue()
+
+    predicted_element = get_predicted_element(scores, queue)[1]
+
+    # pred_dict = df.loc[(df['id'] == predicted_element)]
+    # print('predicted_element:', predicted_element)
+    # new_element = pred_dict['id']#.values[0]
+
+    print('NEW ELEMENT:', new_element)
+
+    new_locator = f"//*[@name='{predicted_element}']"
+    print(new_locator)
+
+    # driver.execute_script(f"document.getElementById('{new_element}').value='ubezpieczenia.magro@gmail.com'")
+    driver.find_element(By.XPATH, new_locator).send_keys(login)
+
+    print('wpisane!!!')
+    time.sleep(50)
 
 
 
