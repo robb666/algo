@@ -35,15 +35,17 @@ except Exception as e:
 
     arr = []
     for tag in tags:
-        for element in soup.find_all(tag):  # double for loop if tag list
-            arr.append({'tag': tag} | element.attrs)
+        for element in soup.find_all(tag):
+            arr.append({'tag': tag} |
+                       {'text': element.text} |
+                       element.attrs)
 
     print(arr)
-
+    """TODO name elements"""
     df = pd.DataFrame.from_records(arr)
 
-    df.insert(0, 'element', df.name)
-    df.element.fillna(df['value'], inplace=True)
+    df.insert(0, 'element', df.index)
+    # df.element.fillna(df['value'], inplace=True)
     print(df)
 
     df.to_csv('file.csv')
