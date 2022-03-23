@@ -13,15 +13,6 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
 
-
-
-
-
-
-
-
-
-
 driver = webdriver.Chrome()
 
 url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.generali.pl%2Flogin%2Fcas'
@@ -50,18 +41,19 @@ except Exception as e:
                        {'text': element.text} |
                        element.attrs)
 
-    print(arr)
-    """TODO name elements"""
     df = pd.DataFrame.from_records(arr)
 
     df.insert(0, 'element', df.name)
-    # df.element.fillna(df['value'], inplace=True)
+    df.element.fillna(df['value'], inplace=True)
+    df.element.fillna(df['text'], inplace=True)
+
     print(df)
 
     df.to_csv('file.csv')
 
     # Test = df.loc[(df['name'] == 'username')]  # ???
-    Test = df.iloc[0]['name']  # K! działa... Rząd nie po indeksie tylko po zatytułowaniu!
+    # Test = df.iloc[0]['name']  # K! działa... Rząd nie po indeksie tylko po zatytułowaniu!
+    Test = df.loc[(df['element'] == 'username')]['name'].values[0]
     print(Test)
     # Test.to_csv('Test.csv')
     #
