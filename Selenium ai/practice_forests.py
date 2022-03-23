@@ -12,6 +12,16 @@ pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
+
+
+
+
+
+
+
+
+
+
 driver = webdriver.Chrome()
 
 url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.generali.pl%2Flogin%2Fcas'
@@ -23,7 +33,7 @@ driver.maximize_window()
 new_element = ''
 
 try:
-    Element_email = driver.find_element(By.XPATH, "//input[@name='username']")
+    Element_email = driver.find_element(By.XPATH, "//input[@name='usernamegh']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
@@ -44,7 +54,7 @@ except Exception as e:
     """TODO name elements"""
     df = pd.DataFrame.from_records(arr)
 
-    df.insert(0, 'element', df.index)
+    df.insert(0, 'element', df.name)
     # df.element.fillna(df['value'], inplace=True)
     print(df)
 
@@ -72,6 +82,9 @@ except Exception as e:
     # print('NEW ELEMENT:', new_element)
     #
     # new_locator = f"//*[@name='{predicted_element}']"
+
+    ## locator_parts
+    # tag, attr, val = df.loc[(df['tag'] == 'input')]
     new_locator = f"//*[@name='{Test}']"
     # print(new_locator)
     #
