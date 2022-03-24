@@ -21,10 +21,10 @@ driver.get(url)
 
 driver.maximize_window()
 
-new_element = ''
+# new_element = ''
 
 try:
-    Element_email = driver.find_element(By.XPATH, "//input[@name='usernamegh']")
+    Element_email = driver.find_element(By.XPATH, "//input[@name='username']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
@@ -53,38 +53,42 @@ except Exception as e:
 
     # Test = df.loc[(df['name'] == 'username')]  # ???
     # Test = df.iloc[0]['name']  # K! działa... Rząd nie po indeksie tylko po zatytułowaniu!
-    Test = df.loc[(df['element'] == 'username')]['name'].values[0]
-    print(Test)
-    # Test.to_csv('Test.csv')
-    #
-    # from rand_forests_sel import predict_elements, get_predicted_element
-    # from queue import PriorityQueue
-    #
-    # scores, element_name, test_df = predict_elements()
-    # print(scores, element_name)
-    #
-    # queue = PriorityQueue()
-    #
-    # predicted_element = get_predicted_element(scores, queue)[1]
-    #
-    # # pred_dict = df.loc[(df['id'] == predicted_element)]
-    # # print('predicted_element:', predicted_element)
-    # # new_element = pred_dict['id']#.values[0]
-    #
+    # Test = df.loc[(df['element'] == 'username')] #['name'].values[0]
+    Test = df.loc[(df['name'] == 'username')] #['name'].values[0]
+    # Test = df
+    # print(Test)
+    Test.to_csv('Test.csv')
+
+    from rand_forests_sel import predict_elements, get_predicted_element
+    from queue import PriorityQueue
+
+    scores, element_name, test_df = predict_elements()
+    print(scores, element_name)
+
+    queue = PriorityQueue()
+
+    predicted_element = get_predicted_element(scores, queue)[1]
+
+    # pred_dict = df.loc[(df['id'] == predicted_element)]
+    # print('predicted_element:', predicted_element)
+    # new_element = pred_dict['id']#.values[0]
+
     # print('NEW ELEMENT:', new_element)
-    #
-    # new_locator = f"//*[@name='{predicted_element}']"
+    print('NEW predicted_element:', predicted_element)
+
+    new_locator = f"//*[@name='{predicted_element}']"
 
     ## locator_parts
     # tag, attr, val = df.loc[(df['tag'] == 'input')]
-    new_locator = f"//*[@name='{Test}']"
+    # new_locator = f"//*[@name='{Test}']"
     # print(new_locator)
-    #
+
+
     # driver.execute_script(f"document.getElementById('{new_element}').value='ubezpieczenia.magro@gmail.com'")
     driver.find_element(By.XPATH, new_locator).send_keys(login)
     #
-    # print('wpisane!!!')
-    # time.sleep(50)
+    print('wpisane!!!')
+    time.sleep(50)
 
 
 

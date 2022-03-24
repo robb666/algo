@@ -35,10 +35,12 @@ rf.fit(X_train, y_train)
 
 def predict_elements():
     num_of_records = len(test)
+    print(num_of_records)
     test_ = test.fillna('None')
     concatenated = pd.concat([df, test_], axis=0).drop('element', axis=1)
 
     if num_of_records == 1:
+        print(' num_of_records == 1')
         processed_test = pd.DataFrame(pd.get_dummies(concatenated).iloc[-num_of_records]).T
         probabilites = list(rf.predict_proba(processed_test)[0])
         element_name = list(element_dict.keys())[np.argmax(probabilites)]
