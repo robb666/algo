@@ -21,10 +21,9 @@ driver.get(url)
 
 driver.maximize_window()
 
-# new_element = ''
-
+locator = 'username'
 try:
-    Element_email = driver.find_element(By.XPATH, "//input[@name='username']")
+    Element_email = driver.find_element(By.XPATH, f"//input[@name='{locator}']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
@@ -33,8 +32,10 @@ except Exception as e:
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
     tags = ['input']  # to uzupełniać..?
+    el_name = ['LOGIN', 'PASSW', 'LOG_BUTTON']
 
     arr = []
+    tst = []
     for tag in tags:
         for element in soup.find_all(tag):
             arr.append({'tag': tag} |
@@ -42,19 +43,20 @@ except Exception as e:
                        element.attrs)
 
     df = pd.DataFrame.from_records(arr)
-
+    # el_name = pd.DataFrame({'element': el_name})
+    # df = pd.concat([el_name, df], axis=1)
     df.insert(0, 'element', df.name)
     df.element.fillna(df['value'], inplace=True)
     df.element.fillna(df['text'], inplace=True)
 
     print(df)
 
-    df.to_csv('file.csv')
+    # df.to_csv('file.csv')
 
     # Test = df.loc[(df['name'] == 'username')]  # ???
     # Test = df.iloc[0]['name']  # K! działa... Rząd nie po indeksie tylko po zatytułowaniu!
-    # Test = df.loc[(df['element'] == 'username')] #['name'].values[0]
-    Test = df.loc[(df['name'] == 'username')] #['name'].values[0]
+    # Test = df.loc[(df['element'] == 'username')]['name'].values[0]
+    Test = df.loc[(df['element'] == 'qwer')]
     # Test = df
     # print(Test)
     Test.to_csv('Test.csv')
@@ -67,7 +69,10 @@ except Exception as e:
 
     queue = PriorityQueue()
 
-    predicted_element = get_predicted_element(scores, queue)[1]
+    from_heap = get_predicted_element(scores, queue)[1]
+    print(from_heap)
+    predicted_element = df.loc[(df['element'] == from_heap)]['name'].values[0]
+
 
     # pred_dict = df.loc[(df['id'] == predicted_element)]
     # print('predicted_element:', predicted_element)

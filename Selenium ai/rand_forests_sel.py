@@ -14,12 +14,13 @@ df = df.fillna('None')
 # we'll have to convert the strings to numbers/indicator variables
 X_train = pd.get_dummies(df.drop('element', axis=1))
 
+print('X_train', X_train.T.__len__())
 # returns all the unique Elements stored in the training data
 df['element'].unique()
 
 # creating a dictionary of elements
 element_dict = dict(zip(df['element'].unique(), range(df['element'].nunique())))
-
+print(element_dict)
 
 # {'_token': 0, 'email': 1, 'password': 2, 'LOGIN': 3, 'on': 4}
 
@@ -35,14 +36,19 @@ rf.fit(X_train, y_train)
 
 def predict_elements():
     num_of_records = len(test)
-    print(num_of_records)
     test_ = test.fillna('None')
     concatenated = pd.concat([df, test_], axis=0).drop('element', axis=1)
+    print(concatenated)
 
     if num_of_records == 1:
         print(' num_of_records == 1')
+        print(-num_of_records)
         processed_test = pd.DataFrame(pd.get_dummies(concatenated).iloc[-num_of_records]).T
+        print(processed_test)
+        print(processed_test.T.__len__())
+        # probabilites = list(rf.predict_proba(processed_test)[0])
         probabilites = list(rf.predict_proba(processed_test)[0])
+        print(probabilites)
         element_name = list(element_dict.keys())[np.argmax(probabilites)]
         element_name = 'Hence, the name of our predicted element is {}'.format(element_name)
         score = list(zip(df['element'].unique(), probabilites))
@@ -60,6 +66,7 @@ def predict_elements():
         for ind_, i in enumerate(element_index):
             element_name.append(
                 (ind_, 'Hence, the name of our predicted element is {}'.format(list(element_dict.keys())[i])))
+
     return score, element_name, test
 
 
