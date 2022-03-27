@@ -21,21 +21,21 @@ driver.get(url)
 
 driver.maximize_window()
 
-locator = 'username'
+locator = 'password'
 try:
     Element_email = driver.find_element(By.XPATH, f"//input[@name='{locator}']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
-    print(e)
+    # print(e)
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
     tags = ['input']  # to uzupełniać..?
-    el_name = ['LOGIN', 'PASSW', 'LOG_BUTTON']
+    # el_name = ['LOGIN', 'PASSW', 'LOG_BUTTON']
 
     arr = []
-    tst = []
+    # tst = []
     for tag in tags:
         for element in soup.find_all(tag):
             arr.append({'tag': tag} |
@@ -51,7 +51,7 @@ except Exception as e:
 
     print(df)
 
-    # df.to_csv('file.csv')
+    df.to_csv('file.csv')
 
     # Test = df.loc[(df['name'] == 'username')]  # ???
     # Test = df.iloc[0]['name']  # K! działa... Rząd nie po indeksie tylko po zatytułowaniu!
@@ -65,7 +65,10 @@ except Exception as e:
     from queue import PriorityQueue
 
     scores, element_name, test_df = predict_elements()
-    print(scores, element_name)
+    print('scores')
+    print(scores)
+    print(element_name)
+    print(test_df)
 
     queue = PriorityQueue()
 
@@ -76,10 +79,10 @@ except Exception as e:
 
     # pred_dict = df.loc[(df['id'] == predicted_element)]
     # print('predicted_element:', predicted_element)
-    # new_element = pred_dict['id']#.values[0]
-
+    # new_element = pred_dict['id'].values[0]
+    #
     # print('NEW ELEMENT:', new_element)
-    print('NEW predicted_element:', predicted_element)
+    # print('NEW element_name:', new_element)
 
     new_locator = f"//*[@name='{predicted_element}']"
 
@@ -90,7 +93,7 @@ except Exception as e:
 
 
     # driver.execute_script(f"document.getElementById('{new_element}').value='ubezpieczenia.magro@gmail.com'")
-    driver.find_element(By.XPATH, new_locator).send_keys(login)
+    driver.find_element(By.XPATH, new_locator).send_keys(passw)
     #
     print('wpisane!!!')
     time.sleep(50)
