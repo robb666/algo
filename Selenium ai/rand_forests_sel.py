@@ -14,13 +14,13 @@ df = df.fillna('None')
 # we'll have to convert the strings to numbers/indicator variables
 X_train = pd.get_dummies(df.drop('element', axis=1))
 
-print('X_train', X_train.T.__len__())
+
 # returns all the unique Elements stored in the training data
 df['element'].unique()
 
 # creating a dictionary of elements
 element_dict = dict(zip(df['element'].unique(), range(df['element'].nunique())))
-print(element_dict)
+
 
 # {'_token': 0, 'email': 1, 'password': 2, 'LOGIN': 3, 'on': 4}
 
@@ -31,7 +31,9 @@ y_train = df['element'].replace(element_dict)
 from sklearn.ensemble import RandomForestClassifier
 
 rf = RandomForestClassifier(n_estimators=50, random_state=0)
-print(X_train, 'y_train len', len(y_train))
+X_train = X_train.values
+y_train = y_train.values
+
 rf.fit(X_train, y_train)
 
 
@@ -39,16 +41,12 @@ def predict_elements():
     num_of_records = len(test)
     test_ = test.fillna('None')
     concatenated = pd.concat([df, test_], axis=0).drop('element', axis=1)
-    print(concatenated)
+
 
     score = []
     element_name = None
     if num_of_records == 1:
-        print(' num_of_records == 1')
-        print(-num_of_records)
         processed_test = pd.DataFrame(pd.get_dummies(concatenated).iloc[-num_of_records]).T
-        print('processed_test')
-        print(processed_test)
         probabilites = list(rf.predict_proba(processed_test)[0])
         print(probabilites)
         element_name = list(element_dict.keys())[np.argmax(probabilites)]

@@ -20,7 +20,6 @@ driver.get(url1)
 
 # print(df)
 
-# driver.maximize_window()
 
 new_element = ''
 
@@ -55,7 +54,9 @@ except Exception as e:
     df.to_csv('file.csv')
     print(df)
 
-    Test = df.loc[(df['element'] == 'email')]
+    driver.maximize_window()
+
+    Test = df.loc[(df['element'] == df.iloc[0]['name'])]
     # Test = df.iloc[0]['name']
     Test.to_csv('Test.csv')
 
