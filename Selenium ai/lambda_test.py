@@ -18,13 +18,38 @@ driver = webdriver.Chrome()
 url1 = 'https://accounts.lambdatest.com/login'
 driver.get(url1)
 
-# print(df)
 
+
+html = driver.page_source
+soup = BeautifulSoup(html, 'lxml')
+tags = ['input', 'button']
+
+arr = []
+# tst = []
+for tag in tags:
+    for element in soup.find_all(tag):
+        arr.append({'tag': tag} |
+                   {'text': element.text} |
+                   element.attrs)
+
+df = pd.DataFrame.from_records(arr)
+# el_name = pd.DataFrame({'element': el_name})
+# df = pd.concat([el_name, df], axis=1)
+df.insert(0, 'element', df.name)
+df.element.fillna(df['value'], inplace=True)
+df.element.fillna(df['text'], inplace=True)
+
+print(df)
+Test = df.loc[(df['element'] == 'email')]
+print(Test)
+Test.to_csv('Test.csv')
+
+driver.maximize_window()
 
 new_element = ''
 
 try:
-    Element_email = driver.find_element(By.XPATH, "//input[@name='emailk']")
+    Element_email = driver.find_element(By.XPATH, "//input[@name='email']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
@@ -53,12 +78,6 @@ except Exception as e:
 
     df.to_csv('file.csv')
     print(df)
-
-    driver.maximize_window()
-
-    Test = df.loc[(df['element'] == df.iloc[0]['name'])]
-    # Test = df.iloc[0]['name']
-    Test.to_csv('Test.csv')
 
     from rand_forests_sel import predict_elements, get_predicted_element
     from queue import PriorityQueue
