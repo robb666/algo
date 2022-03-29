@@ -2,6 +2,10 @@ import pandas as pd
 import numpy as np
 from queue import PriorityQueue
 
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+
 
 # reading the required files into python using pandas
 df = pd.read_csv('file.csv')
@@ -83,7 +87,7 @@ def get_predicted_element(scores, queue):
 
 
 # Calling the predict_elements method to return
-# scores, element_name, test_df = predict_elements()
+scores, element_name, test_df = predict_elements()
 # print(scores)
 # print(element_name)
 

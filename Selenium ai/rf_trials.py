@@ -10,6 +10,16 @@ pd.set_option('display.width', None)
 df = pd.read_csv('file.csv')
 test = pd.read_csv('Test.csv')
 
+
+
+
+
+
+
+
+
+
+"""OneHotEncoder"""
 oneh = OneHotEncoder(handle_unknown='ignore')
 
 print(df)
@@ -28,4 +38,5 @@ print()
 y_train_std = test
 oneh.fit(y_train_std)
 print(oneh.categories_)
+print(oneh.transform(y_train_std).toarray())   # toarray() - zamiana na macierz
 
