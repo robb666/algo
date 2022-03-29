@@ -13,7 +13,8 @@ df = df.fillna('None')
 # now since our machine learning model can only understand numeric values
 # we'll have to convert the strings to numbers/indicator variables
 X_train = pd.get_dummies(df.drop('element', axis=1))
-
+print('X_train')
+print(X_train)
 
 # returns all the unique Elements stored in the training data
 df['element'].unique()
@@ -27,27 +28,32 @@ element_dict = dict(zip(df['element'].unique(), range(df['element'].nunique())))
 # replacing dictionary values into dataframe as we need to convert this into numbers
 y_train = df['element'].replace(element_dict)
 
+
 # Now we need to train our model, we can prefer any model which provides accurate results - Random Forest Model
 from sklearn.ensemble import RandomForestClassifier
 
+
 rf = RandomForestClassifier(n_estimators=50, random_state=0)
 rf.fit(X_train, y_train)
+print(rf.feature_importances_)
 
 
 def predict_elements():
     num_of_records = len(test)
     test_ = test.fillna('None')
     concatenated = pd.concat([df, test_], axis=0).drop('element', axis=1)
-
+    print('concatenated')
+    print(concatenated)
 
     score = []
     element_name = None
     if num_of_records == 1:
         processed_test = pd.DataFrame(pd.get_dummies(concatenated).iloc[-num_of_records]).T
+        print('processed_test')
         print(processed_test)
-        print(processed_test)
+
         probabilites = list(rf.predict_proba(processed_test)[0])
-        print(probabilites)
+        # print(probabilites)
         element_name = list(element_dict.keys())[np.argmax(probabilites)]
         element_name = 'Hence, the name of our predicted element is {}'.format(element_name)
         score = list(zip(df['element'].unique(), probabilites))
@@ -83,4 +89,3 @@ def get_predicted_element(scores, queue):
 
 # queue = PriorityQueue()
 # get_predicted_element(scores, queue)
-

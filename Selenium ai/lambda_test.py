@@ -39,23 +39,23 @@ df.insert(0, 'element', df.name)
 df.element.fillna(df['value'], inplace=True)
 df.element.fillna(df['text'], inplace=True)
 
-print(df)
+# print(df)
 Test = df.loc[(df['element'] == 'email')]
 print(Test)
 Test.to_csv('Test.csv')
 
 driver.maximize_window()
 
-new_element = ''
-
 try:
     Element_email = driver.find_element(By.XPATH, "//input[@name='email']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
+
     el_from_e = eval(re.search('({.+})', e.args[0]).group())
     selector = el_from_e['selector']
     print(selector)
+
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
@@ -76,7 +76,7 @@ except Exception as e:
     df.element.fillna(df['text'], inplace=True)
     df.element.fillna(df['type'], inplace=True)
 
-    df.to_csv('file.csv')
+    df.to_csv('file.csv') ### Add name_email to the model!!!
     print(df)
 
     from rand_forests_sel import predict_elements, get_predicted_element
