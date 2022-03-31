@@ -17,8 +17,7 @@ df = df.fillna('None')
 # now since our machine learning model can only understand numeric values
 # we'll have to convert the strings to numbers/indicator variables
 X_train = pd.get_dummies(df.drop('element', axis=1))
-print('X_train')
-print(X_train)
+
 
 # returns all the unique Elements stored in the training data
 df['element'].unique()
@@ -36,6 +35,11 @@ y_train = df['element'].replace(element_dict)
 # Now we need to train our model, we can prefer any model which provides accurate results - Random Forest Model
 from sklearn.ensemble import RandomForestClassifier
 
+print('X_train')
+print(X_train)
+
+print('y_train')
+print(y_train)
 
 rf = RandomForestClassifier(n_estimators=50, random_state=0)
 rf.fit(X_train, y_train)
