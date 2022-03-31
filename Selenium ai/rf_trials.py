@@ -15,34 +15,41 @@ pd.set_option('display.width', None)
 df = pd.read_csv('file.csv')
 df = df.fillna('None')
 df = df.drop(['Unnamed: 0', 'disabled'], axis=1)
+print(df)
+
+
+test = pd.read_csv('Test.csv')
+
+test = test.fillna('None')
+test = test.drop(['Unnamed: 0'], axis=1)
+print(test)
 
 # dummies = pd.get_dummies(df.name)
 
 le = LabelEncoder()
-dfle = df
-dfle.name = le.fit_transform(df.name)
-print(dfle)
+# dfle = df
+# dfle = le.fit_transform(df)
+# df.apply(LabelEncoder().fit_transform)
+oneh = OneHotEncoder().fit_transform(df)
+print(oneh.toarray())
 
 df = df.drop(['name'], axis=1)
-print(df)
-X = OneHotEncoder().fit_transform(df).toarray()
-X = X[:, 1:]
-print(X)
 
+X = OneHotEncoder(handle_unknown='ignore').fit_transform(df).toarray()
+X = X[:, 1:]
 
 # oneh = OneHotEncoder(handle_unknown='ignore')
 # oneh.fit_transform()
 
-y = dfle.name
-print(y)
+# y = dfle.name
+# print(y)
 
 model = RandomForestClassifier(n_estimators=100, random_state=0)
-model.fit(X, y)
-model.predict(X)
+
+# model.predict(X)
 
 
-
-merged = pd.concat([df, dfle.name], axis=1)
+# merged = pd.concat([df, dfle.name], axis=1)
 # merged = merged.drop(['None'], axis=1)
 # print(merged)
 
@@ -50,11 +57,17 @@ merged = pd.concat([df, dfle.name], axis=1)
 
 
 
-test = pd.read_csv('Test.csv')
-test = test.fillna('None')
-test = test.drop(['Unnamed: 0'], axis=1)
-# print(test)
 
+# le2 = LabelEncoder()
+# dftest = test
+# dftest.name = le2.fit_transform(test.name)
+# test = test.drop(['name'], axis=1)
+
+y = OneHotEncoder(handle_unknown='ignore').fit_transform(test).toarray()
+print(y)
+
+model.fit(X, y)
+# model.predict(test)
 
 
 
