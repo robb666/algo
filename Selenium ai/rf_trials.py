@@ -49,12 +49,23 @@ dfle = df
 
 X = oneh.fit_transform(X).toarray()
 
-
+# X.reshape(1,-1) # reshape to 1 row and -1 columns
 
 # print(X)
 
 twoh = OneHotEncoder(handle_unknown='ignore')
-twoh.fit_transform(y).toarray()
+y = twoh.fit_transform([y]).toarray()
+
+y = y.T
+
+
+rf = RandomForestClassifier(n_estimators=100, max_depth=2, random_state=0)
+
+print(X)
+rf.fit(X, y)
+
+
+
 
 
 
