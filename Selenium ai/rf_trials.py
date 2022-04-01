@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import LabelEncoder
-
+from sklearn.compose import ColumnTransformer
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
@@ -17,78 +17,45 @@ df = df.fillna('None')
 df = df.drop(['Unnamed: 0', 'disabled'], axis=1)
 print(df)
 
-p = pd.get_dummies(df)
-print(p)
-
 
 test = pd.read_csv('Test.csv')
-
 test = test.fillna('None')
 test = test.drop(['Unnamed: 0'], axis=1)
 print(test)
 
-# dummies = pd.get_dummies(df.name)
+
+
+# df transform
 
 le = LabelEncoder()
-# dfle = df
-# dfle = le.fit_transform(df)
-# df.apply(LabelEncoder().fit_transform)
-oneh = OneHotEncoder().fit_transform(df)
-print(oneh.toarray())
+dfle = df.apply(le.fit_transform)
+X = dfle.values
+ohe = OneHotEncoder(handle_unknown='ignore')
+# ohe = ColumnTransformer([('name', OneHotEncoder(), [0])], remainder='passthrough')
 
-df = df.drop(['name'], axis=1)
-
-X = OneHotEncoder(handle_unknown='ignore').fit_transform(df).toarray()
-X = X[:, 1:]
-
-# oneh = OneHotEncoder(handle_unknown='ignore')
-# oneh.fit_transform()
-
-# y = dfle.name
-# print(y)
-
-model = RandomForestClassifier(n_estimators=100, random_state=0)
-
-# model.predict(X)
-
-
-# merged = pd.concat([df, dfle.name], axis=1)
-# merged = merged.drop(['None'], axis=1)
-# print(merged)
+X = ohe.fit_transform(X).toarray()
+print(X)
 
 
 
 
 
 
-# le2 = LabelEncoder()
-# dftest = test
-# dftest.name = le2.fit_transform(test.name)
-# test = test.drop(['name'], axis=1)
 
-y = OneHotEncoder(handle_unknown='ignore').fit_transform(test).toarray()
+# test transform
+
+le = LabelEncoder()
+testle = test.apply(le.fit_transform)
+y = testle.values
+two = OneHotEncoder(handle_unknown='ignore')
+y = two.fit_transform(y).toarray()
 print(y)
 
-model.fit(X, y)
-# model.predict(test)
 
+rf = RandomForestClassifier(n_estimators=100, random_state=0)
+rf.fit(X, y)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# rf.predict([[0., 0., 1., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 1., 0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 1.]])
 
 
 
