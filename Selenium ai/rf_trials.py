@@ -17,6 +17,9 @@ df = df.fillna('None')
 df = df.drop(['Unnamed: 0', 'disabled'], axis=1)
 print(df)
 
+p = pd.get_dummies(df)
+print(p)
+
 
 test = pd.read_csv('Test.csv')
 
