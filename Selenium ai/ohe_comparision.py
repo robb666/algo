@@ -10,16 +10,18 @@ pd.set_option('display.width', None)
 
 
 # reading the required files into python using pandas
-df = pd.read_csv('file.csv')
-test = pd.read_csv('Test.csv')
+df = pd.read_csv('file.csv', dtype=object)
+test = pd.read_csv('Test.csv', dtype=object)
 
 # Fill the NaN values with 'None'
 df = df.fillna('None')
 
-df = df.drop(['Unnamed: 0', 'disabled'], axis=1)
+# df = df.drop(['Unnamed: 0', 'disabled'], axis=1)  # lambda_test
+df = df.drop(['Unnamed: 0'], axis=1)
 
 
 ohe = OneHotEncoder(sparse=False, handle_unknown='ignore')
+print(df)
 X_train = ohe.fit_transform(df)
 
 # # creating a dictionary of elements
@@ -47,4 +49,30 @@ for idx, i in enumerate(range(len(X_train))):
 
 element_idx = max(d, key=d.get)
 
-print(df.iloc[element_idx])
+new_element = df.iloc[element_idx]['element']
+
+new_locator = f"//*[@name='{new_element}']"
+
+print(new_locator)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

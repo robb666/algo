@@ -79,25 +79,26 @@ except Exception as e:
     df.to_csv('file.csv') ### Add name_email to the model!!!
     print(df)
 
-    from rand_forests_sel import predict_elements, get_predicted_element
-    from queue import PriorityQueue
-
-    scores, element_name, test_df = predict_elements()
-    print(scores, element_name)
-
-    queue = PriorityQueue()
-
-    predicted_element = get_predicted_element(scores, queue)[1]
-
-    pred_dict = df.loc[(df['element'] == predicted_element)]
-
-    new_element = pred_dict['id'].values[0]
-
-    print(new_element)
-
-    new_locator = f"//*[@name='{new_element}']"
-    # new_locator = f"//*[@name='{Test}']"
-    print(new_locator)
+    # from rand_forests_sel import predict_elements, get_predicted_element
+    from ohe_comparision import new_locator
+    # from queue import PriorityQueue
+    #
+    # scores, element_name, test_df = predict_elements()
+    # print(scores, element_name)
+    #
+    # queue = PriorityQueue()
+    #
+    # predicted_element = get_predicted_element(scores, queue)[1]
+    #
+    # pred_dict = df.loc[(df['element'] == predicted_element)]
+    #
+    # new_element = pred_dict['id'].values[0]
+    #
+    # print(new_element)
+    #
+    # new_locator = f"//*[@name='{new_element}']"
+    # # new_locator = f"//*[@name='{Test}']"
+    # print(new_locator)
 
     # driver.execute_script(f"document.getElementById('{new_element}').value='ubezpieczenia.magro@gmail.com'")
     driver.find_element(By.XPATH, new_locator).send_keys(login)

@@ -40,16 +40,16 @@ df.insert(0, 'element', df.name)
 df.element.fillna(df['value'], inplace=True)
 df.element.fillna(df['text'], inplace=True)
 
-print(df)
-Test = df.loc[(df['element'] == 'password')]
-print(Test)
+# print(df)
+Test = df.loc[(df['element'] == 'username')]
+# print(Test)
 Test.to_csv('Test.csv')
 
 
 driver.maximize_window()
 
 
-locator = 'password'
+locator = 'username'
 try:
     Element_email = driver.find_element(By.XPATH, f"//input[@name='{locator}']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
@@ -82,27 +82,28 @@ except Exception as e:
     df.to_csv('file.csv')
     print(df)
 
-    from rand_forests_sel import predict_elements, get_predicted_element
-    from queue import PriorityQueue
+    # from rand_forests_sel import predict_elements, get_predicted_element
+    # from queue import PriorityQueue
+    from ohe_comparision import new_locator
 
-    scores, element_name, test_df = predict_elements()
-    print(scores)
-    print(element_name)
-    print(test_df)
-
-    queue = PriorityQueue()
-
-    predicted_element = get_predicted_element(scores, queue)[1]
-    # print(predicted_element)
-
+    # scores, element_name, test_df = predict_elements()
     # print(scores)
-    # predicted_element = scores[0][0]
-
-    new_locator = f"//*[@name='{predicted_element}']"
+    # print(element_name)
+    # print(test_df)
+    #
+    # queue = PriorityQueue()
+    #
+    # predicted_element = get_predicted_element(scores, queue)[1]
+    # print(predicted_element)
+    #
+    # # print(scores)
+    # # predicted_element = scores[0][0]
+    #
+    # new_locator = f"//*[@name='{predicted_element}']"
 
 
     # driver.execute_script(f"document.getElementById('{new_element}').value='ubezpieczenia.magro@gmail.com'")
-    driver.find_element(By.XPATH, new_locator).send_keys(passw)
+    driver.find_element(By.XPATH, new_locator).send_keys(login)
     #
     print('wpisane!!!')
     time.sleep(50)
