@@ -17,45 +17,32 @@ df = df.fillna('None')
 df = df.drop(['Unnamed: 0', 'disabled'], axis=1)
 print(df)
 
+ohe = OneHotEncoder(sparse=False, handle_unknown='ignore')
+X_train = ohe.fit_transform(df)
+print(X_train)
+
 
 test = pd.read_csv('Test.csv')
 test = test.fillna('None')
 test = test.drop(['Unnamed: 0'], axis=1)
 print(test)
 
-
-
-# df transform
-
-le = LabelEncoder()
-dfle = df.apply(le.fit_transform)
-X = dfle.values
-ohe = OneHotEncoder(handle_unknown='ignore')
-# ohe = ColumnTransformer([('name', OneHotEncoder(), [0])], remainder='passthrough')
-
-X = ohe.fit_transform(X).toarray()
-print(X)
-
-
-
-
-
-
-
-# test transform
-
-le = LabelEncoder()
-testle = test.apply(le.fit_transform)
-y = testle.values
-two = OneHotEncoder(handle_unknown='ignore')
-y = two.fit_transform(y).toarray()
-print(y)
-
+X_test = ohe.transform(test)
+print(X_test)
 
 rf = RandomForestClassifier(n_estimators=100, random_state=0)
-rf.fit(X, y)
+
+for row in X_train:
+    rf.fit([row], X_test)
+
+print()
+print(rf.predict_proba(X_test))
+
 
 # rf.predict([[0., 0., 1., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 1., 0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 1.]])
+
+
+
 
 
 
