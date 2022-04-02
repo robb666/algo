@@ -1,36 +1,40 @@
-import numpy as np
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
+import numpy as np
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import LabelEncoder
-from sklearn.compose import ColumnTransformer
+from queue import PriorityQueue
+
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
 
-
+# reading the required files into python using pandas
 df = pd.read_csv('file.csv')
+test = pd.read_csv('Test.csv')
+
+# Fill the NaN values with 'None'
 df = df.fillna('None')
+
 df = df.drop(['Unnamed: 0', 'disabled'], axis=1)
-print(df)
+
 
 ohe = OneHotEncoder(sparse=False, handle_unknown='ignore')
 X_train = ohe.fit_transform(df)
-print(X_train)
 
+# # creating a dictionary of elements
+# element_dict = dict(zip(df['element'].unique(), range(df['element'].nunique())))
 
-test = pd.read_csv('Test.csv')
+# {'_token': 0, 'email': 1, 'password': 2, 'LOGIN': 3, 'on': 4}
+
+# # # replacing dictionary values into dataframe as we need to convert this into numbers
+# y_train = df['element'].replace(element_dict)
+
 test = test.fillna('None')
 test = test.drop(['Unnamed: 0'], axis=1)
-print(test)
 
 X_test = ohe.transform(test)
-print(X_test)
 
-rf = RandomForestClassifier(n_estimators=100, random_state=0)
 
 d = {}
 n = 0
@@ -43,7 +47,4 @@ for idx, i in enumerate(range(len(X_train))):
 
 element_idx = max(d, key=d.get)
 
-print(d, element_idx)
-
-
-
+print(df.iloc[element_idx])
