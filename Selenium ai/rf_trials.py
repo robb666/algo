@@ -32,11 +32,31 @@ print(X_test)
 
 rf = RandomForestClassifier(n_estimators=100, random_state=0)
 
-for row in X_train:
-    rf.fit([row], X_test)
+d = {}
+n = 0
+for idx, i in enumerate(range(len(X_train))):
+    for j in range(len(X_train[0])):
+        if X_train[i][j] == X_test[0][j]:
+            n += 1
+            d[idx] = n
+    n = 0
 
-print()
-print(rf.predict_proba(X_test))
+element_idx = max(d, key=d.get)
+
+print(d, d[element_idx]/2)
+
+
+
+# d = []
+# for item in arr:
+#     if item[1] == item[2]:
+#         n += 1
+#     arr1.append(n)
+#
+# print(arr1)
+
+# print()
+# print(rf.predict_proba(X_test))
 
 
 # rf.predict([[0., 0., 1., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 1., 0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 1.]])
