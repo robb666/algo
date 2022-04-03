@@ -13,30 +13,27 @@ pd.set_option('display.width', None)
 df = pd.read_csv('file.csv', dtype=object)
 test = pd.read_csv('Test.csv', dtype=object)
 
-# Fill the NaN values with 'None'
+print(df)
+
 df = df.fillna('None')
 
-# df = df.drop(['Unnamed: 0', 'disabled'], axis=1)  # lambda_test
 df = df.drop(['Unnamed: 0'], axis=1)
 
-
 ohe = OneHotEncoder(sparse=False, handle_unknown='ignore')
-print(df)
+# print(df)
 X_train = ohe.fit_transform(df)
-
-# # creating a dictionary of elements
-# element_dict = dict(zip(df['element'].unique(), range(df['element'].nunique())))
-
-# {'_token': 0, 'email': 1, 'password': 2, 'LOGIN': 3, 'on': 4}
-
-# # # replacing dictionary values into dataframe as we need to convert this into numbers
-# y_train = df['element'].replace(element_dict)
+print(X_train[0])
 
 test = test.fillna('None')
 test = test.drop(['Unnamed: 0'], axis=1)
 
-X_test = ohe.transform(test)
+print(test)
+try:
+    X_test = ohe.transform(test)
+except Exception as e:
+    print(e)
 
+print(X_test[0])
 
 d = {}
 n = 0
@@ -46,6 +43,8 @@ for idx, i in enumerate(range(len(X_train))):
             n += 1
             d[idx] = n
     n = 0
+
+print()
 
 element_idx = max(d, key=d.get)
 

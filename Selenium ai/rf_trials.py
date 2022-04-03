@@ -10,8 +10,6 @@ pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
-
-
 df = pd.read_csv('file.csv')
 df = df.fillna('None')
 df = df.drop(['Unnamed: 0', 'disabled'], axis=1)

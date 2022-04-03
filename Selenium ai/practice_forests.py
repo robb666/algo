@@ -42,11 +42,13 @@ df.element.fillna(df['text'], inplace=True)
 
 # print(df)
 Test = df.loc[(df['element'] == 'username')]
-# print(Test)
-Test.to_csv('Test.csv')
+print(Test)
+# Test.to_csv('Test.csv')
+Test.to_sql('Testdb')
 
 
-driver.maximize_window()
+
+# driver.maximize_window()
 
 
 locator = 'username'
