@@ -43,8 +43,8 @@ df.element.fillna(df['text'], inplace=True)
 # print(df)
 Test = df.loc[(df['element'] == 'username')]
 print(Test)
-# Test.to_csv('Test.csv')
-Test.to_sql('Testdb')
+Test.to_csv('Test.csv')
+# Test.to_sql('Testdb')
 
 
 

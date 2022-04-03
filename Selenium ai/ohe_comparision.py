@@ -26,14 +26,11 @@ print(X_train[0])
 
 test = test.fillna('None')
 test = test.drop(['Unnamed: 0'], axis=1)
-
 print(test)
-try:
-    X_test = ohe.transform(test)
-except Exception as e:
-    print(e)
 
+X_test = ohe.transform(test)
 print(X_test[0])
+
 
 d = {}
 n = 0
@@ -46,6 +43,7 @@ for idx, i in enumerate(range(len(X_train))):
 
 print()
 
+print(d)
 element_idx = max(d, key=d.get)
 
 new_element = df.iloc[element_idx]['element']
