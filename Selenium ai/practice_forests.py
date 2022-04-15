@@ -48,7 +48,7 @@ Test.to_csv('Test.csv')
 
 
 
-# driver.maximize_window()
+driver.maximize_window()
 
 
 locator = 'username'
