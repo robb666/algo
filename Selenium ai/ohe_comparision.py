@@ -22,7 +22,7 @@ df = df.drop(['Unnamed: 0'], axis=1)
 ohe = OneHotEncoder(sparse=False, handle_unknown='ignore')
 # print(df)
 X_train = ohe.fit_transform(df)
-print(X_train[0])
+print(X_train)
 
 test = test.fillna('None')
 test = test.drop(['Unnamed: 0'], axis=1)
@@ -31,26 +31,46 @@ print(test)
 X_test = ohe.transform(test)
 print(X_test[0])
 
+element_dict = dict(zip(df['element'].unique(), range(df['element'].nunique())))
+print(element_dict)
+y_train = df['element'].replace(element_dict)
 
-d = {}
-n = 0
-for idx, i in enumerate(range(len(X_train))):
-    for j in range(len(X_train[0])):
-        if X_train[i][j] == X_test[0][j]:
-            n += 1
-            d[idx] = n
-    n = 0
+from sklearn.ensemble import RandomForestClassifier
 
-print()
+rf = RandomForestClassifier(n_estimators=50, random_state=0)
+rf.fit(X_train, y_train)
 
-print(d)
-element_idx = max(d, key=d.get)
+probabilities = rf.predict_proba(X_test)[0]
+print(probabilities)
 
-new_element = df.iloc[element_idx]['element']
+idx = np.argmax(probabilities)
+print(df.iloc[idx])
 
-new_locator = f"//*[@name='{new_element}']"
 
-print(new_locator)
+
+
+
+
+
+# d = {}
+# n = 0
+# for idx, i in enumerate(range(len(X_train))):
+#     for j in range(len(X_train[0])):
+#         if X_train[i][j] == X_test[0][j]:
+#             n += 1
+#             d[idx] = n
+#     n = 0
+#
+# print()
+#
+# print(d)
+# element_idx = max(d, key=d.get)
+#
+# new_element = df.iloc[element_idx]['element']
+#
+# new_locator = f"//*[@name='{new_element}']"
+#
+# print(new_locator)
 
 
 
