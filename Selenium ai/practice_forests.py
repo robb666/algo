@@ -84,24 +84,24 @@ except Exception as e:
     df.to_csv('file.csv')
     print(df)
 
-    from rand_forests_sel import predict_elements, get_predicted_element
-    from queue import PriorityQueue
-    # from ohe_comparision import new_locator
+    # from rand_forests_sel import predict_elements, get_predicted_element
+    # from queue import PriorityQueue
+    from ohe_comparision import new_locator
 
-    scores, element_name, test_df = predict_elements()
-    print(scores)
-    print(element_name)
-    print(test_df)
-
-    queue = PriorityQueue()
-
-    predicted_element = get_predicted_element(scores, queue)[1]
-    print(predicted_element)
-
+    # scores, element_name, test_df = predict_elements()
     # print(scores)
-    # predicted_element = scores[0][0]
-
-    new_locator = f"//*[@name='{predicted_element}']"
+    # print(element_name)
+    # print(test_df)
+    #
+    # queue = PriorityQueue()
+    #
+    # predicted_element = get_predicted_element(scores, queue)[1]
+    # print(predicted_element)
+    #
+    # # print(scores)
+    # # predicted_element = scores[0][0]
+    #
+    # new_locator = f"//*[@name='{predicted_element}']"
 
 
     # driver.execute_script(f"document.getElementById('{new_element}').value='ubezpieczenia.magro@gmail.com'")

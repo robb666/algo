@@ -44,12 +44,10 @@ probabilities = rf.predict_proba(X_test)[0]
 print(probabilities)
 
 idx = np.argmax(probabilities)
-print(df.iloc[idx])
+new_element = df.iloc[idx]['element']
 
-
-
-
-
+print(new_element)
+new_locator = f"//*[@name='{new_element}']"
 
 
 # d = {}
