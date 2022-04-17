@@ -8,6 +8,9 @@ import re
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from creds import login, passw
+from ohe_comparision import new_locator
+
+
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
@@ -20,31 +23,31 @@ url = r'https://portal.generali.pl/auth/login?service=https%3A%2F%2Fportal.gener
 
 driver.get(url)
 
-html = driver.page_source
-soup = BeautifulSoup(html, 'lxml')
-tags = ['input']  # to uzupełniać..?
-# el_name = ['LOGIN', 'PASSW', 'LOG_BUTTON']
-
-arr = []
-# tst = []
-for tag in tags:
-    for element in soup.find_all(tag):
-        arr.append({'tag': tag} |
-                   {'text': element.text} |
-                   element.attrs)
-
-df = pd.DataFrame.from_records(arr)
-# el_name = pd.DataFrame({'element': el_name})
-# df = pd.concat([el_name, df], axis=1)
-df.insert(0, 'element', df.name)
-df.element.fillna(df['value'], inplace=True)
-df.element.fillna(df['text'], inplace=True)
-
-# print(df)
-Test = df.loc[(df['element'] == 'username')]
-print(Test)
-Test.to_csv('Test.csv')
-# Test.to_sql('Testdb')
+# html = driver.page_source
+# soup = BeautifulSoup(html, 'lxml')
+# tags = ['input']  # to uzupełniać..?
+# # el_name = ['LOGIN', 'PASSW', 'LOG_BUTTON']
+#
+# arr = []
+# # tst = []
+# for tag in tags:
+#     for element in soup.find_all(tag):
+#         arr.append({'tag': tag} |
+#                    {'text': element.text} |
+#                    element.attrs)
+#
+# df = pd.DataFrame.from_records(arr)
+# # el_name = pd.DataFrame({'element': el_name})
+# # df = pd.concat([el_name, df], axis=1)
+# df.insert(0, 'element', df.name)
+# df.element.fillna(df['value'], inplace=True)
+# df.element.fillna(df['text'], inplace=True)
+#
+# # print(df)
+# Test = df.loc[(df['element'] == 'username')]
+# print(Test)
+# Test.to_csv('Test.csv')
+# # Test.to_sql('Testdb')
 
 
 
@@ -61,32 +64,34 @@ except Exception as e:
     selector = el_from_e['selector']
     print(selector)
 
-    html = driver.page_source
-    soup = BeautifulSoup(html, 'lxml')
-    tags = ['input']  # to uzupełniać..?
-    # el_name = ['LOGIN', 'PASSW', 'LOG_BUTTON']
+    new_locator = new_locator(driver)
 
-    arr = []
-    # tst = []
-    for tag in tags:
-        for element in soup.find_all(tag):
-            arr.append({'tag': tag} |
-                       {'text': element.text} |
-                       element.attrs)
 
-    df = pd.DataFrame.from_records(arr)
-    # el_name = pd.DataFrame({'element': el_name})
-    # df = pd.concat([el_name, df], axis=1)
-    df.insert(0, 'element', df.name)
-    df.element.fillna(df['value'], inplace=True)
-    df.element.fillna(df['text'], inplace=True)
-
-    df.to_csv('file.csv')
-    print(df)
+    # html = driver.page_source
+    # soup = BeautifulSoup(html, 'lxml')
+    # tags = ['input']  # to uzupełniać..?
+    # # el_name = ['LOGIN', 'PASSW', 'LOG_BUTTON']
+    #
+    # arr = []
+    # # tst = []
+    # for tag in tags:
+    #     for element in soup.find_all(tag):
+    #         arr.append({'tag': tag} |
+    #                    {'text': element.text} |
+    #                    element.attrs)
+    #
+    # df = pd.DataFrame.from_records(arr)
+    # # el_name = pd.DataFrame({'element': el_name})
+    # # df = pd.concat([el_name, df], axis=1)
+    # df.insert(0, 'element', df.name)
+    # df.element.fillna(df['value'], inplace=True)
+    # df.element.fillna(df['text'], inplace=True)
+    #
+    # df.to_csv('file.csv')
+    # print(df)
 
     # from rand_forests_sel import predict_elements, get_predicted_element
     # from queue import PriorityQueue
-    from ohe_comparision import new_locator
 
     # scores, element_name, test_df = predict_elements()
     # print(scores)
