@@ -57,7 +57,7 @@ try:
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 
 except Exception as e:
-    el_from_e = eval(re.search('(.+)', e.args[0]).group())
+    el_from_e = eval(re.search('({.+})', e.args[0]).group())
     selector = el_from_e['selector']
     print(selector)
 
