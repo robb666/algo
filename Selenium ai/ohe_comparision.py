@@ -46,8 +46,8 @@ rf.fit(X_train, y_train)
 probabilities = rf.predict_proba(X_test)[0]
 print(probabilities)
 
-idx = np.argmax(probabilities)
-new_element = df.iloc[idx]['element']
+new_element = list(element_dict.keys())[np.argmax(probabilities)]
+print(new_element)
 
 print(new_element)
 new_locator = f"//*[@name='{new_element}']"
