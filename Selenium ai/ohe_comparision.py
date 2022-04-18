@@ -30,15 +30,19 @@ def scrp(driver):
     df.insert(0, 'element', df.name)
     df.element.fillna(df['value'], inplace=True)
     df.element.fillna(df['text'], inplace=True)
+    # df.text = np.nan  # fillna didn't work
 
+    ########
+    df.to_csv('file.csv')
+    df = pd.read_csv('file.csv', dtype=object)
+    print(df.dtypes)
     return df
 
-# reading the required files into python using pandas
-# df = pd.read_csv('file.csv', dtype=object)
 
 def new_locator(driver):
     df = scrp(driver)
     df = df.fillna('None')
+    # df = df.drop(['Unnamed: 0'], axis=1)
     print(df)
 
     to_test = pd.read_csv('Test.csv', dtype=object,
@@ -50,7 +54,7 @@ def new_locator(driver):
 
 
 
-    # df = df.drop(['Unnamed: 0'], axis=1)
+
 
     ohe = OneHotEncoder(sparse=False, handle_unknown='ignore')
     X_train = ohe.fit_transform(df.astype(str))

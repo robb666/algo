@@ -54,7 +54,7 @@ driver.get(url)
 driver.maximize_window()
 
 
-locator = 'username'
+locator = 'usernameeeee'
 try:
     Element_email = driver.find_element(By.XPATH, f"//input[@name='{locator}']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
