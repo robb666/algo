@@ -8,7 +8,7 @@ import re
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from creds import login, passw
-from ohe_comparision import new_locator
+from ohe_comparision import healed_locator
 
 
 
@@ -29,9 +29,9 @@ try:
     Element_email = driver.find_element(By.XPATH, f"//input[@name='usernameeer']")
     Element_email.send_keys('ubezpieczenia.magro@gmail.com')
 except Exception as e:
-    new_locator(driver, e, attr='name', element_row=1, value='ubezpieczenia.magro@gmail.com')
+    healed_locator(driver, e, attr='name', element_row=1, value='ubezpieczenia.magro@gmail.com')
 
-    time.sleep(8)
+    time.sleep(800)
 
 
 

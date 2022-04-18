@@ -37,8 +37,10 @@ def scrp(driver):
     return df
 
 
-def new_locator(driver, e, *, attr, element_row, value):
-    if 'no such element' in str(e) or 'Unable to locate element' in str(e):
+def healed_locator(driver, e, *, attr, element_row, value):
+    if 'no such element' not in str(e) or 'Unable to locate element' not in str(e):
+        pass
+    else:
         df = scrp(driver)
         df = df.fillna('None')
         df = df.drop(['Unnamed: 0'], axis=1)
