@@ -45,7 +45,7 @@ def new_locator(driver, e, *, attr, element_row, value):
 
         to_test = pd.read_csv('Test.csv', dtype=object,
                               header=0, usecols=lambda c: c in df.columns)
-        test = to_test.append(df)[df.columns].iloc[:element_row, :]
+        test = to_test.append(df)[df.columns].iloc[[element_row]]
         test = test.fillna('None')
 
         ohe = OneHotEncoder(sparse=False, handle_unknown='ignore')
