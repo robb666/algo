@@ -50,6 +50,8 @@ def healed_locator(driver, e, *, attr, element_row, value):
         test = to_test.append(df)[df.columns].iloc[[element_row]]
         test = test.fillna('None')
 
+        print(test)
+
         ohe = OneHotEncoder(sparse=False, handle_unknown='ignore')
         X_train = ohe.fit_transform(df.astype(str))
         X_test = ohe.transform(test)
