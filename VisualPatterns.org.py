@@ -27,13 +27,17 @@ print('\nvisual 2\n\n')
 
 
 
-def vis3(n):
-    return ('O' * n + ' ' * n + '\n') * n  # TODO
+def vis3(n, result=''):
+    # for i in range(n):
+    #     result += ('O' * (i - 1) + '\n' + 'O' * n)
+    # return result
+
+    return 'O' + '\n' + 'o' * (n - 1)
 
 
 print('\nvisual 3\n\n')
-for i in range(5):
-    print(vis3(i))
+# for i in range(5):
+print(vis3(3))
 # [print(vis3(i)) for i in range(4)]
 
 
