@@ -37,25 +37,40 @@
 ########################################
 
 
-def vis4(n):
-    result = ''
-    for i in range(0, n + 1):
-        result += ' ' * i + 'O' + ' ' * (((n - i) * 2) - 1) + 'O' + ' ' * i + '\n'
-        if i == n - 1:
-            break
-    for i in reversed(range(0, n + 1)):
-        if i == n:
-            result += ' ' * i + 'O' + ' ' * (((n - i) * 2) - 1) + '' + ' ' * i + '\n'
-            continue
-        result += ' ' * i + 'O' + ' ' * (((n - i) * 2) - 1) + 'O' + ' ' * i + '\n'
+# def vis4(n):
+#     result = ''
+#     for i in range(0, n + 1):
+#         result += ' ' * i + 'O' + ' ' * (((n - i) * 2) - 1) + 'O' + ' ' * i + '\n'
+#         if i == n - 1:
+#             break
+#     for i in reversed(range(0, n + 1)):
+#         if i == n:
+#             result += ' ' * i + 'O' + ' ' * (((n - i) * 2) - 1) + '' + ' ' * i + '\n'
+#             continue
+#         result += ' ' * i + 'O' + ' ' * (((n - i) * 2) - 1) + 'O' + ' ' * i + '\n'
+#
+#     return result
+#
+#
+# print('\nvisual 4\n\n')
+# n = 3
+# for num in range(1, n + 1):
+#     print(vis4(num))
 
-    return result
+
+########################################
+
+
+def vis5(n):
+
+    return (n - 1) * 'O' + (n - 2) * ('\n' + 'O' + ' ' * (n - 2) + 'O') + '\n' + n * 'O'
+
 
 
 print('\nvisual 4\n\n')
 n = 3
-for num in range(1, n + 1):
-    print(vis4(num))
+# for num in range(1, n + 1):
+print(vis5(n))
 
 
 ########################################
