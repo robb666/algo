@@ -45,9 +45,9 @@ def vis4(n):
             break
     for i in reversed(range(0, n + 1)):
         if i == n:
-            result += ' ' * i + 'O' + ' ' * (n - i) + ' ' * (n - i - 1) + '' + ' ' * i + '\n'
+            result += ' ' * i + 'O' + ' ' * (((n - i) * 2) - 1) + '' + ' ' * i + '\n'
             continue
-        result += ' ' * i + 'O' + ' ' * (n - i) + ' ' * (n - i - 1) + 'O' + ' ' * i + '\n'
+        result += ' ' * i + 'O' + ' ' * (((n - i) * 2) - 1) + 'O' + ' ' * i + '\n'
 
     return result
 
