@@ -52,13 +52,10 @@ def vis4(n):
     return result
 
 
-
 print('\nvisual 4\n\n')
-# [print(vis4(n)) for n in range(4)]
-n = 8
-print(vis4(n))
-
-
+n = 3
+for num in range(1, n + 1):
+    print(vis4(num))
 
 
 ########################################
