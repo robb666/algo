@@ -126,14 +126,27 @@
 ########################################
 
 
-def vis9(n):
-    return '*' * n + '\n' + '*' * (n + 1) + '\n' + '*' * (n + 2) + '\n'
+# def vis9(n):
+#     return '*' * n + '\n' + '*' * (n + 1) + '\n' + '*' * (n + 2) + '\n'
+#
+#
+# print('\nvisual 9\n\n')
+# n = 43
+# for i in range(1, n + 1):
+#     print(vis9(i), len(vis9(i)) - vis9(i).count('\n'))
 
 
-print('\nvisual 9\n\n')
+########################################
+
+
+def vis10(n):
+    return '*' * (n + 1) + '\n' + '*' * n + '\n'
+
+
+print('\nvisual 10\n\n')
 n = 43
-for i in range(1, n + 1):
-    print(vis9(i), len(vis9(i)) - vis9(i).count('\n'))
+for i in range(n):
+    print(vis10(i), len(vis10(i)) - vis10(i).count('\n'))
 
 
 ########################################
