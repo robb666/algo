@@ -61,21 +61,37 @@
 ########################################
 
 
-def vis5(n):
-    return (' ' * n + 'O' * (n + 1)) + \
-           ('\n' + ' ' * (n + 1) + 'O' * n) * (n - 1) + \
-           ('\n' + 'O' + ' ' * n + 'O' * (n * 1)) + \
-            '\n' + 'O' * (n + 2) + \
-           ('\n' + 'O' * (n + 1)) * (n - 1)
-
-
-print('\nvisual 5\n\n')
-n = 4
-for num in range(1, n + 1):
-    print(vis5(num) + '\n')
+# def vis5(n):
+#     return (' ' * n + 'O' * (n + 1)) + \
+#            ('\n' + ' ' * (n + 1) + 'O' * n) * (n - 1) + \
+#            ('\n' + 'O' + ' ' * n + 'O' * (n * 1)) + \
+#             '\n' + 'O' * (n + 2) + \
+#            ('\n' + 'O' * (n + 1)) * (n - 1)
+#
+#
+# print('\nvisual 5\n\n')
+# n = 4
+# for num in range(1, n + 1):
+#     print(vis5(num) + '\n')
 
 
 ########################################
+
+
+def vis6(n):
+    result = ''
+    for i in range(n + 1):
+        result += ' ' * (n - i) + '^ ' * i + '\n'
+    return result
+
+print('\nvisual 5 \n\n')
+n = 3
+for i in range(1, n + 1):
+    print(vis6(i))
+
+
+########################################
+
 
 
 # def vis32(n, result=''):
