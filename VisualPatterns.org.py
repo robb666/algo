@@ -94,15 +94,32 @@
 ########################################
 
 
-def vis7(n):
-    return '**\n' * n + '*' * 3 + '\n'
+# def vis7(n):
+#     return '**\n' * n + '*' * 3 + '\n'
+#
+#
+# print('\nvisual 6\n\n')
+# n = 3
+# for i in range(n):
+#     print(vis7(i))
 
 
-print('\nvisual 6\n\n')
+########################################
+
+
+def vis8(n):
+    result = ''
+    for i in range(n):
+        result += '*' * (i + 1)
+        if i + 1 == n:
+            return result + '*\n'
+        result += '\n'
+    return result
+
+print('\nvisual 8\n\n')
 n = 3
-for i in range(n):
-    print(vis7(i))
-
+for i in range(1, n + 1):
+    print(vis8(i))
 
 
 
