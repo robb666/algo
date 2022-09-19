@@ -84,6 +84,7 @@ def vis6(n):
         result += ' ' * (n - i) + '^ ' * i + '\n'
     return result
 
+
 print('\nvisual 5 \n\n')
 n = 3
 for i in range(1, n + 1):
