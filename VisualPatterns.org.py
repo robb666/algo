@@ -116,6 +116,7 @@ def vis8(n):
         result += '\n'
     return result
 
+
 print('\nvisual 8\n\n')
 n = 3
 for i in range(1, n + 1):
