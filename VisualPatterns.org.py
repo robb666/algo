@@ -18,7 +18,7 @@
 #
 #
 # print('\nvisual 2\n\n')
-# n = 4
+# n = 5
 # [print(vis2(i) + '\n') for i in range(n)]
 #
 #
@@ -30,7 +30,7 @@
 #
 #
 # print('\nvisual 3\n\n')
-# n = 5
+# n = 6
 # [print(vis3(i)) for i in range(2, n)]
 
 
@@ -53,7 +53,7 @@
 #
 #
 # print('\nvisual 4\n\n')
-# n = 3
+# n = 7
 # for num in range(1, n + 1):
 #     print(vis4(num))
 
@@ -70,7 +70,7 @@
 #
 #
 # print('\nvisual 5\n\n')
-# n = 4
+# n = 9
 # for num in range(1, n + 1):
 #     print(vis5(num) + '\n')
 
@@ -269,7 +269,7 @@ def vis17(n):
 
 
 print('\nvis17\n\n')
-n = 43
+n = 4
 for i in range(n):
     print(vis17(i))
 print(vis17(n).count('\u2588'))
