@@ -139,14 +139,30 @@
 ########################################
 
 
-def vis10(n):
-    return '*' * (n + 1) + '\n' + '*' * n + '\n'
+# def vis10(n):
+#     return '*' * (n + 1) + '\n' + '*' * n + '\n'
+#
+#
+# print('\nvisual 10\n\n')
+# n = 43
+# for i in range(n):
+#     print(vis10(i), len(vis10(i)) - vis10(i).count('\n'))
 
 
-print('\nvisual 10\n\n')
-n = 43
-for i in range(n):
-    print(vis10(i), len(vis10(i)) - vis10(i).count('\n'))
+########################################
+
+
+def vis11(n, result=''):
+    while n <= 43:
+        result = ('*' + '\n') * n + '*' * (n + 1) + '\n'
+        n += 1
+        return vis11(n, result)
+    return result
+
+
+print('\nvisual 11\n\n')
+n = 1
+print(vis11(n), len(vis11(n)) - vis11(n).count('\n'))
 
 
 ########################################
