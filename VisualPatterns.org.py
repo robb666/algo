@@ -186,7 +186,7 @@
 
 def vis13(n, result=''):
     while n <= 43:
-        result += ('O' * n + '\n')
+        result += 'O' * n + '\n'
         n += 1
         return vis13(n, result)
     return result
