@@ -200,19 +200,34 @@
 ########################################
 
 
-def vis14(n):
-    nl = '\n'
-    return f"O\n{('O' * n + nl) * 6}"
-
-
-print('\nvisual 14\n\n')
-n = 43
-for i in range(1, 1 + n):
-    print(vis14(i), len(vis14(i)) - vis14(i).count('\n'))
+# def vis14(n):
+#     nl = '\n'
+#     return f"O\n{('O' * n + nl) * 6}"
+#
+#
+# print('\nvisual 14\n\n')
+# n = 43
+# for i in range(1, 1 + n):
+#     print(vis14(i), len(vis14(i)) - vis14(i).count('\n'))
 
 
 ########################################
 
+
+def vis15(n, result=''):
+    s = u"\u2588"
+    nl = '\n'
+    result += f""" o{nl}o{s}o{nl}"""
+    return result * n + ' o'
+
+
+print('\nvisual 15\n\n')
+n = 43
+print(vis15(n))
+print(vis15(n).count('o'))
+
+
+########################################
 
 
 # def vis32(n, result=''):
@@ -232,15 +247,15 @@ for i in range(1, 1 + n):
 v = 8
 
 print(
-                                        f"""\n\n\n
-                                           /
-                                          / \\
-                                         /   \\
-                                        /     \\
-                                       |   {v}   | 
-                                        \\     /
-                                         \\   /
-                                          \\ /
-                                           /
-                                        """
+                            f"""\n\n\n
+                               /
+                              / \\
+                             /   \\
+                            /     \\
+                           |   {v}   | 
+                            \\     /
+                             \\   /
+                              \\ /
+                               /
+                            """
 )
