@@ -152,18 +152,49 @@
 ########################################
 
 
-def vis11(n, result=''):
+# def vis11(n, result=''):
+#     while n <= 43:
+#         result = ('*' + '\n') * n + '*' * (n + 1) + '\n'
+#         n += 1
+#         return vis11(n, result)
+#     return result
+#
+#
+# print('\nvisual 11\n\n')
+# n = 1
+# print(vis11(n), len(vis11(n)) - vis11(n).count('\n'))
+
+
+########################################
+
+
+# def vis12(n, result=''):
+#     while n <= 43:
+#         result = ('O' * (n + 1) + '\n') * (n + 1)
+#         n += 1
+#         return vis12(n, result)
+#     return result
+#
+#
+# print('\nvisual 12\n\n')
+# n = 1
+# print(vis12(n), len(vis12(n)) - vis12(n).count('\n'))
+
+
+########################################
+
+
+def vis13(n, result=''):
     while n <= 43:
-        result = ('*' + '\n') * n + '*' * (n + 1) + '\n'
+        result += ('O' * n + '\n')
         n += 1
-        return vis11(n, result)
+        return vis13(n, result)
     return result
 
 
-print('\nvisual 11\n\n')
+print('\nvisual 13\n\n')
 n = 1
-print(vis11(n), len(vis11(n)) - vis11(n).count('\n'))
-
+print(vis13(n), len(vis13(n)) - vis13(n).count('\n'))
 
 ########################################
 
