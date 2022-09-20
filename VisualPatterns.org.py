@@ -214,17 +214,50 @@
 ########################################
 
 
-def vis15(n, result=''):
-    s = u"\u2588"
-    nl = '\n'
-    result += f""" o{nl}o{s}o{nl}"""
-    return result * n + ' o'
+# def vis15(n, result=''):
+#     s = u"\u2588"
+#     nl = '\n'
+#     result += f""" o{nl}o{s}o{nl}"""
+#     return result * n + ' o'
+#
+#
+# print('\nvisual 15\n\n')
+# n = 43
+# print(vis15(n))
+# print(vis15(n).count('o'))
 
 
-print('\nvisual 15\n\n')
-n = 43
-print(vis15(n))
-print(vis15(n).count('o'))
+########################################
+
+
+# def vis16_it(n, result=''):
+#     for i in range(n + 1):
+#         result += ' ' * (n - i) + '^' * (i + i - 1) + '\n'
+#     return result
+#
+#
+# print('\nvisual 16\n\n')
+# n = 43
+# print(vis16_it(n))
+# print(vis16_it(n).count('^'))
+
+
+########################################
+
+
+def vis16_rec(n, result=''):
+    m = 43
+    while n <= 43:
+        result += ' ' * (m - n) + '^' * (n + n - 1) + '\n'
+        n += 1
+        return vis16_rec(n, result)
+    return result
+
+
+print('\nvisual 16\n\n')
+n = 1
+print(vis16_rec(n))
+print(vis16_rec(n).count('^'))
 
 
 ########################################
