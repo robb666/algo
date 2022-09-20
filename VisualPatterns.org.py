@@ -184,19 +184,35 @@
 ########################################
 
 
-def vis13(n, result=''):
-    while n <= 43:
-        result += 'O' * n + '\n'
-        n += 1
-        return vis13(n, result)
-    return result
+# def vis13(n, result=''):
+#     while n <= 43:
+#         result += 'O' * n + '\n'
+#         n += 1
+#         return vis13(n, result)
+#     return result
+#
+#
+# print('\nvisual 13\n\n')
+# n = 1
+# print(vis13(n), len(vis13(n)) - vis13(n).count('\n'))
 
-
-print('\nvisual 13\n\n')
-n = 1
-print(vis13(n), len(vis13(n)) - vis13(n).count('\n'))
 
 ########################################
+
+
+def vis14(n):
+    nl = '\n'
+    return f"O\n{('O' * n + nl) * 6}"
+
+
+print('\nvisual 14\n\n')
+n = 43
+for i in range(1, 1 + n):
+    print(vis14(i), len(vis14(i)) - vis14(i).count('\n'))
+
+
+########################################
+
 
 
 # def vis32(n, result=''):
