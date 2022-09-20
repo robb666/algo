@@ -245,19 +245,34 @@
 ########################################
 
 
-def vis16_rec(n, result=''):
-    m = 43
-    while n <= 43:
-        result += ' ' * (m - n) + '^' * (n + n - 1) + '\n'
-        n += 1
-        return vis16_rec(n, result)
-    return result
+# def vis16_rec(n, result=''):
+#     m = 43
+#     while n <= 43:
+#         result += ' ' * (m - n) + '^' * (n + n - 1) + '\n'
+#         n += 1
+#         return vis16_rec(n, result)
+#     return result
+#
+#
+# print('\nvisual 16\n\n')
+# n = 1
+# print(vis16_rec(n))
+# print(vis16_rec(n).count('^'))
 
 
-print('\nvisual 16\n\n')
-n = 1
-print(vis16_rec(n))
-print(vis16_rec(n).count('^'))
+########################################
+
+
+def vis17(n):
+    square = "\u2588"
+    return (' ' * n + square + '\n') * n + square * (n + n + 1) + '\n'
+
+
+print('\nvis17\n\n')
+n = 43
+for i in range(n):
+    print(vis17(i))
+print(vis17(n).count('\u2588'))
 
 
 ########################################
