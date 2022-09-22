@@ -1,5 +1,4 @@
 
-
 class Graph:
     def __init__(self, edges):
         self.edges = edges
@@ -13,7 +12,7 @@ class Graph:
 
     def get_paths(self, start, end, path=[]):
         path = path + [start]
-        # print(path)
+
         if start == end:
             return [path]
         if start not in self.graph_dict:
@@ -24,15 +23,38 @@ class Graph:
             if node not in path:
                 start = node
                 new_paths = self.get_paths(start, end, path)
-                # print(new_paths)
+                for p in new_paths:
+                    paths.append(p)
+        return paths
+
+    def get_shortest_path(self, start, end, path=[]):
+        path = path + [start]
+
+        if start == end:
+            return [path]
+        if start not in self.graph_dict:
+            return []
+
+        paths = []
+        for node in self.graph_dict[start]:
+            if node not in path:
+                start = node
+                new_paths = self.get_shortest_path(start, end, path)
                 for p in new_paths:
                     paths.append(p)
 
-        return paths
+
+        # sp = []
+        # for s_path in paths:
+        #
+        #     if len(sp) <
+
+        return min(paths)
+        # return min([shorter for shorter in paths])
+
 
 
 if __name__ == '__main__':
-
     routes = [
         ('Mumbai', 'Paris'),
         ('Mumbai', 'Dubai'),
@@ -42,16 +64,16 @@ if __name__ == '__main__':
         ('New York', 'Toronto'),
     ]
 
-
     route_graph = Graph(routes)
 
-    # print(route_graph.get_paths('Mumbai', 'Toronto'))
-
-    start = 'Mumbai'
-    end = 'Mumbai'
+    start = 'Paris'
+    end = 'New York'
     print()
-    print(f'Paths between {start} and {end}:',
-          route_graph.get_paths(start, end))
+    print(f'Shortest path between {start} and {end}:',
+          route_graph.get_shortest_path(start, end))
+
+    # print(f'Paths between {start} and {end}:',
+    #       route_graph.get_paths(start, end))
 
 
 

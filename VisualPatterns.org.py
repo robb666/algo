@@ -263,16 +263,30 @@
 ########################################
 
 
-def vis17(n):
-    square = "\u2588"
-    return (' ' * n + square + '\n') * n + square * (n + n + 1) + '\n'
+# def vis17(n):
+#     square = "\u2588"
+#     return (' ' * n + square + '\n') * n + square * (n + n + 1) + '\n'
+#
+#
+# print('\nvis17\n\n')
+# n = 4
+# for i in range(n):
+#     print(vis17(i))
+# print(vis17(n).count('\u2588'))
 
 
-print('\nvis17\n\n')
-n = 4
-for i in range(n):
-    print(vis17(i))
-print(vis17(n).count('\u2588'))
+########################################
+
+
+def vis18(n):
+    sq = "\u2588"
+    return sq + '\n' + sq * 2 + (''.join([sq + '\n' + '  ' * (i + 1) + sq * 2 for i in range(n - 1)]))
+
+
+print('\nvis18\n\n')
+n = 43
+print(vis18(n))
+print(vis18(n).count('\u2588'))
 
 
 ########################################
