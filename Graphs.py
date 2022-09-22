@@ -33,7 +33,7 @@ class Graph:
         if start == end:
             return [path]
         if start not in self.graph_dict:
-            return []
+            return None
 
         paths = []
         for node in self.graph_dict[start]:
@@ -42,16 +42,8 @@ class Graph:
                 new_paths = self.get_shortest_path(start, end, path)
                 for p in new_paths:
                     paths.append(p)
-
-
-        # sp = []
-        # for s_path in paths:
-        #
-        #     if len(sp) <
-
+        # print(paths)
         return min(paths)
-        # return min([shorter for shorter in paths])
-
 
 
 if __name__ == '__main__':
@@ -74,13 +66,3 @@ if __name__ == '__main__':
 
     # print(f'Paths between {start} and {end}:',
     #       route_graph.get_paths(start, end))
-
-
-
-# d = {
-#     'Mumbai': ['Paris', 'Dubai'],
-#     'Paris': ['Dubai', 'New York']
-# }
-#
-# if 'Paris' in d:
-#     print(True)

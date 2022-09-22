@@ -278,15 +278,32 @@
 ########################################
 
 
-def vis18(n):
-    sq = "\u2588"
-    return sq + '\n' + sq * 2 + (''.join([sq + '\n' + '  ' * (i + 1) + sq * 2 for i in range(n - 1)]))
+# def vis18(n):
+#     sq = "\u2588"
+#     return sq + '\n' + sq * 2 + (''.join([sq + '\n' + '  ' * (i + 1) + sq * 2 for i in range(n - 1)]))
+#
+#
+# print('\nvis18\n\n')
+# n = 43
+# print(vis18(n))
+# print(vis18(n).count('\u2588'))
 
 
-print('\nvis18\n\n')
-n = 43
-print(vis18(n))
-print(vis18(n).count('\u2588'))
+########################################
+
+
+def vis19(n):
+    result = ''
+    for i in range(1, n + 1):
+        result = ' *' + ' ' * i + ('\n' + '*' * (i + 2)) * i + '\n *' + ' ' * i + '\n'
+    return result
+
+
+print('\nvis19\n\n')
+n = 3
+for i in range(n + 1):
+    print(vis19(i), vis19(i).count('*'))
+    print()
 
 
 ########################################
