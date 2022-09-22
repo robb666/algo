@@ -292,18 +292,35 @@
 ########################################
 
 
-def vis19(n):
-    result = ''
-    for i in range(1, n + 1):
-        result = ' *' + ' ' * i + ('\n' + '*' * (i + 2)) * i + '\n *' + ' ' * i + '\n'
-    return result
+# def vis19(n):
+#     result = ''
+#     for i in range(1, n + 1):
+#         result = ' *' + ' ' * i + ('\n' + '*' * (i + 2)) * i + '\n *' + ' ' * i + '\n'
+#     return result
+#
+#
+# print('\nvis19\n\n')
+# n = 3
+# for i in range(n + 1):
+#     print(vis19(i), vis19(i).count('*'))
+#     print()
 
 
-print('\nvis19\n\n')
-n = 3
-for i in range(n + 1):
-    print(vis19(i), vis19(i).count('*'))
-    print()
+########################################
+
+
+def vis20(n, result=''):
+    while n <= 43:
+        result += ('o' + ('oo' * n) + '\n') * n + '\n'
+        n += 1
+        return vis20(n, result)
+    else:
+        return result
+
+
+print('\nvis20\n\n')
+i = 43
+print(vis20(i), vis20(i).count('o'))
 
 
 ########################################
