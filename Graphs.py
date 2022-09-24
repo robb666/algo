@@ -19,37 +19,42 @@ class Graph:
             return []
 
         paths = []
+
         for node in self.graph_dict[start]:
             if node not in path:
                 start = node
                 new_paths = self.get_paths(start, end, path)
+
                 for p in new_paths:
                     paths.append(p)
+
         return paths
 
     def get_shortest_path(self, start, end, path=[]):
         path = path + [start]
 
         if start == end:
-            return [path]
+            return path
         if start not in self.graph_dict:
             return None
 
-        paths = []
-        for node in self.graph_dict[start]:
+        shortest_path = None
+        for node in self.graph_dict[start]:  # TODO dlaczego nie wchodzi w Node Warszawa?
             if node not in path:
                 start = node
-                new_paths = self.get_shortest_path(start, end, path)
-                for p in new_paths:
-                    paths.append(p)
-        # print(paths)
-        return min(paths)
+                sp = self.get_shortest_path(start, end, path)
+                if sp:
+                    if shortest_path is None or len(sp) < len(shortest_path):
+                        shortest_path = sp
+        return shortest_path
 
 
 if __name__ == '__main__':
     routes = [
         ('Mumbai', 'Paris'),
         ('Mumbai', 'Dubai'),
+        # ('Mumbai', 'Warsaw'),
+        # ('Warsaw', 'New York'),
         ('Paris', 'Dubai'),
         ('Paris', 'New York'),
         ('Dubai', 'New York'),
@@ -58,11 +63,12 @@ if __name__ == '__main__':
 
     route_graph = Graph(routes)
 
-    start = 'Paris'
-    end = 'New York'
+    start = 'Mumbai'
+    end = 'Toronto'
     print()
     print(f'Shortest path between {start} and {end}:',
           route_graph.get_shortest_path(start, end))
 
     # print(f'Paths between {start} and {end}:',
     #       route_graph.get_paths(start, end))
+
