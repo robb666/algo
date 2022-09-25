@@ -1,4 +1,5 @@
 
+
 class Graph:
     def __init__(self, edges):
         self.edges = edges
@@ -49,7 +50,27 @@ class Graph:
         return shortest_path
 
     def get_shortest_path_bfs(self, start, end, path=[]):
-        pass
+        path = path + [start]
+        paths2 = []
+        for change in self.graph_dict[start]:
+            if end not in self.graph_dict[change]:
+                path.append(change)
+                # print(path)
+                continue
+
+        for start in path:
+            if end in self.graph_dict[start]:
+                return 'path: ', path
+            else:
+                paths2.append(self.graph_dict[start])
+
+        for path2 in paths2:
+            for start2 in path2:
+                if end in self.graph_dict[start2]:
+                    print(self.graph_dict[start2], end)
+                    return 'path2: ', path2
+
+        return path
 
 
 if __name__ == '__main__':
@@ -57,7 +78,7 @@ if __name__ == '__main__':
         ('Mumbai', 'Paris'),
         ('Mumbai', 'Dubai'),
         ('Mumbai', 'Warsaw'),
-        ('Mumbai', 'New York'),
+        # ('Mumbai', 'New York'),
         ('Warsaw', 'New York'),
         ('Paris', 'Dubai'),
         ('Paris', 'New York'),
@@ -70,8 +91,11 @@ if __name__ == '__main__':
     start = 'Mumbai'
     end = 'Toronto'
     print()
-    print(f'Shortest path between {start} and {end}:',
-          route_graph.get_shortest_path_dfs(start, end))
+    # print(f'Shortest path between {start} and {end} by DFS:',
+    #       route_graph.get_shortest_path_dfs(start, end))
+
+    print(f'Shortest path between {start} and {end} by BFS:',
+          route_graph.get_shortest_path_bfs(start, end))
 
     # print(f'Paths between {start} and {end}:',
     #       route_graph.get_paths(start, end))
