@@ -30,7 +30,7 @@ class Graph:
 
         return paths
 
-    def get_shortest_path(self, start, end, path=[]):
+    def get_shortest_path_dfs(self, start, end, path=[]):
         path = path + [start]
 
         if start == end:
@@ -39,22 +39,26 @@ class Graph:
             return None
 
         shortest_path = None
-        for node in self.graph_dict[start]:  # TODO dlaczego nie wchodzi w Node Warszawa?
+        for node in self.graph_dict[start]:
             if node not in path:
                 start = node
-                sp = self.get_shortest_path(start, end, path)
+                sp = self.get_shortest_path_dfs(start, end, path)
                 if sp:
                     if shortest_path is None or len(sp) < len(shortest_path):
                         shortest_path = sp
         return shortest_path
+
+    def get_shortest_path_bfs(self, start, end, path=[]):
+        pass
 
 
 if __name__ == '__main__':
     routes = [
         ('Mumbai', 'Paris'),
         ('Mumbai', 'Dubai'),
-        # ('Mumbai', 'Warsaw'),
-        # ('Warsaw', 'New York'),
+        ('Mumbai', 'Warsaw'),
+        ('Mumbai', 'New York'),
+        ('Warsaw', 'New York'),
         ('Paris', 'Dubai'),
         ('Paris', 'New York'),
         ('Dubai', 'New York'),
@@ -67,7 +71,7 @@ if __name__ == '__main__':
     end = 'Toronto'
     print()
     print(f'Shortest path between {start} and {end}:',
-          route_graph.get_shortest_path(start, end))
+          route_graph.get_shortest_path_dfs(start, end))
 
     # print(f'Paths between {start} and {end}:',
     #       route_graph.get_paths(start, end))

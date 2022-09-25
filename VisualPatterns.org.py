@@ -326,20 +326,15 @@
 ########################################
 
 
-def vis20(n, result=''):
-    for i in range(n):
-
-        result += '**' + '\n'
-        result += '*' * (n - i)
-
-    return result
+def vis20(i):
+    return (('*' * (i + 1) + '\n') * i) * 2 + '*' * (i + 2) + '\n' + '*' * (i + 2) + '\n\n'
 
 
 print('\nvis20\n\n')
-i = 4
-print(vis20(i))
-print()
-print(vis20(i).count('o'))
+n = 43
+for i in range(n):
+    print(vis20(i), vis20(i).count('*'))
+    print(), print()
 
 
 ########################################
