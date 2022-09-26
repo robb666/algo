@@ -50,27 +50,36 @@ class Graph:
         return shortest_path
 
     def get_shortest_path_bfs(self, start, end, path=[]):
-        path = path + [start]
-        paths2 = []
-        for change in self.graph_dict[start]:
-            if end not in self.graph_dict[change]:
-                path.append(change)
-                # print(path)
-                continue
 
-        for start in path:
-            if end in self.graph_dict[start]:
-                return 'path: ', path
-            else:
-                paths2.append(self.graph_dict[start])
+        visited = []
 
-        for path2 in paths2:
-            for start2 in path2:
-                if end in self.graph_dict[start2]:
-                    print(self.graph_dict[start2], end)
-                    return 'path2: ', path2
+        while self.graph_dict[start]:
+            s = self.graph_dict[start].pop(0)
 
-        return path
+            for x in self.graph_dict[s]:
+                if x not in visited:
+                    visited.append(x)
+
+        return visited + [end]
+
+
+        # path = []
+        # sp = path + [start]
+        # for options in self.graph_dict.values():
+        #     while options:
+        #         start = options.pop(0)
+        #         if start == end:
+        #             return 'SP found', path
+        #         path.append(start)
+        #
+        #     while path:
+        #         change = path.pop(0)
+        #
+        #         for start in self.graph_dict[change]:
+        #             if start == end:
+        #                 return 'SP found', path
+        #     path = []
+
 
 
 if __name__ == '__main__':
