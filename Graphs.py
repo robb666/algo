@@ -53,14 +53,21 @@ class Graph:
 
         visited = []
 
+        if start == end:
+            return path
+
         while self.graph_dict[start]:
             s = self.graph_dict[start].pop(0)
 
-            for x in self.graph_dict[s]:
-                if x not in visited:
-                    visited.append(x)
+            if s in self.graph_dict.keys() or s in self.graph_dict.values():
+                for x in self.graph_dict[s]:
+                    if x not in visited:
+                        visited.append(x)
+                        path.append(x)
 
-        return visited + [end]
+        start = visited.pop(0)
+
+        return self.get_shortest_path_bfs(start, end)
 
 
         # path = []
@@ -91,7 +98,7 @@ if __name__ == '__main__':
         ('Warsaw', 'New York'),
         ('Paris', 'Dubai'),
         ('Paris', 'New York'),
-        ('Dubai', 'New York'),
+        ('Dubai', 'London'),
         ('New York', 'Toronto'),
     ]
 
