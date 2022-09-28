@@ -49,43 +49,21 @@ class Graph:
                         shortest_path = sp
         return shortest_path
 
-    def get_shortest_path_bfs(self, start, end, path=[]):
+    def get_shortest_path_bfs(self, start, end):
 
-        visited = []
+        queue = []
+        queue.append([start])
+        while queue:
+            path = queue.pop(0)
+            node = path[-1]
 
-        if start == end:
-            return path
+            if node == end:
+                return path
 
-        while self.graph_dict[start]:
-            s = self.graph_dict[start].pop(0)
-
-            if s in self.graph_dict.keys() or s in self.graph_dict.values():
-                for x in self.graph_dict[s]:
-                    if x not in visited:
-                        visited.append(x)
-                        path.append(x)
-
-        start = visited.pop(0)
-
-        return self.get_shortest_path_bfs(start, end)
-
-
-        # path = []
-        # sp = path + [start]
-        # for options in self.graph_dict.values():
-        #     while options:
-        #         start = options.pop(0)
-        #         if start == end:
-        #             return 'SP found', path
-        #         path.append(start)
-        #
-        #     while path:
-        #         change = path.pop(0)
-        #
-        #         for start in self.graph_dict[change]:
-        #             if start == end:
-        #                 return 'SP found', path
-        #     path = []
+            for adjacent in self.graph_dict.get(node, []):
+                new_path = list(path)
+                new_path.append(adjacent)
+                queue.append(new_path)
 
 
 
