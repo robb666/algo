@@ -51,20 +51,19 @@ class Graph:
 
     def get_shortest_path_bfs(self, start, end):
 
-        queue = []
-        queue.append([start])
+        queue = [[start]]
+
         while queue:
             path = queue.pop(0)
-            node = path[-1]
+            change = path[-1]
 
-            if node == end:
+            if change == end:
                 return path
 
-            for adjacent in self.graph_dict.get(node, []):
+            for change in self.graph_dict.get(change, []):
                 new_path = list(path)
-                new_path.append(adjacent)
+                new_path.append(change)
                 queue.append(new_path)
-
 
 
 if __name__ == '__main__':
@@ -85,11 +84,11 @@ if __name__ == '__main__':
     start = 'Mumbai'
     end = 'Toronto'
     print()
-    # print(f'Shortest path between {start} and {end} by DFS:',
-    #       route_graph.get_shortest_path_dfs(start, end))
+    print(f'Shortest path between {start} and {end} by DFS:',
+          route_graph.get_shortest_path_dfs(start, end))
 
-    print(f'Shortest path between {start} and {end} by BFS:',
-          route_graph.get_shortest_path_bfs(start, end))
+    # print(f'Shortest path between {start} and {end} by BFS:',
+    #       route_graph.get_shortest_path_bfs(start, end))
 
     # print(f'Paths between {start} and {end}:',
     #       route_graph.get_paths(start, end))
