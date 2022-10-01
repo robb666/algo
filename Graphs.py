@@ -84,12 +84,14 @@ if __name__ == '__main__':
     start = 'Mumbai'
     end = 'Toronto'
     print()
+    # print(f'Paths between {start} and {end}:',
+    #       route_graph.get_paths(start, end))
+
     print(f'Shortest path between {start} and {end} by DFS:',
           route_graph.get_shortest_path_dfs(start, end))
 
     # print(f'Shortest path between {start} and {end} by BFS:',
     #       route_graph.get_shortest_path_bfs(start, end))
 
-    # print(f'Paths between {start} and {end}:',
-    #       route_graph.get_paths(start, end))
+
 
