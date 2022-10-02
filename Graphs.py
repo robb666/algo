@@ -36,33 +36,34 @@ class Graph:
 
         if start == end:
             return path
+
         if start not in self.graph_dict:
             return None
 
         shortest_path = None
-        for node in self.graph_dict[start]:
-            if node not in path:
-                start = node
+        for change in self.graph_dict[start]:
+            if change not in path:
+                start = change
                 sp = self.get_shortest_path_dfs(start, end, path)
                 if sp:
-                    if shortest_path is None or len(sp) < len(shortest_path):
+                    if shortest_path is None or len(sp) < len(self.get_shortest_path_dfs(start, end, path)):
                         shortest_path = sp
+
         return shortest_path
 
     def get_shortest_path_bfs(self, start, end):
-
         queue = [[start]]
 
         while queue:
             path = queue.pop(0)
-            change = path[-1]
+            start = path[-1]
 
-            if change == end:
+            if start == end:
                 return path
 
-            for change in self.graph_dict.get(change, []):
+            for change_or_end in self.graph_dict.get(start, []):
                 new_path = list(path)
-                new_path.append(change)
+                new_path.append(change_or_end)
                 queue.append(new_path)
 
 
@@ -87,11 +88,9 @@ if __name__ == '__main__':
     # print(f'Paths between {start} and {end}:',
     #       route_graph.get_paths(start, end))
 
-    print(f'Shortest path between {start} and {end} by DFS:',
-          route_graph.get_shortest_path_dfs(start, end))
+    # print(f'Shortest path between {start} and {end} by DFS:',
+    #       route_graph.get_shortest_path_dfs(start, end))
 
-    # print(f'Shortest path between {start} and {end} by BFS:',
-    #       route_graph.get_shortest_path_bfs(start, end))
-
-
+    print(f'Shortest path between {start} and {end} by BFS:',
+          route_graph.get_shortest_path_bfs(start, end))
 
