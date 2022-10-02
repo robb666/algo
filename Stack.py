@@ -66,6 +66,8 @@ print(revind(string))
 print('\n\n\n')
 
 
+
+
 # ex. 2
 
 
@@ -75,13 +77,13 @@ def is_balanced(expression):
 
     brackets = ('(', ')', '[', ']', '{', '}')
 
-    for par in expression:
-        if par in brackets:
-            s.push(par)
-
     x = ('(', ')')
     y = ('[', ']')
     z = ('{', '}')
+
+    for par in expression:
+        if par in brackets:
+            s.push(par)
 
     while not s.is_empty():
         par_r = s.pop()
@@ -102,7 +104,37 @@ def is_balanced(expression):
     return True
 
 
-exp = '{[{(((((2 ** 2)))))}}'
+exp = '{[{(((((2 ** 2)))))}]}'
 
 
 print(is_balanced(exp))
+
+
+# def is_match(ch1, ch2):
+#     match_dict = {
+#         ')': '(',
+#         ']': '[',
+#         '}': '{'
+#     }
+#     return match_dict[ch1] == ch2
+#
+#
+# def is_balanced(s):
+#     stack = Stack()
+#     for ch in s:
+#         if ch == '(' or ch == '{' or ch == '[':
+#             stack.push(ch)
+#         if ch == ')' or ch == '}' or ch == ']':
+#             if stack.size() == 0:
+#                 return False
+#             if not is_match(ch, stack.pop()):
+#                 return False
+#
+#     return stack.size() == 0
+#
+#
+# if __name__ == '__main__':
+#     exp = '{[{(((((2 ** 2)))))}]}'
+#
+#     print(is_balanced(exp))
+
