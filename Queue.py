@@ -1,4 +1,9 @@
 from collections import deque
+from time import sleep
+import threading
+import queue
+import concurrent.futures
+
 
 # q = deque()
 #
@@ -10,15 +15,18 @@ from collections import deque
 
 
 class Queue:
-
     def __init__(self):
         self.buffer = deque()
 
-    def enqueue(self, value):
-        self.buffer.appendleft(value)
+    def enqueue(self, val):
+        self.buffer.appendleft(val)
 
     def dequeue(self):
-        self.buffer.pop()
+        if len(self.buffer)==0:
+            print("Queue is empty")
+            return
+
+        return self.buffer.pop()
 
     def is_empty(self):
         return len(self.buffer) == 0
@@ -47,58 +55,72 @@ class QueueIterator:
         raise StopIteration
 
 
-# pq = Queue()
-#
-# pq.enqueue({
-#     'company': 'Wall Mart',
-#     'timestamp': '15 apr, 11.01 AM',
-#     'price': 131.10
-# })
-# pq.enqueue({
-#     'company': 'Wall Mart',
-#     'timestamp': '15 apr, 11.02 AM',
-#     'price': 132
-# })
-# pq.enqueue({
-#     'company': 'Wall Mart',
-#     'timestamp': '15 apr, 11.03 AM',
-#     'price': 135
-# })
-#
-# print(pq.buffer)
-
-
 # ex. 1
 
-from time import sleep
-import concurrent.futures
+
+# def place_orders(orders):
+#     for order in orders:
+#         print("Placing order for:",order)
+#         food_order_queue.enqueue(order)
+#         sleep(0.5)
+#
+#
+# def serve_orders():
+#     sleep(1)
+#     while True:
+#         order = food_order_queue.dequeue()
+#         print("Now serving: ",order)
+#         sleep(2)
+#
+#
+# if __name__ == '__main__':
+#     food_order_queue = Queue()
+#     orders = ['pizza','samosa','pasta','biryani','burger']
+#     t1 = threading.Thread(target=place_orders, args=(orders,))
+#     t2 = threading.Thread(target=serve_orders)
+#
+#     t1.start()
+#     t2.start()
+#
+#     t1.join()
+#     t2.join()
 
 
-def order(orders):
-    # q = Queue()
-    q = []
+def order(q, orders):
     for dish in orders:
-        print(f'New order: {dish}')
-        # q.enqueue(dish)
-        q.append(dish)
+        q.put(dish)
         sleep(.5)
-        yield q
+        print(f'New order: {dish}')
 
 
 def serve(q):
-    while len(q) != 0:
-        dish = q.pop(0)
-        sleep(2)
+    while q.qsize() != 0:
+        dish = q.get()
+        sleep(2)  # preparing time
         print(f'{dish} ready!')
 
 
 orders = ['pizza', 'samosa', 'pasta', 'biryani', 'burger']
 
-funk = [order, serve]
+q = queue.Queue()
+
+t1 = threading.Thread(target=order, args=(q, orders))
+t2 = threading.Thread(target=serve, args=(q,))
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
 
 
-with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-    f1 = executor.map(order, [orders])
-    for item in f1:
-        for item2 in item:
-            f2 = executor.submit(serve, item2)
+
+# with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+#     f1 = executor.map(order, orders)
+    # f2 = executor.submit(serve)
+    # print(f1, f2)
+
+    # for qq in f1:
+        # for q in qq:
+            # print(q)
+        # f2 = executor.submit(serve, q)
