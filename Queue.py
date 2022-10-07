@@ -22,7 +22,7 @@ class Queue:
         self.buffer.appendleft(val)
 
     def dequeue(self):
-        if len(self.buffer)==0:
+        if len(self.buffer) == 0:
             print("Queue is empty")
             return
 
@@ -136,12 +136,19 @@ class QueueIterator:
 # ex. 2
 
 
-# ex. 2
-
-
 # Ver. 4 theirs
 def produce_binary_numbers(n):
-    pass
+    q = Queue()
+
+    q.enqueue("1")
+
+    for i in range(n):
+        f = q.front()
+        print(f)
+        q.enqueue(f + "0")
+        q.enqueue(f + "1")
+
+        q.dequeue()
 
 
 produce_binary_numbers(10)
