@@ -2,7 +2,7 @@
 
 class Top:
 
-    def __init__(self, connections):
+    def __init__(self, connections, _children=()):
         self.graph = {}
         for k, v in connections:
             if k not in self.graph:
@@ -20,36 +20,45 @@ class Top:
             if k in self.graph[k] or v in self.graph[k]:
                 self.index[v] += 1
 
+        self._prev = set(_children)
+
         print(self.graph)
         # print(self.index)
 
-    def sortII(self):
+    def sortIII(self):
 
-        sett = set()
-        stack = []
-        root = []
+        topo = []
+        visited = set()
 
-        k = None
-        while self.graph:
-            for k, v in self.graph.items():
-                for child in v:
-                    if child not in self.graph.keys():
-                        leaf = self.graph[k].pop(self.graph[k].index(child))
-                        if leaf not in sett:
-                            stack.append(leaf)
-                            sett.add(leaf)
-                        elif k not in v and k not in sett:
-                            root.append(k)
-                            sett.add(k)
-            self.graph.pop(k)
-        return list(reversed(stack + root))
+        def build_topo(v):
+            if v not in visited:
+                visited.add(v)
+                for child in v._prev:
+                    build_topo(child)
+                topo.append(v)
+        build_topo(self)
 
 
-
-
-
-
-
+    # def sortII(self):
+    #
+    #     sett = set()
+    #     stack = []
+    #     root = []
+    #
+    #     k = None
+    #     while self.graph:
+    #         for k, v in self.graph.items():
+    #             for child in v:
+    #                 if child not in self.graph.keys():
+    #                     leaf = self.graph[k].pop(self.graph[k].index(child))
+    #                     if leaf not in sett:
+    #                         stack.append(leaf)
+    #                         sett.add(leaf)
+    #                     elif k not in v and k not in sett:
+    #                         root.append(k)
+    #                         sett.add(k)
+    #         self.graph.pop(k)
+    #     return list(reversed(stack + root))
 
     # def sortI(self):
     #
@@ -105,6 +114,6 @@ di = [('A', 'B'),
 #       ]
 
 topo = Top(di)
+print(topo.sortIII())
 
-
-print(topo.sortII())
+# print(topo.sortIII())
