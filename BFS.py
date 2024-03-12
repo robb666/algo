@@ -31,6 +31,8 @@ graph['peggy'] = []
 graph['thom'] = []
 graph['jonny'] = ['robo']
 
+print(graph)
+
 search('you')
 
 
